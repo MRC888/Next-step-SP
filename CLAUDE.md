@@ -3,7 +3,7 @@
 Este arquivo passa o contexto de uma conversa anterior (Claude no app, 20/10/2026) para o Claude Code. Leia inteiro antes de agir.
 
 ## Quem é o usuário
-Marcelo Santos, 23 anos. Analista Fiscal/Financeiro na Assecon (contabilidade), cuidando de 22 empresas. Estuda Ciência da Computação na FIAP (PBL) e ADS na UNITAU.
+Marcelo Santos, 23 anos. Analista Fiscal/Financeiro na Assecon (contabilidade), cuidando de 22 empresas. Experiência **fiscal** (apuração de impostos, regimes tributários); pouca familiaridade com fechamento de balanço e DRE. Estuda Ciência da Computação na FIAP (PBL) e ADS na UNITAU.
 
 Stack já demonstrada: SQL/PostgreSQL, Python (pandas, Matplotlib), Power BI (DAX), Tableau e Excel. Interesse principal: **engenharia de dados + AI engineering** (automação, ML, agentes). Programar por horas o cansa: prefere entender fundamentos e arquitetura. Escreva o código, mas **explique cada parte de forma metódica**, para que ele consiga explicar numa entrevista.
 
@@ -32,8 +32,8 @@ Divulgação: dividir o projeto em vários posts no LinkedIn, um por etapa.
 
 Domínio: **financeiro**, aproveitando a experiência contábil de Marcelo.
 
-Base: **ainda não decidida.**
-- **CVM:** ITR/DFP de companhias abertas, em ZIP/CSV, atualização semanal com reapresentações. Recomendada: contabilidade societária, que ele domina.
+Base: **CVM** (decidido em 21/10/2026). IF.data descartado.
+- **CVM:** ITR/DFP de companhias abertas, em ZIP/CSV, atualização semanal com reapresentações. Escolhida: dinâmica, multissetorial, boa para ML.
 - **IF.data (Banco Central):** dados trimestrais de bancos via API OData, desde 2000.
 - Enriquecimento possível: API SGS do Banco Central (Selic, IPCA, câmbio).
 
@@ -54,7 +54,7 @@ Tempo: manhãs dedicadas até 28/10/2026, mas isso não é prazo final.
 - GitHub: `MRC888/Next-step-SP`, privado. Marcelo faz push pelo **GitHub Desktop** (o `gh` está em `~/.local/bin`, sem login).
 
 ## Próximas tarefas
-1. Fechar com Marcelo a escolha da base (CVM ou IF.data).
+1. Explorar os dados da CVM e desenhar a ingestão.
 2. Desenhar a arquitetura e o MVP.
 3. Registrar tudo no Obsidian.
 
