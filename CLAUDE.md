@@ -51,11 +51,12 @@ Tempo: manhãs dedicadas até 28/10/2026, mas isso não é prazo final.
 - Docker Desktop instalado; CLI em `~/.docker/bin` (no PATH via `~/.zprofile`).
 - Banco no ar: container `sp_data_postgres`, PostgreSQL 17, porta 5433. `./setup.sh` → "Tudo pronto!".
 - VS Code configurado (`.vscode/`). DBeaver "SP Data" autentica via `~/.pgpass`.
+- Ingestão pronta: `ingestion/cvm.py` carrega DFP, ITR e cadastro no schema `raw` (35 mi linhas, ~9,7 GB). ZIPs em `~/.local/share/projeto-sp-data/raw`.
 - GitHub: `MRC888/Next-step-SP`, privado. Marcelo faz push pelo **GitHub Desktop** (o `gh` está em `~/.local/bin`, sem login).
 
 ## Próximas tarefas
-1. Explorar os dados da CVM e desenhar a ingestão.
-2. Desenhar a arquitetura e o MVP.
+1. Modelagem: limpar o `raw` (versão mais recente, contas por setor) em camadas.
+2. Desenhar a arquitetura completa e o MVP.
 3. Registrar tudo no Obsidian.
 
 ## Outros projetos dele (para referência)
