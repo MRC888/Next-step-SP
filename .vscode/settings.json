@@ -1,0 +1,13 @@
+{
+    // Interpretador do projeto: venv fora do OneDrive (ver README).
+    "python.defaultInterpreterPath": "~/.venvs/projeto-sp-data/bin/python",
+    // Ativa o venv sozinho em cada terminal novo do VS Code.
+    "python.terminal.activateEnvironment": true,
+    // Lê o .env do projeto ao rodar/depurar scripts Python.
+    "python.envFile": "${workspaceFolder}/.env",
+    // Não mostrar lixo gerado pelo Python na árvore de arquivos.
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    }
+}

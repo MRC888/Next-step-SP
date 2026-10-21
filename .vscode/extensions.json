@@ -1,0 +1,7 @@
+{
+    // O VS Code sugere instalar estas extensões ao abrir a pasta.
+    "recommendations": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+    ]
+}
