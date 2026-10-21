@@ -8,7 +8,7 @@ Marcelo Santos, 23 anos. Analista Fiscal/Financeiro na Assecon (contabilidade), 
 Stack já demonstrada: SQL/PostgreSQL, Python (pandas, Matplotlib), Power BI (DAX), Tableau e Excel. Interesse principal: **engenharia de dados + AI engineering** (automação, ML, agentes). Programar por horas o cansa: prefere entender fundamentos e arquitetura. Escreva o código, mas **explique cada parte de forma metódica**, para que ele consiga explicar numa entrevista.
 
 Preferências:
-- Responder em português.
+- Responder em português, de forma **simples e direta** (pedido de 21/10/2026): ler menos, entender mais.
 - Explicar o porquê de cada decisão.
 - Separar o que foi testado do que é hipótese.
 - Nunca inflar resultados nem prometer "perfeito" sem evidência.
@@ -47,14 +47,16 @@ Tempo: manhãs dedicadas até 28/10/2026, mas isso não é prazo final.
 - O `.env` ainda não existe: o `setup.sh` cria, com senha aleatória. **Nunca commitar o `.env`.**
 - A pasta antiga `~/Projetos` (versão anterior deste projeto) foi removida, ou deve ser, se ainda existir.
 
+## Estado do ambiente (21/10/2026): pronto
+- Docker Desktop instalado; CLI em `~/.docker/bin` (no PATH via `~/.zprofile`).
+- Banco no ar: container `sp_data_postgres`, PostgreSQL 17, porta 5433. `./setup.sh` → "Tudo pronto!".
+- VS Code configurado (`.vscode/`). DBeaver "SP Data" autentica via `~/.pgpass`.
+- GitHub: `MRC888/Next-step-SP`, privado. Marcelo faz push pelo **GitHub Desktop** (o `gh` está em `~/.local/bin`, sem login).
+
 ## Próximas tarefas
-1. Instalar o Docker Desktop (Apple Silicon): `https://desktop.docker.com/mac/main/arm64/Docker.dmg` → montar com `hdiutil` → copiar para /Applications → abrir. Marcelo precisa aceitar os termos e digitar a senha do Mac na primeira execução; avise-o quando chegar nesse ponto.
-2. Rodar `./setup.sh` e confirmar a mensagem "Tudo pronto!".
-3. Criar `.vscode/settings.json` apontando o interpretador para `~/.venvs/projeto-sp-data/bin/python` e recomendar as extensões `ms-python.python` e `ms-azuretools.vscode-docker`. Abrir a pasta no VS Code (`code .`, se o comando estiver disponível).
-4. Configurar no DBeaver a conexão "SP Data" (localhost:5433, banco/usuário `sp_data`, senha do `.env`). Marcelo digita a senha.
-5. Criar o repositório no GitHub (usuário `MRC888`) só com confirmação dele.
-6. Fechar com Marcelo a escolha da base (CVM ou IF.data) e começar o desenho da arquitetura e do MVP.
-7. Registrar tudo no Obsidian.
+1. Fechar com Marcelo a escolha da base (CVM ou IF.data).
+2. Desenhar a arquitetura e o MVP.
+3. Registrar tudo no Obsidian.
 
 ## Outros projetos dele (para referência)
 Foods and Goods (Kaggle, logística, SQL + Python), análise de honorários (caso real), TCC Barcelona e FIAP Aurora. Detalhes no vault. Observação: o CV de 20/10 diz MySQL para o Foods and Goods, mas o README registra PostgreSQL. Confirmar com ele.
