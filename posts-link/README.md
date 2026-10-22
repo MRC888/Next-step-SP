@@ -13,7 +13,15 @@ Recomendação: pelo menos 5 dias entre um post e outro.
 | 5 | Dá para prever uma crise? | Quando o **modelo de ML** (etapa 7) estiver treinado e avaliado | Aguardando |
 | 6 | Pronto: rodando sozinho | Quando **dashboard + automação** (etapas 8 e 9) estiverem no ar, com GitHub público e portfólio. **Impulsionar** | Aguardando |
 
-## Arquivos
-- `postN-texto.md`: texto do post.
-- `postN-imagem.png`: imagem 1080×1350 (formato retrato do LinkedIn).
-- `postN-imagem.html`: fonte da imagem (abrir no navegador para editar e gerar de novo).
+## Organização
+Uma pasta por post, com o mesmo padrão de arquivos:
+- `texto.md`: texto do post.
+- `imagem.png`: imagem 1080×1350 (formato retrato do LinkedIn).
+- `imagem.html`: fonte da imagem (abrir no navegador para editar e gerar de novo).
+
+| Pasta | Post |
+|---|---|
+| `post1-ponto-de-partida/` | 1 — O ponto de partida |
+| `post2-35-milhoes-de-linhas/` | 2 — 35 milhões de linhas |
+
+As pastas dos posts 3 a 6 são criadas quando cada um for escrito.

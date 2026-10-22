@@ -1,5 +1,5 @@
 # Post 2 — 35 milhões de linhas
-Status: rascunho v2 (22/10/2026), aguardando conferência de Marcelo. Data: sex 23/10/2026. Imagem: `post2-imagem.png`.
+Status: rascunho v2 (22/10/2026), aguardando conferência de Marcelo. Data: sex 23/10/2026. Imagem: `imagem.png`.
 Mudanças da v1: explica "ingestão" para leigos; termos técnicos com explicação curta; tempo da 2ª execução testado (2 s); fecha com uma pergunta.
 
 ---

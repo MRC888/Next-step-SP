@@ -1,5 +1,5 @@
 # Post 1 — O ponto de partida
-Status: **aprovado e postado** (22/10/2026), versão v2. Mudanças da v1: explica o que é "balanço" antes de perguntar; pergunta final com exemplos; sem a frase "apaixonado por tecnologia / não me vejo fazendo outra coisa" (pode soar mal no emprego atual). Imagem: `post1-imagem.png`.
+Status: **aprovado e postado** (22/10/2026), versão v2. Mudanças da v1: explica o que é "balanço" antes de perguntar; pergunta final com exemplos; sem a frase "apaixonado por tecnologia / não me vejo fazendo outra coisa" (pode soar mal no emprego atual). Imagem: `imagem.png`.
 
 ---
 
