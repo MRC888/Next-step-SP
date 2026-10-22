@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,600..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Mesma identidade do post 1 (papel zebrado, tinta, marca-texto).
+   Conteúdo: saída real do script ingestion/cvm.py — 1ª execução (21/10/2026) e 2ª execução (22/10/2026). */
+:root {
+  --paper: #fbfcf8; --band: #e4efe3; --ink: #3f5249; --ink-strong: #121a16;
+  --marker: #ffe03d; --panel: #111916; --panel-fg: #f2f6f3; --panel-muted: #9fb0a8;
+  --term: #0f1513; --term-fg: #d6e2dc; --term-dim: #7f948b; --ok: #7fe0a8;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body {
+  font-family: "IBM Plex Sans", Arial, sans-serif; position: relative;
+  background: repeating-linear-gradient(180deg, var(--band) 0 72px, var(--paper) 72px 144px);
+}
+
+.top { padding: 64px 72px 0; }
+.eyebrow { font: 500 19px/1 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: #3d6b5a; }
+h1 { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 70%; font-size: 96px; line-height: .92; color: var(--ink-strong); margin-top: 20px; }
+h1 mark { background: linear-gradient(100deg, transparent 0 1%, var(--marker) 2% 98%, transparent 99%); padding: 0 10px; margin: 0 -4px; color: inherit; }
+.lead { font-size: 25px; line-height: 1.4; color: var(--ink); margin-top: 18px; max-width: 880px; }
+
+.terms { position: absolute; left: 72px; right: 72px; top: 440px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: start; }
+.term { background: var(--term); border-radius: 12px; overflow: hidden; box-shadow: 0 24px 50px rgba(17,25,22,.25); }
+.term:first-child { transform: rotate(-2deg); }
+.term:last-child { transform: rotate(1.5deg) translateY(36px); }
+.bar { display: flex; align-items: center; gap: 7px; padding: 12px 14px; background: #1b2420; }
+.bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a4843; display: block; }
+.bar span { margin-left: 8px; font: 500 14px/1 "IBM Plex Mono", monospace; color: var(--term-dim); }
+pre { font: 400 16.5px/1.7 "IBM Plex Mono", monospace; color: var(--term-fg); padding: 20px 20px 24px; white-space: pre; overflow: hidden; }
+pre .d { color: var(--term-dim); }
+pre .s { color: var(--ok); }
+pre .t { color: var(--marker); font-weight: 600; }
+.stamp { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 18px; border-top: 1px solid #26312d; }
+.stamp b { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 64px; line-height: 1; color: var(--panel-fg); }
+.stamp b.y { color: var(--marker); }
+.stamp small { font: 500 15px/1.3 "IBM Plex Mono", monospace; color: var(--term-dim); text-align: right; }
+
+.panel { position: absolute; inset: auto 0 0 0; background: var(--panel); color: var(--panel-fg); padding: 34px 72px 38px; display: grid; gap: 20px; }
+.panel p { font-family: "Archivo", Arial, sans-serif; font-weight: 800; font-stretch: 80%; font-size: 40px; line-height: 1.05; }
+.panel p span { color: var(--marker); }
+.steps { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+.step { display: grid; gap: 8px; }
+.step .b { height: 10px; border-radius: 5px; background: #2a3632; }
+.step.done .b { background: var(--marker); }
+.step.now .b { background: linear-gradient(90deg, var(--marker) 0 45%, #2a3632 45%); }
+.step small { font: 500 13.5px/1.2 "IBM Plex Mono", monospace; color: var(--panel-muted); }
+.step.done small, .step.now small { color: var(--panel-fg); }
+.foot { display: flex; justify-content: space-between; font-size: 17px; color: var(--panel-muted); }
+.foot b { color: var(--panel-fg); font-weight: 600; }
+</style>
+</head>
+<body>
+  <header class="top">
+    <span class="eyebrow">Etapa 3 · Ingestão de dados</span>
+    <h1>3 min 22 s.<br>Depois, <mark>2 s.</mark></h1>
+    <p class="lead">O mesmo script, rodando duas vezes. Na segunda, ele confere tudo com a CVM e não baixa nada, porque nada mudou.</p>
+  </header>
+
+  <section class="terms">
+    <div class="term">
+      <div class="bar"><i></i><i></i><i></i><span>1ª execução · 21/10</span></div>
+<pre><span class="d">$</span> python ingestion/cvm.py
+<span class="d">==> DFP</span>
+  dfp_2010.zip: <span class="s">479.202 linhas</span>
+  dfp_2011.zip: <span class="s">496.317 linhas</span>
+  dfp_2012.zip: <span class="s">490.057 linhas</span>
+  <span class="d">...</span>
+<span class="d">==> ITR</span>
+  itr_2011.zip: <span class="s">1.565.612 linhas</span>
+  itr_2012.zip: <span class="s">1.557.989 linhas</span>
+  <span class="d">...</span>
+  itr_2026.zip: <span class="s">1.184.550 linhas</span></pre>
+      <div class="stamp"><b>3:22</b><small>34 arquivos<br>35,2 mi linhas</small></div>
+    </div>
+
+    <div class="term">
+      <div class="bar"><i></i><i></i><i></i><span>2ª execução · 22/10</span></div>
+<pre><span class="d">$</span> python ingestion/cvm.py
+<span class="d">==> DFP</span>
+  dfp_2010.zip: <span class="d">sem mudança</span>
+  dfp_2011.zip: <span class="d">sem mudança</span>
+  <span class="d">...</span>
+<span class="d">==> ITR</span>
+  itr_2025.zip: <span class="d">sem mudança</span>
+  itr_2026.zip: <span class="d">sem mudança</span>
+<span class="d">==> Cadastro</span>
+  cad_cia_aberta: <span class="d">sem mudança</span></pre>
+      <div class="stamp"><b class="y">0:02</b><small>0 downloads<br>0 duplicatas</small></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p>Uma boa ingestão é aquela que você<br>pode rodar <span>100 vezes</span> sem estragar nada.</p>
+    <div class="steps">
+      <div class="step done"><div class="b"></div><small>ambiente</small></div>
+      <div class="step done"><div class="b"></div><small>base</small></div>
+      <div class="step done"><div class="b"></div><small>ingestão</small></div>
+      <div class="step now"><div class="b"></div><small>modelagem</small></div>
+      <div class="step"><div class="b"></div><small>regras</small></div>
+      <div class="step"><div class="b"></div><small>agente IA</small></div>
+      <div class="step"><div class="b"></div><small>ML</small></div>
+      <div class="step"><div class="b"></div><small>dashboard</small></div>
+      <div class="step"><div class="b"></div><small>automação</small></div>
+    </div>
+    <div class="foot"><span><b>Marcelo Santos</b> · Next Step SP</span><span>Dados: CVM (licença ODbL)</span></div>
+  </section>
+</body>
+</html>
