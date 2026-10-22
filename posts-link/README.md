@@ -7,7 +7,7 @@ Recomendação: pelo menos 5 dias entre um post e outro.
 | Post | Tema | Quando entra | Status |
 |---|---|---|---|
 | 1 | O ponto de partida | Qui 22/10/2026 | Aprovado; postado por Marcelo em 22/10/2026 |
-| 2 | 35 milhões de linhas | Sex 23/10/2026 (agendado) | Texto v2 e imagem prontos; aguardando conferência |
+| 2 | 35 milhões de linhas | Sex 23/10/2026 (agendado) | Aprovado; Marcelo agenda para 23/10 |
 | 3 | Dado sujo, dado limpo | Quando a **modelagem** (etapa 4) estiver pronta e testada | Aguardando |
 | 4 | Perguntando aos balanços | Quando a **camada semântica + agente de IA** (etapas 5 e 6) responderem perguntas reais | Aguardando |
 | 5 | Dá para prever uma crise? | Quando o **modelo de ML** (etapa 7) estiver treinado e avaliado | Aguardando |
