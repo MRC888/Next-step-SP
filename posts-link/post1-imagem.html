@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,600..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Conceito: o dado como a CVM publica, num formulário contínuo de computador (papel zebrado de contabilidade),
+   com marca-texto na única linha que responde uma pergunta simples. Linhas reais da DFP 2025 (DRE consolidada). */
+:root {
+  --paper: #fbfcf8; --band: #e4efe3; --ink: #3f5249; --ink-strong: #121a16;
+  --hole: #d7ddd6; --marker: #ffe03d; --panel: #111916; --panel-fg: #f2f6f3; --panel-muted: #9fb0a8;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body { background: var(--paper); font-family: "IBM Plex Sans", Arial, sans-serif; position: relative; }
+
+.sheet {
+  position: absolute; left: -60px; top: 300px; width: 1240px; height: 1200px;
+  transform: rotate(-4deg); transform-origin: 50% 0;
+  background:
+    radial-gradient(circle at 26px 18px, var(--hole) 8px, transparent 9px) 0 0 / 52px 36px repeat-y,
+    radial-gradient(circle at 26px 18px, var(--hole) 8px, transparent 9px) 100% 0 / 52px 36px repeat-y,
+    repeating-linear-gradient(180deg, var(--band) 0 72px, var(--paper) 72px 144px);
+  padding: 12px 80px;
+  box-shadow: 0 30px 60px rgba(17,25,22,.18);
+}
+.l { font: 400 16.5px/24px "IBM Plex Mono", monospace; color: var(--ink); white-space: nowrap; opacity: .72; }
+.l.h { font-weight: 600; color: var(--ink-strong); opacity: .9; }
+.l.hl { opacity: 1; color: var(--ink-strong); font-weight: 600; position: relative; }
+.l.hl span {
+  background: linear-gradient(100deg, transparent 0 .4%, var(--marker) 1.2% 98.6%, transparent 99.4%);
+  padding: 2px 6px; margin-left: -6px; border-radius: 3px 8px 4px 9px;
+  box-shadow: 0 0 0 2px rgba(255,224,61,.35);
+}
+
+.top {
+  position: absolute; inset: 0 0 auto 0; padding: 64px 72px 0;
+  background: linear-gradient(180deg, var(--paper) 0 78%, rgba(251,252,248,0));
+  height: 360px;
+}
+.eyebrow { font: 500 19px/1 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: #3d6b5a; }
+h1 { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 70%; font-size: 92px; line-height: .92; color: var(--ink-strong); margin-top: 20px; letter-spacing: -.005em; }
+h1 mark { background: linear-gradient(100deg, transparent 0 1%, var(--marker) 2% 98%, transparent 99%); padding: 0 8px; margin: 0 -4px; color: inherit; }
+
+.callout {
+  position: absolute; right: 70px; top: 812px; width: 340px;
+  background: var(--ink-strong); color: var(--panel-fg); border-radius: 12px; padding: 18px 20px;
+  font-size: 20px; line-height: 1.35; transform: rotate(-4deg);
+  box-shadow: 0 14px 30px rgba(17,25,22,.3);
+}
+.callout b { color: var(--marker); font-weight: 600; }
+.callout::before { content: ""; position: absolute; left: 150px; top: -14px; border: 14px solid transparent; border-top: 0; border-bottom-color: var(--ink-strong); }
+
+.panel {
+  position: absolute; inset: auto 0 0 0; background: var(--panel); color: var(--panel-fg);
+  padding: 34px 72px 38px; display: grid; gap: 20px;
+}
+.panel p { font-family: "Archivo", Arial, sans-serif; font-weight: 800; font-stretch: 80%; font-size: 40px; line-height: 1.05; }
+.panel p span { color: var(--marker); }
+.steps { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+.step { display: grid; gap: 8px; }
+.bar { height: 10px; border-radius: 5px; background: #2a3632; }
+.step.done .bar { background: var(--marker); }
+.step.now .bar { background: linear-gradient(90deg, var(--marker) 0 45%, #2a3632 45%); }
+.step small { font: 500 13.5px/1.2 "IBM Plex Mono", monospace; color: var(--panel-muted); }
+.step.done small, .step.now small { color: var(--panel-fg); }
+.foot { display: flex; justify-content: space-between; font-size: 17px; color: var(--panel-muted); }
+.foot b { color: var(--panel-fg); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+<div class="l h">DENOM_CIA;ESCALA_MOEDA;ORDEM_EXERC;DT_INI_EXERC;DT_FIM_EXERC;CD_CONTA;DS_CONTA;VL_CONTA</div>
+<div class="l"><span>BRK AMBIENTAL PARTICIPAÇÕES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.08.01;Corrente;-87882.0000000000</span></div>
+<div class="l"><span>TRÊS TENTOS AGROINDUSTRIAL S/A;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.02.01;ON;1.6142000000</span></div>
+<div class="l"><span>INFRACOMMERCE CXAAS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.01.01;Receita líquida;709955.0000000000</span></div>
+<div class="l"><span>CPFL TRANSMISSÃO S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.08;Imposto de Renda e Contribuição Social sobre o Lucro;-74775.0000000000</span></div>
+<div class="l"><span>ELECTRO ACO ALTONA S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.10.01;Lucro/Prejuízo Líquido das Operações Descontinuadas;0.0000000000</span></div>
+<div class="l"><span>LAVVI EMPREENDIMENTOS IMOBILIÁRIOS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.06.02;Despesas Financeiras;-89913.0000000000</span></div>
+<div class="l"><span>BRK AMBIENTAL PARTICIPAÇÕES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.04;Outras Receitas Operacionais;30071.0000000000</span></div>
+<div class="l"><span>WLM PART. E COMÉRCIO DE MÁQUINAS E VEÍCULOS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.03;Resultado Bruto;384276.0000000000</span></div>
+<div class="l"><span>CPFL TRANSMISSÃO S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.01.04;Receita com construção da infraestrutura;963293.0000000000</span></div>
+<div class="l"><span>WIZ CO PARTICIPAÇÕES E CORRETAGEM DE SEGUROS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.06;Resultado Financeiro;-62398.0000000000</span></div>
+<div class="l"><span>AMBEV S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.07;Resultado Antes dos Tributos sobre o Lucro;19421658.0000000000</span></div>
+<div class="l"><span>ELDORADO BRASIL CELULOSE S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.05;Outras Despesas Operacionais;-257976.0000000000</span></div>
+<div class="l"><span>METALURGICA RIOSULENSE S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.03;Resultado Bruto;176648.0000000000</span></div>
+<div class="l"><span>WLM PART. E COMÉRCIO DE MÁQUINAS E VEÍCULOS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.02.01;ON;2.2521900000</span></div>
+<div class="l"><span>HIGHLINE BRASIL II INFRAESTRUTURA DE TELECOMUNICAÇÕES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.02;Lucro Diluído por Ação;0.0000000000</span></div>
+<div class="l"><span>COSAN S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04;Despesas/Receitas Operacionais;-13375473.0000000000</span></div>
+<div class="l"><span>BIOMA EDUCAÇÃO S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.05;Outras Despesas Operacionais;-86178.0000000000</span></div>
+<div class="l"><span>CENTRAIS ELET DE SANTA CATARINA S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.11.02;Atribuído a Sócios Não Controladores;0.0000000000</span></div>
+<div class="l hl"><span>WEG S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.11;Lucro/Prejuízo Consolidado do Período;6775958.0000000000</span></div>
+<div class="l"><span>SIMPAR S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.01;Receita de Venda de Bens e/ou Serviços;43528375.0000000000</span></div>
+<div class="l"><span>SANTOS BRASIL PARTICIPACOES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.10;Resultado Líquido de Operações Descontinuadas;0.0000000000</span></div>
+<div class="l"><span>ALARES INTERNET PARTICIPAÇÕES S/A;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.05;Resultado Antes do Resultado Financeiro e dos Tributos;131769.0000000000</span></div>
+<div class="l"><span>ASA BRANCA HOLDING S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.01;Receita de Venda de Bens e/ou Serviços;106268.0000000000</span></div>
+<div class="l"><span>ENEVA S.A;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.03;Resultado Bruto;5404567.0000000000</span></div>
+<div class="l"><span>TIM BRASIL SERVIÇOS E PARTICIPAÇÕES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.01.01;ON;0.1300000000</span></div>
+<div class="l"><span>VIBRA ENERGIA S/A;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.01.01;ON;1.7851000000</span></div>
+<div class="l"><span>CIA HABITASUL DE PARTICIPACOES;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.03;Resultado Bruto;25628.0000000000</span></div>
+<div class="l"><span>FLEURY S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04;Despesas/Receitas Operacionais;-984889.0000000000</span></div>
+<div class="l"><span>NUTRIPLANT INDUSTRIA E COMERCIO S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.06.01;Receitas Financeiras;4200.0000000000</span></div>
+<div class="l"><span>ELETRORIVER S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.05.03;Outras despesas operacionais;0.0000000000</span></div>
+<div class="l"><span>INTER &amp; CO, INC.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.07;Resultado da Equivalência Patrimonial;0.0000000000</span></div>
+<div class="l"><span>CIA ENERGETICA DE MINAS GERAIS - CEMIG;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.11;Lucro/Prejuízo Consolidado do Período;4899617.0000000000</span></div>
+<div class="l"><span>BRK AMBIENTAL PARTICIPAÇÕES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.10.02.03;Imposto de renda e contribuição social diferidos;0.0000000000</span></div>
+<div class="l"><span>TOTVS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.05.02;Depreciação e Amortização;0.0000000000</span></div>
+<div class="l"><span>RAIA DROGASIL S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.08;Imposto de Renda e Contribuição Social sobre o Lucro;-147812.0000000000</span></div>
+<div class="l"><span>PORTO SAÚDE PARTICIPAÇÕES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.02;Custo dos Bens e/ou Serviços Vendidos;-6955145.0000000000</span></div>
+<div class="l"><span>JSL S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.06;Resultado Financeiro;-1144498.0000000000</span></div>
+<div class="l"><span>SER EDUCACIONAL S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.02;Lucro Diluído por Ação;0.0000000000</span></div>
+<div class="l"><span>JBS N.V.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.01.01;ON;10.5900000000</span></div>
+<div class="l"><span>LM TRANSPORTES INTERESTADUAIS SERVIÇOS E COMÉRCIO S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.02;Despesas Gerais e Administrativas;-169256.0000000000</span></div>
+<div class="l"><span>MINUPAR PARTICIPACOES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.02;Custo dos Bens e/ou Serviços Vendidos;-317295.0000000000</span></div>
+<div class="l"><span>VALE S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.08;Imposto de Renda e Contribuição Social sobre o Lucro;-14882000.0000000000</span></div>
+<div class="l"><span>LOCALIZA FLEET S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.99.02;Lucro Diluído por Ação;0.0000000000</span></div>
+<div class="l"><span>YBYRÁ CAPITAL S.A.;UNIDADE;ÚLTIMO;2025-01-01;2025-12-31;3.99.01;Lucro Básico por Ação;0.0000000000</span></div>
+<div class="l"><span>CSU DIGITAL S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.08;Imposto de Renda e Contribuição Social sobre o Lucro;-5221.0000000000</span></div>
+<div class="l"><span>AMBEV S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.10;Resultado Líquido de Operações Descontinuadas;0.0000000000</span></div>
+<div class="l"><span>MRV ENGENHARIA E PARTICIPACOES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.10.01;Lucro/Prejuízo Líquido das Operações Descontinuadas;0.0000000000</span></div>
+<div class="l"><span>EVEN CONSTRUTORA E INCORPORADORA S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.09;Resultado Líquido das Operações Continuadas;299052.0000000000</span></div>
+<div class="l"><span>SEQUOIA LOGÍSTICA E TRANSPORTES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.09;Resultado Líquido das Operações Continuadas;-195422.0000000000</span></div>
+<div class="l"><span>KARSTEN S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.04.06;Resultado de Equivalência Patrimonial;0.0000000000</span></div>
+<div class="l"><span>ECONOMATICA S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.08.01;Corrente;-199.0000000000</span></div>
+<div class="l"><span>ORIZON VALORIZAÇÃO DE RESÍDUOS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.11;Lucro/Prejuízo Consolidado do Período;73962.0000000000</span></div>
+<div class="l"><span>CAIXA SEGURIDADE PARTICIPAÇÕES S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.05;Resultado Antes do Resultado Financeiro e dos Tributos;4647593.0000000000</span></div>
+<div class="l"><span>EMBPAR PARTICIPAÇÕES S/A;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.06;Resultado Financeiro;632.0000000000</span></div>
+<div class="l"><span>GRAZZIOTIN S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.06.01;Receitas Financeiras;79292.0000000000</span></div>
+<div class="l"><span>CONCESSIONÁRIA DA LINHA 4 DO METRÔ DE SÃO PAULO S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.03;Resultado Bruto;1691082.0000000000</span></div>
+<div class="l"><span>SONDOTECNICA ENGENHARIA SOLOS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.11.02;Atribuído a Sócios Não Controladores;-6.0000000000</span></div>
+<div class="l"><span>ALUBAR METAIS E CABOS S.A.;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.08;Imposto de Renda e Contribuição Social sobre o Lucro;27583.0000000000</span></div>
+<div class="l"><span>PORTO SERVIÇO S.A;MIL;ÚLTIMO;2025-01-01;2025-12-31;3.06;Resultado Financeiro;7174.0000000000</span></div>
+  </div>
+
+  <header class="top">
+    <span class="eyebrow">Dados abertos da CVM · DFP 2025</span>
+    <h1>35 milhões de linhas<br>de balanços públicos.<br><mark>Ache o lucro.</mark></h1>
+  </header>
+
+  <div class="callout">Achei: <b>R$ 6,8 bi</b> de lucro da WEG em 2025, escrito como <b>6775958.0000000000</b>, em milhares.</div>
+
+  <section class="panel">
+    <p>Estou construindo a plataforma que<br>transforma isso em <span>respostas</span>.</p>
+    <div class="steps">
+      <div class="step done"><div class="bar"></div><small>ambiente</small></div>
+      <div class="step done"><div class="bar"></div><small>base</small></div>
+      <div class="step done"><div class="bar"></div><small>ingestão</small></div>
+      <div class="step now"><div class="bar"></div><small>modelagem</small></div>
+      <div class="step"><div class="bar"></div><small>regras</small></div>
+      <div class="step"><div class="bar"></div><small>agente IA</small></div>
+      <div class="step"><div class="bar"></div><small>ML</small></div>
+      <div class="step"><div class="bar"></div><small>dashboard</small></div>
+      <div class="step"><div class="bar"></div><small>automação</small></div>
+    </div>
+    <div class="foot"><span><b>Marcelo Santos</b> · Next Step SP</span><span>Dados: CVM (licença ODbL)</span></div>
+  </section>
+</body>
+</html>

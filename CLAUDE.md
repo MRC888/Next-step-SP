@@ -28,7 +28,7 @@ Proposta de Teo (amigo sênior): uma plataforma de dados ponta a ponta.
 5. Machine learning.
 6. Dashboard.
 
-Divulgação: dividir o projeto em vários posts no LinkedIn, um por etapa.
+Divulgação: 6 posts do processo no LinkedIn, um por marco (plano na nota do Obsidian); o último é impulsionado, com portfólio e GitHub público. Todo post começa pelo problema em linguagem de leigo. Roadmap: `~/Desktop/Roadmap - Next Step SP.html`.
 
 Domínio: **financeiro**, aproveitando a experiência contábil de Marcelo.
 

@@ -1,0 +1,19 @@
+# Posts do LinkedIn — Next Step SP
+
+Um post por marco do projeto, não toda semana. Todo post começa pelo problema, em linguagem de leigo.
+Recomendação: pelo menos 5 dias entre um post e outro.
+
+## Calendário
+| Post | Tema | Quando entra | Status |
+|---|---|---|---|
+| 1 | O ponto de partida | Qui 22/10/2026 | Aprovado; postado por Marcelo em 22/10/2026 |
+| 2 | 35 milhões de linhas | Sex 23/10/2026 (agendado) | Rascunho |
+| 3 | Dado sujo, dado limpo | Quando a **modelagem** (etapa 4) estiver pronta e testada | Aguardando |
+| 4 | Perguntando aos balanços | Quando a **camada semântica + agente de IA** (etapas 5 e 6) responderem perguntas reais | Aguardando |
+| 5 | Dá para prever uma crise? | Quando o **modelo de ML** (etapa 7) estiver treinado e avaliado | Aguardando |
+| 6 | Pronto: rodando sozinho | Quando **dashboard + automação** (etapas 8 e 9) estiverem no ar, com GitHub público e portfólio. **Impulsionar** | Aguardando |
+
+## Arquivos
+- `postN-texto.md`: texto do post.
+- `postN-imagem.png`: imagem 1080×1350 (formato retrato do LinkedIn).
+- `postN-imagem.html`: fonte da imagem (abrir no navegador para editar e gerar de novo).
