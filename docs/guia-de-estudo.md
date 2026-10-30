@@ -256,7 +256,7 @@ Taxa base (acaso): 1,34%. Sinais que mais pesam: PL/passivo, lucros retidos/ativ
 ## 11. Automação e comandos
 
 - **Makefile**: `make` lista tudo. Principais: `pipeline` (ingestão → modelagem → conferência → risco), `dashboard`, `agente P="..."`, `avaliar-agente`, `testes`, `lint`, `docs`, `agendar`.
-- **Agendamento**: `make agendar` instala um agendamento do **launchd** (agendador do macOS): toda segunda às 7h, `scripts/pipeline_agendado.sh` abre o Docker, espera o banco, roda `make pipeline` e grava o log em `~/Library/Logs/next-step-sp/`. Desfazer: `launchctl unload ~/Library/LaunchAgents/com.nextstepsp.pipeline.plist`.
+- **Agendamento (opcional, desativado por decisão de Marcelo)**: `make agendar` instalaria um agendamento do **launchd** (agendador do macOS): toda segunda às 7h, `scripts/pipeline_agendado.sh` abre o Docker, espera o banco, rodaria `make pipeline` e gravaria o log em `~/Library/Logs/next-step-sp/`. Foi testado de ponta a ponta (8min39s), mas não está ativo: o projeto é de portfólio e nada roda sozinho. Desfazer: `launchctl unload ~/Library/LaunchAgents/com.nextstepsp.pipeline.plist`.
 - **Evolução de mercado**: Dagster ou Airflow (orquestradores com interface e linhagem). Não foram usados porque o banco vive só no Mac; o launchd resolve com menos peças.
 
 ---
@@ -323,17 +323,17 @@ API · chave de API · token · tool use · system prompt · avaliação (eval) 
 4. **Por que semantic layer?** Uma definição por métrica; painel, IA e consultas concordam; a IA não inventa.
 5. **Como você mediria o agente?** Prova com gabarito e pegadinhas, correção determinística, custo por pergunta.
 6. **O modelo funciona?** AUC 0,69 contra 0,66 do Altman e 4,5× o acaso em precisão: ganho real, modesto, com intervalo de confiança mostrado. É alerta, não veredito.
-7. **Como roda sozinho?** `make pipeline` agendado no launchd; ingestão idempotente; testes no build; CI a cada push.
+7. **Como atualiza os dados?** Um comando (`make pipeline`): ingestão idempotente, testes no build, conferência e retreino; pode ser agendado (launchd), mas deixei desligado por ser projeto de portfólio. CI a cada push.
 
 ---
 
 ## 17. Limites e próximos passos
 
-**Limites.** Bancos e seguradoras fora das métricas; ITR fora das métricas (já limpo); risco com poucos casos e cadastro só atual; nota de risco não calibrada; painel local (banco no Mac).
+**Limites.** Nada roda sozinho (opção de portfólio); bancos e seguradoras fora das métricas; ITR fora das métricas (já limpo); risco com poucos casos e cadastro só atual; nota de risco não calibrada; painel local (banco no Mac).
 
 **Próximos passos (ordem sugerida).**
 1. Colocar a chave da API e rodar a prova do agente (`make avaliar-agente`); escrever o post 4.
-2. Ativar o agendamento (`make agendar`).
+2. Para mostrar o projeto: `make banco` e `make dashboard` (nada roda sozinho).
 3. Revisar o `CLAUDE.md` (tem dados pessoais) e tornar o GitHub público; página no portfólio; post 6 impulsionado.
 4. Evoluções: métricas trimestrais; bancos; Selic/IPCA; calibrar a nota de risco; orquestrador (Dagster); painel publicado com DuckDB.
 

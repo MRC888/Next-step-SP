@@ -80,7 +80,7 @@ Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; a
 ## Próximas tarefas
 Feito (30/10/2026): Marcos A, B, C (parcial), D, E e F. Guia completo em `docs/guia-de-estudo.md` e no Obsidian ("Next Step SP — Guia de estudo"). Comandos: `make`.
 1. **Chave da API:** Marcelo coloca `ANTHROPIC_API_KEY` no `.env`; então `make avaliar-agente` (pronto = ≥18/20 e 4/4 pegadinhas) e post 4.
-2. `make agendar` (só com OK de Marcelo: configuração permanente no Mac).
+2. **Nada roda automaticamente** (decisão de 30/10/2026): projeto de portfólio. Não ativar `make agendar`. Para usar: `make banco` e depois `make dashboard` ou `make pipeline`.
 3. Revisar o `CLAUDE.md` (dados pessoais) antes de tornar o GitHub público; portfólio; post 6 (impulsionar).
 4. Evoluções: métricas trimestrais (ITR), bancos, Selic/IPCA (SGS), calibrar a nota de risco, orquestrador, painel publicado.
 

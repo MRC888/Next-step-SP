@@ -12,7 +12,7 @@ Recomendação: pelo menos 5 dias entre um post e outro.
 | 3 | Dado sujo, dado limpo | Modelagem (etapa 4) pronta e testada — 30/10/2026 | Postado por Marcelo em 30/10/2026 |
 | 4 | Perguntando aos balanços | Quando a **camada semântica + agente de IA** (etapas 5 e 6) responderem perguntas reais | Aguardando |
 | 5 | Dá para prever uma crise? | Modelo de ML treinado e avaliado — 30/10/2026 | Rascunho v1 (texto e imagem); aguardando revisão |
-| 6 | Pronto: rodando sozinho | Quando **dashboard + automação** (etapas 8 e 9) estiverem no ar, com GitHub público e portfólio. **Impulsionar** | Aguardando |
+| 6 | Do dado ao painel (projeto completo) | Quando **dashboard + automação** (etapas 8 e 9) estiverem no ar, com GitHub público e portfólio. **Impulsionar** | Aguardando |
 
 ## Organização
 Uma pasta por post, com o mesmo padrão de arquivos:

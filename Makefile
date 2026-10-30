@@ -53,5 +53,5 @@ lint: ## Ruff, SQLFluff e as checagens do pre-commit em todos os arquivos
 docs: ## Gera e abre a documentação do dbt (linhagem dos modelos)
 	$(DBT) docs generate && $(VENV)/dbt docs serve --port 8081
 
-agendar: ## Agenda o pipeline toda segunda às 7h (launchd do macOS)
+agendar: ## Opcional (desativado): agendaria o pipeline toda segunda às 7h (launchd)
 	./scripts/agendar.sh

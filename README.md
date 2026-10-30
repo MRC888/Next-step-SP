@@ -56,7 +56,8 @@ make agente P="Qual a alíquota efetiva de IR e CSLL da Ambev em 2025?"
 ```
 
 Outros comandos: `make` (lista tudo), `make testes`, `make lint`, `make docs` (linhagem do dbt),
-`make modelagem-dfp` (só os anuais, mais rápido), `make agendar` (pipeline toda segunda às 7h).
+`make modelagem-dfp` (só os anuais, mais rápido). Opcional: `make agendar` agenda o pipeline toda segunda às 7h
+(launchd); vem desativado.
 
 O agente precisa de `ANTHROPIC_API_KEY` no `.env` (nunca vai para o Git).
 
