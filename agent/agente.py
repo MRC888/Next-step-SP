@@ -71,6 +71,7 @@ def consultar_metricas(
     ordenar_por: str | None = None,
     decrescente: bool = True,
     limite: int = 20,
+    receita_minima: float | None = None,
 ) -> str:
     """Calcula métricas pela camada semântica. Use para qualquer número da resposta.
 
@@ -84,6 +85,8 @@ def consultar_metricas(
         ordenar_por: métrica (entre as pedidas) para ordenar, útil em rankings.
         decrescente: true para do maior para o menor.
         limite: máximo de linhas (até 50).
+        receita_minima: em rankings de margens e razões, use 100000000 (R$ 100 mi) para tirar holdings com
+            receita quase zero, que geram percentuais absurdos; diga na resposta que aplicou esse corte.
     """
     return _rodar(
         ferramentas.consultar_metricas,
@@ -95,7 +98,8 @@ def consultar_metricas(
         agrupar_por=agrupar_por,
         ordenar_por=ordenar_por,
         decrescente=decrescente,
-        limite=limite,
+        limite=min(limite, 50),
+        receita_minima=receita_minima,
     )
 
 

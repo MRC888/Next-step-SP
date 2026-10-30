@@ -22,7 +22,7 @@ MANIFESTO = MODELAGEM / "target" / "semantic_manifest.json"
 MF = Path(sys.executable).parent / "mf"
 
 ANO_MIN, ANO_MAX = 2010, 2026
-LIMITE_MAXIMO = 50
+LIMITE_MAXIMO = 10_000  # o agente limita a 50 linhas (agent/agente.py); o dashboard precisa de mais
 
 # Métricas de apoio existem só para compor as razões; o agente não as oferece como resposta principal.
 METRICAS_DE_APOIO = {"lucro_antes_ir_positivo", "despesa_ir_csll_com_lucro"}
@@ -116,6 +116,7 @@ def consultar_metricas(
     ordenar_por: str | None = None,
     decrescente: bool = True,
     limite: int = 20,
+    receita_minima: float | None = None,
 ) -> list[dict]:
     """Calcula métricas pela camada semântica (MetricFlow) e devolve uma linha por grupo.
 
@@ -127,7 +128,9 @@ def consultar_metricas(
         agrupar_por: combinação de "ano", "empresa", "setor". Padrão: ["ano", "empresa"].
         ordenar_por: uma das métricas pedidas, para rankings.
         decrescente: ordem do ranking.
-        limite: máximo de linhas (até 50).
+        limite: máximo de linhas.
+        receita_minima: só empresas-ano com receita líquida acima deste valor (R$). Evita razões absurdas
+            de holdings com receita quase zero. O filtro é feito dentro do MetricFlow, antes do ranking.
     """
     catalogo = _catalogo()
     desconhecidas = [m for m in metricas if m not in catalogo]
@@ -147,6 +150,8 @@ def consultar_metricas(
         filtros.append(f"{{{{ Dimension('documento__nome_empresa') }}}} in ({nomes})")
     if setor:
         filtros.append(f"{{{{ Dimension('empresa__setor') }}}} = {_literal(setor)}")
+    if receita_minima:
+        filtros.append(f"{{{{ Metric('receita_liquida', group_by=['documento']) }}}} >= {float(receita_minima)}")
 
     comando = [
         str(MF),
