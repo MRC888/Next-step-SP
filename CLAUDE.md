@@ -64,6 +64,9 @@ Tempo: manhãs dedicadas até 28/10/2026, mas isso não é prazo final.
 - Ingestão pronta: `ingestion/cvm.py` carrega DFP, ITR e cadastro no schema `raw` (35 mi linhas, ~9,7 GB). ZIPs em `~/.local/share/projeto-sp-data/raw`.
 - GitHub: `MRC888/Next-step-SP`, privado. Marcelo faz push pelo **GitHub Desktop** (o `gh` está em `~/.local/bin`, sem login).
 
+## Onde rodar (decisão de 30/10/2026)
+**O Next Step SP roda só no Mac.** O banco (Docker, 2 a 9 GB, muda o tempo todo) fica só lá, com DFP, ITR e cadastro carregados. O PC fica como reserva: tem tudo instalado e a fatia fina DFP testada, mas sem ITR. Se um dia trabalhar no PC: pull antes, commit + push depois.
+
 ## Estado do ambiente (Windows, 30/10/2026)
 Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; as sessões do Claude não.
 - OneDrive: `C:\Users\marce\OneDrive` (no Mac: `~/Library/CloudStorage/OneDrive-Pessoal`). Obsidian em `<OneDrive>/Obsidian/Documentação`.
@@ -75,8 +78,8 @@ Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; a
 
 ## Próximas tarefas
 Feito: qualidade (Ruff, SQLFluff, pre-commit) e **fatia fina DFP modelada e testada** (30/10/2026: PASS=11, WARN=1, WEG 2025 = R$ 40,8 bi). Detalhes na nota do Obsidian, "Modelagem — passo 3".
-1. Push do commit de 30/10 (GitHub Desktop ou `gh auth login` no PC).
-2. Ampliar para o ITR: carregar `--docs itr` e rodar `dbt build --vars '{docs: [dfp, itr]}'`; medir tempo.
+1. (feito em 30/10: push pelo PC, `gh` logado)
+2. **No Mac** (ITR já carregado lá): rodar `dbt build --vars '{docs: [dfp, itr]}'`; medir tempo.
 3. Investigar o balanço da Itapebi 2021 (aviso `balanco_fecha`).
 4. Post 3 ("Dado sujo, dado limpo"): modelagem pronta e testada.
 5. Antes do ML: definir rótulo, janela e baseline (Z-score de Altman). Antes do agente: conjunto de perguntas de avaliação.
