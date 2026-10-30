@@ -3,3 +3,7 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Modelo treinado: reproduzível com python -m ml.treinar
+ml/resultados/modelo.joblib
+ml/resultados/previsoes_walk_forward.csv

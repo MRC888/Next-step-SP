@@ -116,3 +116,24 @@ models:
         description: Empréstimos e financiamentos de curto (2.01.04) e longo prazo (2.02.01).
       - name: passivo_total_informado
         description: Conta 2 como a empresa publicou. Não usada nas métricas (na Itapebi 2021 veio sem o PL).
+
+  - name: fct_risco_features
+    description: >
+      Base do modelo de risco (Marco D): uma linha por empresa e ano, com os sinais do balanço já público e o alvo
+      (entrar em dificuldade financeira em até 24 meses após a entrega). Sem vazamento de futuro. O nome da empresa
+      nos documentos é o nome ATUAL (não histórico) e por isso não é usado como sinal nem como data de evento.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "cnpj || '|' || dt_refer"
+    columns:
+      - name: alvo
+        description: 1 se entrou em recuperação, falência ou liquidação em até N meses após a entrega (var horizonte_risco_meses).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+      - name: janela_completa
+        description: Verdadeiro quando os N meses já passaram (o alvo é conhecido). Linhas falsas não entram no treino nem no teste.
+      - name: z_altman
+        description: Z'' de Altman. Abaixo de 1,1 = zona de perigo; acima de 2,6 = zona segura.

@@ -111,7 +111,7 @@ def main():
         "custo_total_usd": round(custo_total, 3),
         "resultados": resultados,
     }
-    (PASTA / "resultado.json").write_text(json.dumps(resumo, ensure_ascii=False, indent=1), encoding="utf-8")
+    (PASTA / "resultado.json").write_text(json.dumps(resumo, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"\n{acertos}/{len(resultados)} acertos · pegadinhas {resumo['pegadinhas_ok']}/{len(pegadinhas)}")
     print(f"Custo total: US$ {custo_total:.2f}")
 

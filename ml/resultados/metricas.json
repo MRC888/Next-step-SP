@@ -1,0 +1,110 @@
+{
+ "linhas": 6693,
+ "casos_reais": 89,
+ "empresas_com_evento": 48,
+ "taxa_base": 0.0133,
+ "anos": [
+  2013,
+  2024
+ ],
+ "modelos": {
+  "z_altman": {
+   "auc": 0.674,
+   "precisao_media": 0.03,
+   "recall_top10": 0.303,
+   "auc_ic95": [
+    0.598,
+    0.741
+   ]
+  },
+  "patrimonio_negativo": {
+   "auc": 0.639,
+   "precisao_media": 0.025,
+   "recall_top10": null,
+   "auc_ic95": [
+    0.589,
+    0.692
+   ]
+  },
+  "teve_prejuizo": {
+   "auc": 0.665,
+   "precisao_media": 0.022,
+   "recall_top10": null,
+   "auc_ic95": [
+    0.616,
+    0.709
+   ]
+  },
+  "regressao_logistica": {
+   "auc": 0.613,
+   "precisao_media": 0.029,
+   "recall_top10": 0.303,
+   "auc_ic95": [
+    0.539,
+    0.684
+   ]
+  },
+  "gradient_boosting": {
+   "auc": 0.691,
+   "precisao_media": 0.057,
+   "recall_top10": 0.337,
+   "auc_ic95": [
+    0.622,
+    0.758
+   ]
+  }
+ },
+ "modelo_escolhido": "gradient_boosting",
+ "importancia_sinais": [
+  {
+   "sinal": "x4_patrimonio_sobre_passivo",
+   "importancia": 0.3177
+  },
+  {
+   "sinal": "x2_lucros_retidos_sobre_ativo",
+   "importancia": 0.2698
+  },
+  {
+   "sinal": "margem_liquida",
+   "importancia": 0.2302
+  },
+  {
+   "sinal": "roa",
+   "importancia": 0.2158
+  },
+  {
+   "sinal": "x3_ebit_sobre_ativo",
+   "importancia": 0.2116
+  },
+  {
+   "sinal": "divida_sobre_ativo",
+   "importancia": 0.1892
+  },
+  {
+   "sinal": "x1_capital_de_giro_sobre_ativo",
+   "importancia": 0.1789
+  },
+  {
+   "sinal": "liquidez_corrente",
+   "importancia": 0.1766
+  },
+  {
+   "sinal": "crescimento_receita",
+   "importancia": 0.1078
+  },
+  {
+   "sinal": "log_ativo",
+   "importancia": 0.0074
+  },
+  {
+   "sinal": "patrimonio_negativo",
+   "importancia": 0.0
+  },
+  {
+   "sinal": "teve_prejuizo",
+   "importancia": 0.0
+  }
+ ],
+ "empresas_pontuadas": 648,
+ "horizonte_meses": 24
+}

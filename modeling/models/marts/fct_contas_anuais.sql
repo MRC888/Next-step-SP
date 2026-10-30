@@ -76,6 +76,9 @@ pivotado as (
         sum(c.valor) filter (where c.demonstracao = 'BPP' and c.cd_conta = '2.01') as passivo_circulante,
         sum(c.valor) filter (where c.demonstracao = 'BPP' and c.cd_conta = '2.02') as passivo_nao_circulante,
         sum(c.valor) filter (where c.demonstracao = 'BPP' and c.cd_conta = '2.03') as patrimonio_liquido,
+        -- Lucros retidos (Z-score de Altman): reservas de lucros + lucros/prejuízos acumulados
+        sum(c.valor) filter (where c.demonstracao = 'BPP' and c.cd_conta = '2.03.04') as reservas_de_lucros,
+        sum(c.valor) filter (where c.demonstracao = 'BPP' and c.cd_conta = '2.03.05') as lucros_acumulados,
         sum(c.valor) filter (where c.demonstracao = 'BPP' and c.cd_conta = '2.01.04') as emprestimos_curto_prazo,
         sum(c.valor) filter (where c.demonstracao = 'BPP' and c.cd_conta = '2.02.01') as emprestimos_longo_prazo
     from contas as c
@@ -119,6 +122,8 @@ select
     passivo_nao_circulante,
     patrimonio_liquido,
     passivo_total_informado,
+    reservas_de_lucros,
+    lucros_acumulados,
     lucro_bruto_pelas_filhas,
     resultado_operacional_pelas_filhas,
     lucro_antes_ir_pelas_filhas,

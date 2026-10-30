@@ -13,6 +13,9 @@ vars:
   # Fatia fina: só a DFP (anual) passa por todas as etapas primeiro.
   # Para incluir o ITR: dbt build --vars '{docs: [dfp, itr]}'
   docs: ["dfp"]
+  # Modelo de risco: o alvo é entrar em dificuldade em até N meses depois de publicar o balanço.
+  # 24 meses: um alerta antecipado (12 meses deixava só 18 casos reais; ver nota do Obsidian, Marco D).
+  horizonte_risco_meses: 24
 
 models:
   sp_data:
