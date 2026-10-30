@@ -1,5 +1,9 @@
 # Banco do projeto rodando em container.
 # Porta 5433 no Mac para não conflitar com o PostgreSQL 18 já instalado (porta 5432).
+
+# Nome fixo: sem ele, o Docker usa o nome da pasta, e renomear a pasta criaria um volume novo (banco vazio).
+name: projetosp-dataadvanced
+
 services:
   postgres:
     image: postgres:17

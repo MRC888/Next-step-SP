@@ -1,4 +1,4 @@
-# Projeto SP — Data advanced
+# Next Step SP
 
 Plataforma de dados financeiros ponta a ponta: ingestão automatizada → modelagem → camada semântica → agente de IA → machine learning.
 

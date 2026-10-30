@@ -1,4 +1,4 @@
-# CLAUDE.md — Projeto SP — Data advanced
+# CLAUDE.md — Next Step SP
 
 Este arquivo passa o contexto de uma conversa anterior (Claude no app, 20/10/2026) para o Claude Code. Leia inteiro antes de agir.
 
@@ -24,7 +24,7 @@ Preferências:
 
 ## Documentação obrigatória
 **Registre cada decisão e cada avanço** na nota do Obsidian, para auditoria por outras IAs:
-`~/Library/CloudStorage/OneDrive-Pessoal/Obsidian/Documentação/Projetos/Projeto SP - Data advanced/Projeto SP - Data advanced.md`
+`~/Library/CloudStorage/OneDrive-Pessoal/Obsidian/Documentação/Projetos/Next Step SP/Next Step SP.md`
 
 Siga o formato da nota: tabela de Decisões (data, decisão, motivo), seções por etapa e Histórico. O vault inteiro está em `.../Obsidian/Documentação`; comece pela nota `Início.md`. Preserve o estilo das outras notas.
 
@@ -51,14 +51,15 @@ Tempo: manhãs dedicadas até 28/10/2026, mas isso não é prazo final.
 ## Estado do ambiente (Mac Apple Silicon)
 - Instalados: Python 3.13 (python.org), PostgreSQL 18 local na porta 5432, VS Code, DBeaver Community e Command Line Tools da Apple (Git).
 - **Não instalados:** Docker e Homebrew.
-- Pasta do projeto: `~/Library/CloudStorage/OneDrive-Pessoal/Estudo/Projetos/Projeto SP - Data advanced`. Ela fica no OneDrive por escolha de Marcelo, junto dos outros projetos. O ambiente Python fica em `~/.venvs/projeto-sp-data`, fora do OneDrive. Cuidado: o OneDrive sincroniza a pasta `.git`. Use o GitHub como backup e evite editar o projeto em dois computadores ao mesmo tempo.
+- Pasta do projeto: `~/Library/CloudStorage/OneDrive-Pessoal/Estudo/Projetos/Next Step SP`. Ela fica no OneDrive por escolha de Marcelo, junto dos outros projetos. O ambiente Python fica em `~/.venvs/projeto-sp-data`, fora do OneDrive. Cuidado: o OneDrive sincroniza a pasta `.git`. Use o GitHub como backup e evite editar o projeto em dois computadores ao mesmo tempo.
 - Esta pasta já tem: `docker-compose.yml` (PostgreSQL 17 na porta **5433**), `.env.example`, `.gitignore`, `requirements.txt`, `scripts/check_env.py`, `setup.sh` e `README.md`.
 - O `.env` ainda não existe: o `setup.sh` cria, com senha aleatória. **Nunca commitar o `.env`.**
 - A pasta antiga `~/Projetos` (versão anterior deste projeto) foi removida, ou deve ser, se ainda existir.
 
 ## Estado do ambiente (21/10/2026): pronto
 - Docker Desktop instalado; CLI em `~/.docker/bin` (no PATH via `~/.zprofile`).
-- Banco no ar: container `sp_data_postgres`, PostgreSQL 17, porta 5433. `./setup.sh` → "Tudo pronto!".
+- Banco no ar: container `sp_data_postgres`, PostgreSQL 17, porta 5433.
+- O `docker-compose.yml` fixa o nome do projeto Docker em `projetosp-dataadvanced` (nome antigo da pasta). Não mudar: é dele que sai o nome do volume com os dados. Sem ele, renomear a pasta criaria um banco vazio. `./setup.sh` → "Tudo pronto!".
 - VS Code configurado (`.vscode/`). DBeaver "SP Data" autentica via `~/.pgpass`.
 - Ingestão pronta: `ingestion/cvm.py` carrega DFP, ITR e cadastro no schema `raw` (35 mi linhas, ~9,7 GB). ZIPs em `~/.local/share/projeto-sp-data/raw`.
 - GitHub: `MRC888/Next-step-SP`, privado. Marcelo faz push pelo **GitHub Desktop** (o `gh` está em `~/.local/bin`, sem login).
