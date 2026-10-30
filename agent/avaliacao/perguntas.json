@@ -1,0 +1,224 @@
+[
+ {
+  "id": 1,
+  "tipo": "numero",
+  "pergunta": "Qual foi a receita líquida da WEG em 2025?",
+  "esperados": [
+   {
+    "valor": 40804110000,
+    "unidade": "reais"
+   }
+  ]
+ },
+ {
+  "id": 2,
+  "tipo": "numero",
+  "pergunta": "Quanto a Ambev lucrou em 2025?",
+  "esperados": [
+   {
+    "valor": 15988433000,
+    "unidade": "reais"
+   }
+  ]
+ },
+ {
+  "id": 3,
+  "tipo": "numero",
+  "pergunta": "Qual a margem líquida da WEG em 2025?",
+  "esperados": [
+   {
+    "valor": 0.16606,
+    "unidade": "percentual"
+   }
+  ]
+ },
+ {
+  "id": 4,
+  "tipo": "numero",
+  "pergunta": "Qual foi a alíquota efetiva de IR e CSLL da Ambev em 2025?",
+  "esperados": [
+   {
+    "valor": 0.17677,
+    "unidade": "percentual"
+   }
+  ]
+ },
+ {
+  "id": 5,
+  "tipo": "numero",
+  "pergunta": "Qual a margem bruta da Magazine Luiza em 2023?",
+  "esperados": [
+   {
+    "valor": 0.27643,
+    "unidade": "percentual"
+   }
+  ]
+ },
+ {
+  "id": 6,
+  "tipo": "numero",
+  "pergunta": "Qual a liquidez corrente da Ambev em 2025?",
+  "esperados": [
+   {
+    "valor": 0.9622,
+    "unidade": "vezes"
+   }
+  ]
+ },
+ {
+  "id": 7,
+  "tipo": "numero",
+  "pergunta": "Qual foi o ROE da WEG em 2024?",
+  "esperados": [
+   {
+    "valor": 0.27324,
+    "unidade": "percentual"
+   }
+  ]
+ },
+ {
+  "id": 8,
+  "tipo": "numero",
+  "pergunta": "Qual a relação entre dívida bruta e patrimônio líquido da Magazine Luiza em 2023?",
+  "esperados": [
+   {
+    "valor": 0.76529,
+    "unidade": "vezes"
+   }
+  ]
+ },
+ {
+  "id": 9,
+  "tipo": "numero",
+  "pergunta": "Qual a margem operacional da Ambev em 2025?",
+  "esperados": [
+   {
+    "valor": 0.26544,
+    "unidade": "percentual"
+   }
+  ]
+ },
+ {
+  "id": 10,
+  "tipo": "numero",
+  "pergunta": "A Magazine Luiza teve lucro ou prejuízo em 2023? De quanto?",
+  "esperados": [
+   {
+    "valor": 979104000,
+    "unidade": "reais"
+   }
+  ],
+  "deve_conter": [
+   "prejuízo"
+  ]
+ },
+ {
+  "id": 11,
+  "tipo": "numero",
+  "pergunta": "Qual foi a alíquota efetiva de IR e CSLL da WEG em 2024 e em 2025?",
+  "esperados": [
+   {
+    "valor": 0.20102,
+    "unidade": "percentual"
+   },
+   {
+    "valor": 0.16836,
+    "unidade": "percentual"
+   }
+  ]
+ },
+ {
+  "id": 12,
+  "tipo": "numero",
+  "pergunta": "Qual a receita líquida da Petrobras em 2025?",
+  "esperados": [
+   {
+    "valor": 497549000000,
+    "unidade": "reais"
+   }
+  ]
+ },
+ {
+  "id": 13,
+  "tipo": "ranking",
+  "pergunta": "Qual empresa teve a maior receita líquida em 2025?",
+  "deve_conter": [
+   "petrobras"
+  ]
+ },
+ {
+  "id": 14,
+  "tipo": "ranking",
+  "pergunta": "Qual empresa teve o maior lucro líquido em 2025?",
+  "deve_conter": [
+   "petrobras"
+  ]
+ },
+ {
+  "id": 15,
+  "tipo": "ranking",
+  "pergunta": "No setor de energia elétrica, qual empresa teve a maior receita líquida em 2025?",
+  "deve_conter": [
+   "equatorial"
+  ]
+ },
+ {
+  "id": 16,
+  "tipo": "ranking",
+  "pergunta": "No setor de alimentos, qual empresa teve a maior margem líquida em 2025?",
+  "deve_conter": [
+   "macedo"
+  ]
+ },
+ {
+  "id": 17,
+  "tipo": "pegadinha",
+  "pergunta": "Qual a margem líquida do Itaú Unibanco em 2025?",
+  "deve_conter_algum": [
+   "banco",
+   "instituiç",
+   "financeir"
+  ],
+  "proibido_numero_percentual": true
+ },
+ {
+  "id": 18,
+  "tipo": "pegadinha",
+  "pergunta": "Qual foi a alíquota efetiva de IR e CSLL da Magazine Luiza em 2023?",
+  "deve_conter": [
+   "prejuízo"
+  ],
+  "valores_proibidos": [
+   0.5257
+  ]
+ },
+ {
+  "id": 19,
+  "tipo": "pegadinha",
+  "pergunta": "Qual a receita líquida da Padaria do Zé S.A. em 2024?",
+  "deve_conter_algum": [
+   "não está",
+   "não encontr",
+   "não consta",
+   "não há",
+   "não aparece",
+   "não existe"
+  ],
+  "proibido_numero_reais": true
+ },
+ {
+  "id": 20,
+  "tipo": "pegadinha",
+  "pergunta": "Qual a margem líquida da Vale em 2022?",
+  "deve_conter_algum": [
+   "inconsist",
+   "não bat",
+   "diverg",
+   "fora",
+   "excluíd",
+   "vazi",
+   "não está disponível",
+   "não foi calculad"
+  ]
+ }
+]
