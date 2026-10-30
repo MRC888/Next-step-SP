@@ -1,0 +1,252 @@
+# Camada semântica (MetricFlow): as regras de negócio do projeto.
+# Cada métrica é definida UMA vez aqui. A IA (Marco C), o dashboard e as consultas usam sempre esta definição.
+#
+# Convenções da CVM: custos, despesas e impostos vêm NEGATIVOS. Valores em reais.
+# Só entram documentos com dados_consistentes = true (totais conferidos com a soma das contas filhas).
+# Métricas de razão (margens, alíquota, liquidez...) são calculadas como soma do numerador / soma do denominador:
+# por empresa e ano, é a razão da empresa; agrupadas (ex.: por setor), viram a razão do grupo, ponderada pelo tamanho.
+
+version: 2
+
+models:
+  - name: metricflow_time_spine
+    description: Calendário diário (2009 a 2027) usado pelo MetricFlow.
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day
+
+semantic_models:
+  - name: contas_anuais
+    description: Contas anuais (DFP) de empresas comerciais e industriais, uma linha por empresa e ano.
+    model: ref('fct_contas_anuais')
+    defaults:
+      agg_time_dimension: data_referencia
+    entities:
+      - name: documento
+        type: primary
+        expr: "cnpj || '|' || dt_refer"
+      - name: empresa
+        type: foreign
+        expr: cnpj
+    dimensions:
+      - name: data_referencia
+        description: Data de encerramento do exercício (em geral, 31/12).
+        type: time
+        expr: dt_refer
+        type_params:
+          time_granularity: day
+      - name: nome_empresa
+        type: categorical
+      - name: dados_consistentes
+        description: Verdadeiro quando todos os totais batem com a soma das contas filhas.
+        type: categorical
+    measures:
+      - name: receita_liquida
+        agg: sum
+      - name: lucro_bruto
+        agg: sum
+      - name: resultado_operacional
+        agg: sum
+      - name: lucro_antes_ir
+        agg: sum
+      - name: despesa_ir_csll
+        description: IR e CSLL do exercício, com sinal positivo (a CVM publica negativo).
+        agg: sum
+        expr: -ir_csll
+      - name: lucro_liquido
+        agg: sum
+      - name: lucro_antes_ir_positivo
+        description: Lucro antes do IR e da CSLL, só quando positivo (base da alíquota efetiva).
+        agg: sum
+        expr: case when lucro_antes_ir > 0 then lucro_antes_ir end
+      - name: despesa_ir_csll_com_lucro
+        description: Despesa de IR e CSLL (positiva), só nos anos com lucro antes dos tributos.
+        agg: sum
+        expr: case when lucro_antes_ir > 0 then -ir_csll end
+      - name: ativo_circulante
+        agg: sum
+      - name: passivo_circulante
+        agg: sum
+      - name: patrimonio_liquido
+        agg: sum
+      - name: divida_bruta
+        description: Empréstimos e financiamentos de curto (2.01.04) e longo prazo (2.02.01).
+        agg: sum
+
+  - name: empresas
+    description: Cadastro da CVM, uma linha por empresa.
+    model: ref('dim_empresa')
+    entities:
+      - name: empresa
+        type: primary
+        expr: cnpj
+    dimensions:
+      - name: setor
+        type: categorical
+      - name: uf
+        type: categorical
+      - name: situacao_emissor
+        type: categorical
+
+metrics:
+  # ---------- Valores ----------
+  - name: receita_liquida
+    label: Receita líquida
+    description: Receita de venda de bens e serviços, já sem impostos sobre vendas e devoluções (conta 3.01).
+    type: simple
+    type_params:
+      measure: receita_liquida
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: lucro_bruto
+    label: Lucro bruto
+    description: Receita líquida menos o custo do que foi vendido (conta 3.03).
+    type: simple
+    type_params:
+      measure: lucro_bruto
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: lucro_liquido
+    label: Lucro líquido
+    description: O que sobra depois de todos os custos, despesas, juros e impostos (conta 3.11).
+    type: simple
+    type_params:
+      measure: lucro_liquido
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  # Métricas de apoio (não aparecem como regra de negócio; servem de entrada para as razões)
+  - name: resultado_operacional
+    label: Resultado operacional (EBIT)
+    description: Resultado antes do resultado financeiro e dos impostos (conta 3.05).
+    type: simple
+    type_params:
+      measure: resultado_operacional
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: lucro_antes_ir
+    label: Lucro antes do IR e da CSLL
+    description: Resultado antes dos tributos sobre o lucro (conta 3.07).
+    type: simple
+    type_params:
+      measure: lucro_antes_ir
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: despesa_ir_csll
+    label: Despesa de IR e CSLL
+    description: Imposto de renda e contribuição social sobre o lucro do exercício, em valor positivo (conta 3.08).
+    type: simple
+    type_params:
+      measure: despesa_ir_csll
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: lucro_antes_ir_positivo
+    label: Lucro antes do IR e da CSLL (só positivo)
+    description: Base da alíquota efetiva. Fica vazio quando há prejuízo antes dos tributos.
+    type: simple
+    type_params:
+      measure: lucro_antes_ir_positivo
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: despesa_ir_csll_com_lucro
+    label: Despesa de IR e CSLL (anos com lucro)
+    description: Numerador da alíquota efetiva. Fica vazio quando há prejuízo antes dos tributos.
+    type: simple
+    type_params:
+      measure: despesa_ir_csll_com_lucro
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: ativo_circulante
+    label: Ativo circulante
+    description: Bens e direitos que viram dinheiro em até 12 meses (conta 1.01).
+    type: simple
+    type_params:
+      measure: ativo_circulante
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: passivo_circulante
+    label: Passivo circulante
+    description: Obrigações que vencem em até 12 meses (conta 2.01).
+    type: simple
+    type_params:
+      measure: passivo_circulante
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: patrimonio_liquido
+    label: Patrimônio líquido
+    description: Capital dos donos (conta 2.03).
+    type: simple
+    type_params:
+      measure: patrimonio_liquido
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  - name: divida_bruta
+    label: Dívida bruta
+    description: Empréstimos e financiamentos de curto e longo prazo (contas 2.01.04 + 2.02.01).
+    type: simple
+    type_params:
+      measure: divida_bruta
+    filter: "{{ Dimension('documento__dados_consistentes') }} = true"
+
+  # ---------- Razões ----------
+  - name: margem_bruta
+    label: Margem bruta
+    description: Quanto sobra de cada R$ 1 vendido depois do custo do produto. Lucro bruto / receita líquida.
+    type: ratio
+    type_params:
+      numerator: lucro_bruto
+      denominator: receita_liquida
+
+  - name: margem_operacional
+    label: Margem operacional (EBIT)
+    description: Quanto sobra de cada R$ 1 vendido depois de custos e despesas da operação. Resultado operacional / receita líquida.
+    type: ratio
+    type_params:
+      numerator: resultado_operacional
+      denominator: receita_liquida
+
+  - name: margem_liquida
+    label: Margem líquida
+    description: Quanto sobra de cada R$ 1 vendido depois de tudo, inclusive juros e impostos. Lucro líquido / receita líquida.
+    type: ratio
+    type_params:
+      numerator: lucro_liquido
+      denominator: receita_liquida
+
+  - name: aliquota_efetiva_ir_csll
+    label: Alíquota efetiva de IR e CSLL
+    description: >
+      Quanto a empresa pagou de IR e CSLL sobre o lucro antes dos tributos. Despesa de IR e CSLL / lucro antes do IR.
+      A alíquota nominal no lucro real é 34% (IR 15% + adicional de 10% + CSLL 9%); a efetiva difere por incentivos,
+      juros sobre capital próprio, prejuízos fiscais e diferenças permanentes.
+      Regra: só é calculada quando o lucro antes do IR é positivo. Com prejuízo, a divisão de dois negativos
+      daria um percentual sem sentido (ex.: Magazine Luiza 2023 daria 52,6%); nesses anos a métrica fica vazia.
+    type: ratio
+    type_params:
+      numerator: despesa_ir_csll_com_lucro
+      denominator: lucro_antes_ir_positivo
+
+  - name: liquidez_corrente
+    label: Liquidez corrente
+    description: Quantos R$ a empresa tem a receber no curto prazo para cada R$ 1 que deve no curto prazo. Ativo circulante / passivo circulante.
+    type: ratio
+    type_params:
+      numerator: ativo_circulante
+      denominator: passivo_circulante
+
+  - name: divida_sobre_patrimonio
+    label: Dívida bruta / patrimônio líquido
+    description: Quantos R$ de empréstimos a empresa tem para cada R$ 1 de capital dos donos. Dívida bruta / patrimônio líquido.
+    type: ratio
+    type_params:
+      numerator: divida_bruta
+      denominator: patrimonio_liquido
+
+  - name: roe
+    label: ROE (retorno sobre o patrimônio)
+    description: Quanto de lucro a empresa gerou para cada R$ 1 de capital dos donos. Lucro líquido / patrimônio líquido do fim do ano.
+    type: ratio
+    type_params:
+      numerator: lucro_liquido
+      denominator: patrimonio_liquido

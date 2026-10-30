@@ -80,8 +80,8 @@ Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; a
 ## Próximas tarefas
 Feito: qualidade, fatia fina DFP modelada e **Marco A** (30/10/2026, Mac): Itapebi explicada (erro na fonte, em `seeds/excecoes_conhecidas.csv`), documentação do dbt, CI no GitHub Actions e rascunho do post 3. Detalhes na nota do Obsidian, "Marco A".
 Marcos restantes (ITR só no F, decisão de 30/10/2026):
-1. Revisão do post 3 por Marcelo (push e CI feitos em 30/10/2026).
-2. **Marco B — camada semântica:** ~10 métricas com regra escrita (receita, lucro, margem, endividamento, liquidez, alíquota efetiva IR/CSLL). Somar contas filhas, não o total. Pronto: cada métrica bate com cálculo manual em 3 empresas.
+1. ~~Post 3~~ publicado em 30/10/2026.
+2. ~~Marco B~~ feito em 30/10/2026: `fct_contas_anuais` (totais oficiais conferidos com as filhas; flag `dados_consistentes`), MetricFlow com 10 métricas (`models/semantic/_semantic.yml`), conferência `scripts/conferir_metricas.py` 30/30. Consultar: `cd modeling && mf query --metrics margem_liquida --group-by metric_time__year`.
 3. **Marco C — agente de IA:** perguntas em português via camada semântica; avaliado com ~20 perguntas de resposta conhecida. Post 4.
 4. **Marco D — ML:** antes, definir rótulo, janela e baseline (Z-score de Altman); validação temporal. Post 5.
 5. **Marco E — dashboard.**

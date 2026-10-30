@@ -10,6 +10,8 @@ exclude_rules = LT05
 [sqlfluff:templater:jinja]
 # Entende ref(), source(), config() e var() do dbt.
 apply_dbt_builtins = True
+# Macros do projeto (ex.: diverge), para o SQLFluff entender as chamadas.
+load_macros_from_path = modeling/macros
 
 [sqlfluff:indentation]
 tab_space_size = 4

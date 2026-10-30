@@ -5,6 +5,7 @@ psycopg[binary]>=3.2
 python-dotenv>=1.0
 dbt-core>=1.11,<1.12  # 1.12 baixa um parser experimental durante a instalação
 dbt-postgres>=1.10
+dbt-metricflow[dbt-postgres]==0.15.0  # camada semântica (mf query)
 
 # Qualidade do código
 ruff>=0.17

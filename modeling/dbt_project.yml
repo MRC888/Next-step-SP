@@ -27,6 +27,10 @@ models:
     marts:
       +schema: marts
       +materialized: table
+    # Camada semântica: calendário do MetricFlow (as regras das métricas ficam no YAML desta pasta).
+    semantic:
+      +schema: marts
+      +materialized: table
 
 seeds:
   sp_data:

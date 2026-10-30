@@ -1,5 +1,5 @@
 # Post 3 — Dado sujo, dado limpo
-Status: rascunho v1 (30/10/2026), aguardando revisão de Marcelo. Imagem: `imagem.png` (barra com "▲ este post" na modelagem).
+Status: **postado** em 30/10/2026 (texto v1 colado pelo Claude no LinkedIn; imagem anexada e publicação feita por Marcelo). Imagem: `imagem.png` (barra com "▲ este post" na modelagem).
 Números conferidos no banco do Mac em 30/10/2026 (dbt build: 13 testes, 0 erros).
 
 ---

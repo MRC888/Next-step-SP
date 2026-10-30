@@ -94,3 +94,25 @@ models:
         description: Situação na CVM (fase operacional, recuperação judicial, falida etc.).
       - name: em_dificuldade_financeira
         description: Situação atual de recuperação, falência ou liquidação. Candidato a rótulo do ML.
+
+  - name: fct_contas_anuais
+    description: >
+      Base da camada semântica: uma linha por empresa e ano (DFP), só empresas comerciais e industriais.
+      Valores oficiais = totais publicados pela empresa; colunas *_pelas_filhas = soma das contas filhas, para
+      conferência. dados_consistentes = false quando algum total diverge da soma (tolerância: R$ 1.000 ou 0,1%).
+      As métricas usam só os documentos consistentes.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "cnpj || '|' || dt_refer"
+    columns:
+      - name: dados_consistentes
+        description: Verdadeiro quando todos os totais batem com a soma das contas filhas.
+        data_tests:
+          - not_null
+      - name: ir_csll
+        description: IR e CSLL do exercício (conta 3.08), negativo quando é despesa.
+      - name: divida_bruta
+        description: Empréstimos e financiamentos de curto (2.01.04) e longo prazo (2.02.01).
+      - name: passivo_total_informado
+        description: Conta 2 como a empresa publicou. Não usada nas métricas (na Itapebi 2021 veio sem o PL).
