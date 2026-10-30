@@ -78,15 +78,11 @@ Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; a
 - **Regra de troca de computador:** commit + push antes de sair de uma máquina; pull antes de começar na outra. Nunca editar nos dois ao mesmo tempo (o OneDrive sincroniza a `.git`).
 
 ## Próximas tarefas
-Feito: qualidade, fatia fina DFP modelada e **Marco A** (30/10/2026, Mac): Itapebi explicada (erro na fonte, em `seeds/excecoes_conhecidas.csv`), documentação do dbt, CI no GitHub Actions e rascunho do post 3. Detalhes na nota do Obsidian, "Marco A".
-Marcos restantes (ITR só no F, decisão de 30/10/2026):
-1. ~~Post 3~~ publicado em 30/10/2026.
-2. ~~Marco B~~ feito em 30/10/2026: `fct_contas_anuais` (totais oficiais conferidos com as filhas; flag `dados_consistentes`), MetricFlow com 10 métricas (`models/semantic/_semantic.yml`), conferência `scripts/conferir_metricas.py` 30/30. Consultar: `cd modeling && mf query --metrics margem_liquida --group-by metric_time__year`.
-3. **Marco C — agente de IA:** perguntas em português via camada semântica; avaliado com ~20 perguntas de resposta conhecida. Post 4.
-4. **Marco D — ML:** antes, definir rótulo, janela e baseline (Z-score de Altman); validação temporal. Post 5.
-5. **Marco E — dashboard.**
-6. **Marco F — automação semanal, ITR, GitHub público, portfólio.** Post 6 (impulsionar).
-Ao explicar: todo termo técnico vem com explicação até Marcelo dizer que já sabe.
+Feito (30/10/2026): Marcos A, B, C (parcial), D, E e F. Guia completo em `docs/guia-de-estudo.md` e no Obsidian ("Next Step SP — Guia de estudo"). Comandos: `make`.
+1. **Chave da API:** Marcelo coloca `ANTHROPIC_API_KEY` no `.env`; então `make avaliar-agente` (pronto = ≥18/20 e 4/4 pegadinhas) e post 4.
+2. `make agendar` (só com OK de Marcelo: configuração permanente no Mac).
+3. Revisar o `CLAUDE.md` (dados pessoais) antes de tornar o GitHub público; portfólio; post 6 (impulsionar).
+4. Evoluções: métricas trimestrais (ITR), bancos, Selic/IPCA (SGS), calibrar a nota de risco, orquestrador, painel publicado.
 
 ## Outros projetos dele (para referência)
 Foods and Goods (Kaggle, logística, SQL + Python), análise de honorários (caso real), TCC Barcelona e FIAP Aurora. Detalhes no vault. Observação: o CV de 20/10 diz MySQL para o Foods and Goods, mas o README registra PostgreSQL. Confirmar com ele.

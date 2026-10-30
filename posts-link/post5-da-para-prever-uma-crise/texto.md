@@ -16,15 +16,15 @@ Três cuidados fizeram mais diferença do que o algoritmo:
 
 3. Comparar com uma régua conhecida. O Z-score de Altman é usado há décadas. Se o modelo não ganha dele, não serve.
 
-Resultado, em 6.693 balanços e 48 empresas que de fato entraram em dificuldade:
+Resultado, em 6.702 balanços e 50 empresas que de fato entraram em dificuldade:
 • Acaso: acertaria 1,3% dos alertas
-• Z-score de Altman: AUC 0,67 · precisão média 3,0%
-• Modelo (gradient boosting): AUC 0,69 · precisão média 5,7%, 4,3 vezes o acaso
+• Z-score de Altman: AUC 0,66 · precisão média 2,9%
+• Modelo (gradient boosting): AUC 0,69 · precisão média 6,0%, 4,5 vezes o acaso
 • Entre os 10% de maior risco apontados pelo modelo estavam 34% dos casos reais
 
 É um ganho real, mas modesto, e eu prefiro mostrar isso a vender milagre. Com poucos casos e um cadastro que só guarda a situação atual das empresas, o modelo é um alerta para investigar, não um veredito.
 
-Os sinais que mais pesaram: patrimônio em relação às dívidas, lucros acumulados, margem líquida e rentabilidade dos ativos. Ou seja, o básico da análise de balanço, agora em escala.
+Os sinais que mais pesaram: patrimônio em relação às dívidas, lucros acumulados, rentabilidade dos ativos e margem líquida. Ou seja, o básico da análise de balanço, agora em escala.
 
 Para quem trabalha com crédito: qual sinal de balanço você olha primeiro?
 

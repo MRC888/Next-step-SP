@@ -53,7 +53,7 @@ flowchart LR
 | Painel | Streamlit + Plotly | Python puro, interativo, roda no Mac (Power BI não roda) |
 | Qualidade | Ruff, SQLFluff, pre-commit, pytest, GitHub Actions | Padrão de mercado para código limpo e testado |
 
-**Números principais (testados em 30/10/2026).** 35,2 mi de linhas na origem · 11,2 mi linhas limpas (DFP + ITR) · 10.037 balanços anuais de empresas comuns · 10 métricas conferidas 30/30 · modelo de risco com AUC 0,69 (Altman 0,67) e precisão 4,3× o acaso · 35 testes em Python · CI verde.
+**Números principais (testados em 30/10/2026).** 35,2 mi de linhas na origem · 11,2 mi linhas limpas (DFP + ITR) · 10.037 balanços anuais de empresas comuns · 10 métricas conferidas 30/30 · modelo de risco com AUC 0,69 (Altman 0,66) e precisão 4,5× o acaso · 35 testes em Python · CI verde.
 
 ---
 
@@ -214,18 +214,18 @@ flowchart LR
 
 **Sem vazamento de futuro.** Sinais só do balanço já público (`dt_entrega`); anos em que a empresa já estava em dificuldade saem da base. **Erro achado e corrigido:** o nome da empresa nos documentos é o atual, então filtrar por ele apagava os anos anteriores à crise (61 → 18 casos); o filtro foi desfeito.
 
-**Validação walk-forward.** Para cada ano de teste, o modelo treina só com balanços cujo desfecho já era conhecido antes; as previsões de todos os anos (2013–2024) são juntadas. Usa todos os 48 casos sem ver o futuro.
+**Validação walk-forward.** Para cada ano de teste, o modelo treina só com balanços cujo desfecho já era conhecido antes; as previsões de todos os anos (2013–2024) são juntadas. Usa todos os 50 casos sem ver o futuro.
 
 **Resultados (testados).**
 | Régua | AUC [IC 95%] | Precisão média | Acerto no top 10% |
 |---|---|---|---|
-| **Gradient boosting** | **0,69** [0,62–0,76] | **0,057** (4,3× o acaso) | 34% |
-| Z'' de Altman | 0,67 [0,60–0,74] | 0,030 | 30% |
-| Teve prejuízo | 0,67 | 0,022 | n/a |
-| Patrimônio negativo | 0,64 | 0,025 | n/a |
-| Regressão logística | 0,61 | 0,029 | 30% |
+| **Gradient boosting** | **0,69** [0,62–0,76] | **0,060** (4,5× o acaso) | 34% |
+| Z'' de Altman | 0,66 [0,60–0,73] | 0,029 | 28% |
+| Teve prejuízo | 0,66 | 0,021 | n/a |
+| Patrimônio negativo | 0,63 | 0,025 | n/a |
+| Regressão logística | 0,61 | 0,028 | 28% |
 
-Taxa base (acaso): 1,33%. Sinais que mais pesam: PL/passivo, lucros retidos/ativo, margem líquida, ROA.
+Taxa base (acaso): 1,34%. Sinais que mais pesam: PL/passivo, lucros retidos/ativo, ROA, margem líquida.
 
 **Leitura honesta.** Ganho real, mas modesto. Poucos casos e cadastro só com a situação atual. A nota é **relativa** (percentil), não probabilidade calibrada. Uso: alerta para investigar.
 
@@ -322,7 +322,7 @@ API · chave de API · token · tool use · system prompt · avaliação (eval) 
 3. **Um erro seu?** Filtrei empresas pelo nome achando que era histórico; não era, e apaguei os casos que o modelo precisava. Achei investigando a Americanas 2011 e corrigi.
 4. **Por que semantic layer?** Uma definição por métrica; painel, IA e consultas concordam; a IA não inventa.
 5. **Como você mediria o agente?** Prova com gabarito e pegadinhas, correção determinística, custo por pergunta.
-6. **O modelo funciona?** AUC 0,69 contra 0,67 do Altman e 4,3× o acaso em precisão: ganho real, modesto, com intervalo de confiança mostrado. É alerta, não veredito.
+6. **O modelo funciona?** AUC 0,69 contra 0,66 do Altman e 4,5× o acaso em precisão: ganho real, modesto, com intervalo de confiança mostrado. É alerta, não veredito.
 7. **Como roda sozinho?** `make pipeline` agendado no launchd; ingestão idempotente; testes no build; CI a cada push.
 
 ---

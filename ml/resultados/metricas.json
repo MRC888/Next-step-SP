@@ -1,56 +1,56 @@
 {
- "linhas": 6693,
- "casos_reais": 89,
- "empresas_com_evento": 48,
- "taxa_base": 0.0133,
+ "linhas": 6702,
+ "casos_reais": 90,
+ "empresas_com_evento": 50,
+ "taxa_base": 0.0134,
  "anos": [
   2013,
   2024
  ],
  "modelos": {
   "z_altman": {
-   "auc": 0.674,
-   "precisao_media": 0.03,
-   "recall_top10": 0.303,
+   "auc": 0.662,
+   "precisao_media": 0.029,
+   "recall_top10": 0.278,
    "auc_ic95": [
     0.598,
-    0.741
+    0.732
    ]
   },
   "patrimonio_negativo": {
-   "auc": 0.639,
+   "auc": 0.631,
    "precisao_media": 0.025,
    "recall_top10": null,
    "auc_ic95": [
-    0.589,
-    0.692
+    0.584,
+    0.685
    ]
   },
   "teve_prejuizo": {
-   "auc": 0.665,
-   "precisao_media": 0.022,
+   "auc": 0.656,
+   "precisao_media": 0.021,
    "recall_top10": null,
    "auc_ic95": [
-    0.616,
-    0.709
+    0.606,
+    0.706
    ]
   },
   "regressao_logistica": {
-   "auc": 0.613,
-   "precisao_media": 0.029,
-   "recall_top10": 0.303,
+   "auc": 0.609,
+   "precisao_media": 0.028,
+   "recall_top10": 0.278,
    "auc_ic95": [
     0.539,
-    0.684
+    0.682
    ]
   },
   "gradient_boosting": {
-   "auc": 0.691,
-   "precisao_media": 0.057,
-   "recall_top10": 0.337,
+   "auc": 0.693,
+   "precisao_media": 0.06,
+   "recall_top10": 0.344,
    "auc_ic95": [
-    0.622,
-    0.758
+    0.618,
+    0.755
    ]
   }
  },
@@ -58,43 +58,43 @@
  "importancia_sinais": [
   {
    "sinal": "x4_patrimonio_sobre_passivo",
-   "importancia": 0.3177
+   "importancia": 0.272
   },
   {
    "sinal": "x2_lucros_retidos_sobre_ativo",
-   "importancia": 0.2698
-  },
-  {
-   "sinal": "margem_liquida",
-   "importancia": 0.2302
+   "importancia": 0.2485
   },
   {
    "sinal": "roa",
-   "importancia": 0.2158
+   "importancia": 0.2073
   },
   {
-   "sinal": "x3_ebit_sobre_ativo",
-   "importancia": 0.2116
-  },
-  {
-   "sinal": "divida_sobre_ativo",
-   "importancia": 0.1892
+   "sinal": "margem_liquida",
+   "importancia": 0.2014
   },
   {
    "sinal": "x1_capital_de_giro_sobre_ativo",
-   "importancia": 0.1789
+   "importancia": 0.1695
+  },
+  {
+   "sinal": "divida_sobre_ativo",
+   "importancia": 0.1654
   },
   {
    "sinal": "liquidez_corrente",
-   "importancia": 0.1766
+   "importancia": 0.1342
+  },
+  {
+   "sinal": "x3_ebit_sobre_ativo",
+   "importancia": 0.1228
   },
   {
    "sinal": "crescimento_receita",
-   "importancia": 0.1078
+   "importancia": 0.0784
   },
   {
    "sinal": "log_ativo",
-   "importancia": 0.0074
+   "importancia": 0.009
   },
   {
    "sinal": "patrimonio_negativo",
@@ -105,6 +105,6 @@
    "importancia": 0.0
   }
  ],
- "empresas_pontuadas": 648,
+ "empresas_pontuadas": 647,
  "horizonte_meses": 24
 }

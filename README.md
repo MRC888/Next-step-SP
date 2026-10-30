@@ -17,7 +17,7 @@ e um modelo que aponta risco de dificuldade financeira.
 | **Ingestão** (Python) | Baixa DFP, ITR e cadastro da CVM; só o que mudou | 35,2 mi de linhas · 1ª carga 3min22s · recarga sem mudanças 2 s |
 | **Modelagem** (dbt) | raw → staging → intermediate → marts, com testes | DFP + ITR: 11,2 mi linhas limpas em ~4 min · auditoria de totais |
 | **Camada semântica** (MetricFlow) | 10 métricas com regra escrita uma vez | Conferência independente contra o raw: **30/30** |
-| **Modelo de risco** (scikit-learn) | Dificuldade financeira em até 24 meses | AUC 0,69 [0,62–0,76] · precisão média 4,3× o acaso · Z'' de Altman: 0,67 |
+| **Modelo de risco** (scikit-learn) | Dificuldade financeira em até 24 meses | AUC 0,69 [0,62–0,76] · precisão média 4,5× o acaso · Z'' de Altman: 0,66 |
 | **Dashboard** (Streamlit + Plotly) | Empresa × pares × setor, ranking, mapa de risco, chat | Interativo, com filtros, detalhe por clique e download |
 | **Agente de IA** (Claude) | Perguntas em português; números só via camada semântica | Prova de 20 perguntas com gabarito (ver `agent/avaliacao`) |
 
@@ -90,7 +90,7 @@ O agente precisa de `ANTHROPIC_API_KEY` no `.env` (nunca vai para o Git).
 ## Limites
 
 - Bancos e seguradoras ficam fora das métricas (outro plano de contas).
-- O cadastro da CVM mostra só a situação atual; o modelo de risco aprende com 48 empresas com evento.
+- O cadastro da CVM mostra só a situação atual; o modelo de risco aprende com 50 empresas com evento.
 - A nota de risco é relativa (percentil), não uma probabilidade calibrada. Não é recomendação de investimento.
 
 ## Dados

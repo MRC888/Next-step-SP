@@ -161,12 +161,10 @@ def aba_empresa_conteudo():
     st.subheader(f"{empresa.title()} · {int(ultimo['ano'])}")
     st.caption(f"Setor (cadastro CVM): {setor or 'não informado'}")
 
-    cards = st.columns(5)
-    for coluna, metrica in zip(
-        cards,
-        ["receita_liquida", "lucro_liquido", "margem_liquida", "roe", "aliquota_efetiva_ir_csll"],
-        strict=True,
-    ):
+    # Contêiner horizontal com quebra: em tela larga os 5 cards ficam lado a lado; em tela estreita, quebram de linha
+    cards = st.container(horizontal=True, wrap=True, gap="small")
+    for metrica in ["receita_liquida", "lucro_liquido", "margem_liquida", "roe", "aliquota_efetiva_ir_csll"]:
+        coluna = cards
         comparacao = None
         if not ref_ultimo.empty and pd.notna(ultimo[metrica]) and metrica not in d.EM_REAIS:
             mediana = ref_ultimo[f"{metrica}__p50"].iloc[0]
@@ -182,6 +180,7 @@ def aba_empresa_conteudo():
             border=True,
             chart_data=principal[metrica].dropna().tolist(),  # minigráfico com a tendência do período
             chart_type="area",
+            width=215,
         )
 
     grupo = st.segmented_control("Grupo de métricas", list(d.GRUPOS), default="Rentabilidade")
