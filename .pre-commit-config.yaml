@@ -1,0 +1,22 @@
+# Roda os lints antes de cada commit (também no GitHub Desktop).
+# Instalar uma vez: pre-commit install
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.1
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 4.4.0
+    hooks:
+      - id: sqlfluff-lint
+        files: ^modeling/models/
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+      - id: detect-private-key

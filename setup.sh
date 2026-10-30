@@ -6,7 +6,17 @@ cd "$(dirname "$0")"
 # O ambiente Python fica fora do OneDrive (mesmo padrão do Foods and Goods), para não sincronizar as bibliotecas.
 VENV="$HOME/.venvs/projeto-sp-data"
 
-PY=$(command -v python3.13 || command -v python3)
+# Mac: python3.13 e venv/bin. Windows (Git Bash): launcher "py" e venv/Scripts.
+case "$(uname -s)" in
+  MINGW* | MSYS* | CYGWIN*)
+    PY="py -3.13"
+    BIN="$VENV/Scripts"
+    ;;
+  *)
+    PY=$(command -v python3.13 || command -v python3)
+    BIN="$VENV/bin"
+    ;;
+esac
 echo "==> Python: $($PY --version)"
 
 if ! command -v docker >/dev/null; then
@@ -21,7 +31,8 @@ fi
 if [ ! -f .env ]; then
   cp .env.example .env
   SENHA=$($PY -c 'import secrets; print(secrets.token_urlsafe(18))')
-  sed -i '' "s/troque-esta-senha/$SENHA/" .env
+  # -i.bak funciona no sed do Mac e no do Git Bash; o backup é apagado logo depois.
+  sed -i.bak "s/troque-esta-senha/$SENHA/" .env && rm .env.bak
   echo "==> .env criado com uma senha aleatória (veja dentro do arquivo .env)"
 fi
 
@@ -32,8 +43,8 @@ if [ ! -d "$VENV" ]; then
   $PY -m venv "$VENV"
   echo "==> Ambiente virtual criado em $VENV"
 fi
-"$VENV/bin/pip" install -q --upgrade pip
-"$VENV/bin/pip" install -q -r requirements.txt
+"$BIN/python" -m pip install -q --upgrade pip
+"$BIN/python" -m pip install -q -r requirements.txt
 echo "==> Bibliotecas instaladas"
 
 docker compose up -d
@@ -45,4 +56,4 @@ for i in $(seq 1 30); do
 done
 
 echo
-"$VENV/bin/python" scripts/check_env.py
+"$BIN/python" scripts/check_env.py

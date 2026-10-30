@@ -9,5 +9,15 @@
     "files.exclude": {
         "**/__pycache__": true,
         "**/*.pyc": true
-    }
+    },
+    // Python: o Ruff formata e organiza os imports ao salvar.
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    // SQL: usa o SQLFluff do venv do projeto (mesma versão do pre-commit).
+    "sqlfluff.executablePath": "~/.venvs/projeto-sp-data/bin/sqlfluff"
 }

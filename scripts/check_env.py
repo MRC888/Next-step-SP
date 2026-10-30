@@ -1,4 +1,5 @@
 """Confere se o ambiente do projeto está pronto. Rode: python scripts/check_env.py"""
+
 import os
 import shutil
 import subprocess
@@ -23,8 +24,8 @@ if docker:
     check("Docker rodando", rodando, "abra o app Docker Desktop")
 
 try:
-    from dotenv import load_dotenv
     import psycopg
+    from dotenv import load_dotenv
 
     load_dotenv()
     with psycopg.connect(

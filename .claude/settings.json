@@ -1,0 +1,70 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "WebSearch",
+      "WebFetch",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(cat:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pip install:*)",
+      "Bash(dbt:*)",
+      "Bash(ruff:*)",
+      "Bash(sqlfluff:*)",
+      "Bash(pre-commit:*)",
+      "Bash(docker:*)",
+      "Bash(docker compose:*)",
+      "Bash(psql:*)",
+      "Bash(./setup.sh)",
+      "Bash(bash setup.sh)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)",
+      "Bash(~/.venvs/projeto-sp-data/bin/*)",
+      "Bash(~/.venvs/projeto-sp-data/Scripts/*)",
+      "PowerShell(python:*)",
+      "PowerShell(dbt:*)",
+      "PowerShell(ruff:*)",
+      "PowerShell(sqlfluff:*)",
+      "PowerShell(docker:*)",
+      "PowerShell(git status:*)",
+      "PowerShell(git diff:*)",
+      "PowerShell(git log:*)",
+      "PowerShell(git add:*)",
+      "PowerShell(git commit:*)",
+      "PowerShell(git pull:*)",
+      "PowerShell(Get-ChildItem:*)",
+      "PowerShell(Get-Content:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "PowerShell(git push:*)",
+      "Bash(docker volume rm:*)",
+      "Bash(docker compose down -v:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(git push --force:*)",
+      "Bash(git reset --hard:*)",
+      "PowerShell(Remove-Item:*)",
+      "PowerShell(git push --force:*)",
+      "PowerShell(git reset --hard:*)",
+      "Read(./.env)"
+    ],
+    "additionalDirectories": [
+      "~/Library/CloudStorage/OneDrive-Pessoal/Obsidian/Documentação",
+      "C:/Users/marce/OneDrive/Obsidian/Documentação"
+    ]
+  }
+}

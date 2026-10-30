@@ -44,12 +44,15 @@ pre .t { color: var(--marker); font-weight: 600; }
 .panel p { font-family: "Archivo", Arial, sans-serif; font-weight: 800; font-stretch: 80%; font-size: 40px; line-height: 1.05; }
 .panel p span { color: var(--marker); }
 .steps { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
-.step { display: grid; gap: 8px; }
+.step { display: grid; gap: 8px; align-content: start; }
 .step .b { height: 10px; border-radius: 5px; background: #2a3632; }
 .step.done .b { background: var(--marker); }
 .step.now .b { background: linear-gradient(90deg, var(--marker) 0 45%, #2a3632 45%); }
 .step small { font: 500 13.5px/1.2 "IBM Plex Mono", monospace; color: var(--panel-muted); }
 .step.done small, .step.now small { color: var(--panel-fg); }
+.step.focus .b { box-shadow: 0 0 0 3px rgba(255,224,61,.35); }
+.step.focus small { color: var(--marker); }
+.step em { font: 600 13px/1 "IBM Plex Mono", monospace; font-style: normal; color: var(--panel-fg); background: #2a3632; padding: 5px 7px; border-radius: 4px; justify-self: start; white-space: nowrap; }
 .foot { display: flex; justify-content: space-between; font-size: 17px; color: var(--panel-muted); }
 .foot b { color: var(--panel-fg); font-weight: 600; }
 </style>
@@ -99,7 +102,7 @@ pre .t { color: var(--marker); font-weight: 600; }
     <div class="steps">
       <div class="step done"><div class="b"></div><small>ambiente</small></div>
       <div class="step done"><div class="b"></div><small>base</small></div>
-      <div class="step done"><div class="b"></div><small>ingestão</small></div>
+      <div class="step done focus"><div class="b"></div><small>ingestão</small><em>▲ este post</em></div>
       <div class="step now"><div class="b"></div><small>modelagem</small></div>
       <div class="step"><div class="b"></div><small>regras</small></div>
       <div class="step"><div class="b"></div><small>agente IA</small></div>

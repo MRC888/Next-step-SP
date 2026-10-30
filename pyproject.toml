@@ -1,0 +1,8 @@
+# Configuração das ferramentas de qualidade do Python.
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+# E/F: erros básicos · I: ordem dos imports · B: bugs comuns · UP: sintaxe moderna · SIM: simplificações
+select = ["E", "F", "I", "B", "UP", "SIM"]

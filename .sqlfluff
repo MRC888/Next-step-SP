@@ -1,0 +1,18 @@
+# Configuração do SQLFluff (lint do SQL do dbt).
+[sqlfluff]
+dialect = postgres
+# "jinja" em vez de "dbt": não precisa do banco ligado e roda mais rápido.
+templater = jinja
+max_line_length = 120
+# Linhas de SELECT longas e aliases implícitos são comuns no estilo do projeto; revisar depois se fizer falta.
+exclude_rules = LT05
+
+[sqlfluff:templater:jinja]
+# Entende ref(), source(), config() e var() do dbt.
+apply_dbt_builtins = True
+
+[sqlfluff:indentation]
+tab_space_size = 4
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower

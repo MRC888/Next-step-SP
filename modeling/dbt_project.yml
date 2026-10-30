@@ -1,0 +1,28 @@
+# Projeto dbt: transforma o schema raw (dados como vieram da CVM) em tabelas limpas e testadas.
+name: sp_data
+version: "1.0.0"
+profile: sp_data
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Fatia fina: só a DFP (anual) passa por todas as etapas primeiro.
+  # Para incluir o ITR: dbt build --vars '{docs: [dfp, itr]}'
+  docs: ["dfp"]
+
+models:
+  sp_data:
+    # staging e intermediate são views: não ocupam disco e sempre refletem o raw atual.
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+    # marts são tabelas: é o que as consultas, a camada semântica e o ML vão ler, então precisam ser rápidas.
+    marts:
+      +schema: marts
+      +materialized: table

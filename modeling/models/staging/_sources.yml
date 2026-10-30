@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: cvm
+    description: Dados abertos da CVM carregados por ingestion/cvm.py, exatamente como vieram (tudo texto).
+    schema: raw
+    tables:
+      - name: cad_cia_aberta
+        description: Cadastro de companhias. Cada carga nova é acumulada (histórico de fotos do cadastro).
+      - name: dfp_documentos
+        description: Índice dos documentos DFP entregues (versão, data de entrega, link).
+      - name: itr_documentos
+        description: Índice dos documentos ITR entregues (versão, data de entrega, link).
+      - name: dfp_bpa_con
+      - name: dfp_bpa_ind
+      - name: dfp_bpp_con
+      - name: dfp_bpp_ind
+      - name: dfp_dre_con
+      - name: dfp_dre_ind
+      - name: dfp_dfc_md_con
+      - name: dfp_dfc_md_ind
+      - name: dfp_dfc_mi_con
+      - name: dfp_dfc_mi_ind
+      - name: itr_bpa_con
+      - name: itr_bpa_ind
+      - name: itr_bpp_con
+      - name: itr_bpp_ind
+      - name: itr_dre_con
+      - name: itr_dre_ind
+      - name: itr_dfc_md_con
+      - name: itr_dfc_md_ind
+      - name: itr_dfc_mi_con
+      - name: itr_dfc_mi_ind

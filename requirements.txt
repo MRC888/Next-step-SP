@@ -3,3 +3,10 @@ pandas>=2.2
 sqlalchemy>=2.0
 psycopg[binary]>=3.2
 python-dotenv>=1.0
+dbt-core>=1.11,<1.12  # 1.12 baixa um parser experimental durante a instalação
+dbt-postgres>=1.10
+
+# Qualidade do código
+ruff>=0.17
+sqlfluff>=4.4
+pre-commit>=4.7

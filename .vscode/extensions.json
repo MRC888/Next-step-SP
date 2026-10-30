@@ -2,6 +2,10 @@
     // O VS Code sugere instalar estas extensões ao abrir a pasta.
     "recommendations": [
         "ms-python.python",
-        "ms-azuretools.vscode-docker"
+        "ms-azuretools.vscode-docker",
+        "charliermarsh.ruff",
+        "sqlfluff.vscode-sqlfluff",
+        "innoverio.vscode-dbt-power-user",
+        "anthropic.claude-code"
     ]
 }

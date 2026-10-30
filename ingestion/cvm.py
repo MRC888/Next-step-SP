@@ -6,6 +6,7 @@ Rode (com o venv ativo, na raiz do projeto):
 
 Pode rodar quantas vezes quiser: arquivo que não mudou na CVM não é baixado nem carregado de novo.
 """
+
 import argparse
 import csv
 import hashlib
@@ -13,7 +14,7 @@ import io
 import os
 import re
 import zipfile
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import psycopg
@@ -29,9 +30,28 @@ DEMONSTRACOES = {"BPA", "BPP", "DRE", "DFC_MD", "DFC_MI"}
 
 # Só dados da empresa. Nome, e-mail e telefone dos responsáveis ficam de fora (dados pessoais, sem uso no projeto).
 COLUNAS_CAD = [
-    "CNPJ_CIA", "DENOM_SOCIAL", "DENOM_COMERC", "DT_REG", "DT_CONST", "DT_CANCEL", "MOTIVO_CANCEL",
-    "SIT", "DT_INI_SIT", "CD_CVM", "SETOR_ATIV", "TP_MERC", "CATEG_REG", "DT_INI_CATEG",
-    "SIT_EMISSOR", "DT_INI_SIT_EMISSOR", "CONTROLE_ACIONARIO", "MUN", "UF", "PAIS", "CNPJ_AUDITOR", "AUDITOR",
+    "CNPJ_CIA",
+    "DENOM_SOCIAL",
+    "DENOM_COMERC",
+    "DT_REG",
+    "DT_CONST",
+    "DT_CANCEL",
+    "MOTIVO_CANCEL",
+    "SIT",
+    "DT_INI_SIT",
+    "CD_CVM",
+    "SETOR_ATIV",
+    "TP_MERC",
+    "CATEG_REG",
+    "DT_INI_CATEG",
+    "SIT_EMISSOR",
+    "DT_INI_SIT_EMISSOR",
+    "CONTROLE_ACIONARIO",
+    "MUN",
+    "UF",
+    "PAIS",
+    "CNPJ_AUDITOR",
+    "AUDITOR",
 ]
 
 # Os ZIPs ficam fora do OneDrive, como o venv, para não sincronizar centenas de MB.
@@ -105,7 +125,9 @@ def baixar_se_mudou(conn, nome, url):
 
 def garantir_tabela(conn, tabela, colunas):
     """Cria a tabela (tudo como texto, igual à fonte) e acrescenta colunas novas se a CVM mudar o layout."""
-    conn.execute(f"create table if not exists raw.{tabela} (_arquivo text not null, _carregado_em timestamptz not null)")
+    conn.execute(
+        f"create table if not exists raw.{tabela} (_arquivo text not null, _carregado_em timestamptz not null)"
+    )
     for coluna in colunas:
         conn.execute(f"alter table raw.{tabela} add column if not exists {coluna} text")
     conn.execute(f"create index if not exists {tabela}_arquivo_idx on raw.{tabela} (_arquivo)")
@@ -141,14 +163,16 @@ def tabela_do_csv(tipo, membro):
 
 def carregar_zip(conn, tipo, nome, caminho):
     """Substitui no banco tudo o que veio deste ZIP. Numa transação só: ou carrega tudo, ou nada."""
-    agora = datetime.now(timezone.utc)
+    agora = datetime.now(UTC)
     total = 0
     with zipfile.ZipFile(caminho) as z:
         for membro in z.namelist():
             tabela = tabela_do_csv(tipo, membro)
             if not tabela:
                 continue
-            conn.execute(f"create table if not exists raw.{tabela} (_arquivo text not null, _carregado_em timestamptz not null)")
+            conn.execute(
+                f"create table if not exists raw.{tabela} (_arquivo text not null, _carregado_em timestamptz not null)"
+            )
             conn.execute(f"delete from raw.{tabela} where _arquivo = %s", (nome,))
             # A CVM publica em latin-1 com ";" como separador.
             leitor = csv.reader(io.TextIOWrapper(z.open(membro), encoding="latin-1", newline=""), delimiter=";")
@@ -157,8 +181,11 @@ def carregar_zip(conn, tipo, nome, caminho):
 
 
 def carregar_cadastro(conn, nome, caminho):
-    """O cadastro é uma foto do dia. Guardamos cada foto nova (não apagamos as antigas) para ter o histórico de situação."""
-    agora = datetime.now(timezone.utc)
+    """O cadastro é uma foto do dia.
+
+    Guardamos cada foto nova (não apagamos as antigas) para ter o histórico de situação.
+    """
+    agora = datetime.now(UTC)
     with open(caminho, encoding="latin-1", newline="") as f:
         leitor = csv.DictReader(f, delimiter=";")
         linhas = ([linha[c] for c in COLUNAS_CAD] for linha in leitor)
@@ -166,12 +193,14 @@ def carregar_cadastro(conn, nome, caminho):
 
 
 def registrar(conn, nome, url, sha256, last_modified, linhas, agora):
-    conn.execute("""
+    conn.execute(
+        """
         insert into raw._controle_cargas (arquivo, url, last_modified, sha256, linhas, carregado_em)
         values (%s, %s, %s, %s, %s, %s)
         on conflict (arquivo) do update set url = excluded.url, last_modified = excluded.last_modified,
             sha256 = excluded.sha256, linhas = excluded.linhas, carregado_em = excluded.carregado_em""",
-        (nome, url, last_modified, sha256, linhas, agora))
+        (nome, url, last_modified, sha256, linhas, agora),
+    )
 
 
 def processar(conn, nome, url, carregar):
@@ -205,7 +234,12 @@ def main():
                     processar(conn, nome, url, lambda caminho, t=tipo, n=nome: carregar_zip(conn, t, n, caminho))
         if "cad" in args.docs:
             print("==> Cadastro")
-            processar(conn, "cad_cia_aberta.csv", URL_CAD, lambda caminho: carregar_cadastro(conn, "cad_cia_aberta.csv", caminho))
+            processar(
+                conn,
+                "cad_cia_aberta.csv",
+                URL_CAD,
+                lambda caminho: carregar_cadastro(conn, "cad_cia_aberta.csv", caminho),
+            )
 
 
 if __name__ == "__main__":

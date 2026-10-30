@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: fct_demonstracoes
+    description: >
+      Demonstrações financeiras limpas (BPA, BPP, DRE, DFC) de DFP e ITR, em reais.
+      Grão: empresa x documento (tipo_doc, dt_refer) x demonstração x período x conta.
+      Só o exercício atual, sem duplicatas, consolidado quando existe.
+    columns:
+      - name: tipo_doc
+        description: DFP (anual) ou ITR (trimestral).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["DFP", "ITR"]
+      - name: demonstracao
+        description: BPA (ativo), BPP (passivo + PL), DRE (resultado), DFC_MD / DFC_MI (fluxo de caixa, método direto / indireto).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["BPA", "BPP", "DRE", "DFC_MD", "DFC_MI"]
+      - name: escopo
+        description: con (consolidado) ou ind (individual).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["con", "ind"]
+      - name: cnpj
+        data_tests:
+          - not_null
+      - name: dt_refer
+        description: Data de referência do documento (fim do trimestre ou do ano).
+        data_tests:
+          - not_null
+      - name: dt_entrega
+        description: Data em que o documento foi entregue à CVM. Usar no ML para não "ver o futuro".
+      - name: meses_periodo
+        description: Meses cobertos pelo valor (DRE/DFC). Nulo no balanço, que é posição numa data.
+      - name: cd_conta
+        data_tests:
+          - not_null
+      - name: valor
+        description: Valor em reais (lucro por ação em R$ por ação).
+
+  - name: dim_empresa
+    description: Uma linha por empresa (CNPJ), da última foto do cadastro da CVM.
+    columns:
+      - name: cnpj
+        data_tests:
+          - unique
+          - not_null
+      - name: plano_contas
+        description: instituicao_financeira, seguradora ou empresa_geral. Define como ler as contas da DRE.
+      - name: em_dificuldade_financeira
+        description: Situação atual de recuperação, falência ou liquidação. Candidato a rótulo do ML.
