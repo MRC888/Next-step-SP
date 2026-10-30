@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,600..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Mesma identidade dos posts 1 a 5. Pergunta e resposta reais do agente (30/10/2026); prova: agent/avaliacao/resultado.json. */
+:root {
+  --paper: #fbfcf8; --band: #e4efe3; --ink: #3f5249; --ink-strong: #121a16;
+  --marker: #ffe03d; --panel: #111916; --panel-fg: #f2f6f3; --panel-muted: #9fb0a8;
+  --term: #0f1513; --term-fg: #d6e2dc; --term-dim: #7f948b; --ok: #7fe0a8;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body { font-family: "IBM Plex Sans", Arial, sans-serif; position: relative;
+  background: repeating-linear-gradient(180deg, var(--band) 0 72px, var(--paper) 72px 144px); }
+.top { padding: 64px 72px 0; }
+.eyebrow { font: 500 19px/1 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: #3d6b5a; }
+h1 { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 68%; font-size: 84px; line-height: .95; color: var(--ink-strong); margin-top: 20px; }
+h1 mark { background: linear-gradient(100deg, transparent 0 1%, var(--marker) 2% 98%, transparent 99%); padding: 0 10px; margin: 0 -4px; color: inherit; }
+
+.chat { position: absolute; left: 72px; right: 72px; top: 330px; display: grid; gap: 18px; }
+.pergunta { justify-self: end; max-width: 760px; background: var(--ink-strong); color: var(--panel-fg); border-radius: 18px 18px 4px 18px; padding: 18px 22px; font-size: 25px; line-height: 1.35; }
+.resposta { max-width: 860px; background: #fff; border: 2px solid var(--ink-strong); border-radius: 18px 18px 18px 4px; padding: 20px 24px; display: grid; gap: 10px; box-shadow: 0 14px 30px rgba(17,25,22,.12); }
+.resposta .valor { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 64px; line-height: 1; color: var(--ink-strong); }
+.resposta .valor mark { background: var(--marker); padding: 0 8px; }
+.resposta p { font-size: 20px; line-height: 1.4; color: var(--ink); }
+.trilha { font: 500 15.5px/1.6 "IBM Plex Mono", monospace; color: var(--ink); border-top: 1px dashed #b9c6c0; padding-top: 10px; }
+.trilha b { color: var(--ink-strong); }
+
+.placar { position: absolute; left: 72px; right: 72px; top: 818px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.cartao { background: var(--term); color: var(--term-fg); border-radius: 12px; padding: 18px 20px; display: grid; gap: 6px; }
+.cartao b { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 56px; line-height: 1; color: var(--panel-fg); }
+.cartao b.y { color: var(--marker); }
+.cartao span { font: 500 15px/1.35 "IBM Plex Mono", monospace; color: var(--term-dim); }
+
+.panel { position: absolute; inset: auto 0 0 0; background: var(--panel); color: var(--panel-fg); padding: 34px 72px 38px; display: grid; gap: 20px; }
+.panel p { font-family: "Archivo", Arial, sans-serif; font-weight: 800; font-stretch: 80%; font-size: 40px; line-height: 1.05; }
+.panel p span { color: var(--marker); }
+.steps { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+.step { display: grid; gap: 8px; align-content: start; }
+.step .b { height: 10px; border-radius: 5px; background: #2a3632; }
+.step.done .b { background: var(--marker); }
+.step small { font: 500 13.5px/1.2 "IBM Plex Mono", monospace; color: var(--panel-muted); }
+.step.done small { color: var(--panel-fg); }
+.step.focus .b { box-shadow: 0 0 0 3px rgba(255,224,61,.35); }
+.step.focus small { color: var(--marker); }
+.step em { font: 600 13px/1 "IBM Plex Mono", monospace; font-style: normal; color: var(--panel-fg); background: #2a3632; padding: 5px 7px; border-radius: 4px; justify-self: start; white-space: nowrap; }
+.foot { display: flex; justify-content: space-between; font-size: 17px; color: var(--panel-muted); }
+.foot b { color: var(--panel-fg); font-weight: 600; }
+</style>
+</head>
+<body>
+  <header class="top">
+    <span class="eyebrow">Etapa 6 · Agente de IA</span>
+    <h1>Perguntei a uma IA.<br><mark>Ela não chutou.</mark></h1>
+  </header>
+
+  <section class="chat">
+    <div class="pergunta">Qual a alíquota efetiva de IR e CSLL da Ambev em 2025?</div>
+    <div class="resposta">
+      <div class="valor"><mark>17,7%</mark></div>
+      <p>Lucro antes do IR e da CSLL: R$ 19,42 bi · despesa de IR e CSLL: R$ 3,43 bi. Nominal no lucro real: 34%.</p>
+      <div class="trilha">Como a resposta foi montada: <b>buscar_empresas</b> → <b>listar_metricas</b> → <b>consultar_metricas</b> (regra da camada semântica)</div>
+    </div>
+  </section>
+
+  <section class="placar">
+    <div class="cartao"><b class="y">20/20</b><span>acertos na prova<br>com gabarito</span></div>
+    <div class="cartao"><b>4/4</b><span>pegadinhas: explicou<br>em vez de inventar</span></div>
+    <div class="cartao"><b>US$ 0,05</b><span>por pergunta<br>(prova inteira: US$ 1,03)</span></div>
+  </section>
+
+  <section class="panel">
+    <p>A IA não calcula nada: ela escolhe a consulta,<br>e o número sai da <span>regra escrita</span>.</p>
+    <div class="steps">
+      <div class="step done"><div class="b"></div><small>ambiente</small></div>
+      <div class="step done"><div class="b"></div><small>base</small></div>
+      <div class="step done"><div class="b"></div><small>ingestão</small></div>
+      <div class="step done"><div class="b"></div><small>modelagem</small></div>
+      <div class="step done"><div class="b"></div><small>regras</small></div>
+      <div class="step done focus"><div class="b"></div><small>agente IA</small><em>▲ este post</em></div>
+      <div class="step done"><div class="b"></div><small>ML</small></div>
+      <div class="step done"><div class="b"></div><small>dashboard</small></div>
+      <div class="step done"><div class="b"></div><small>automação</small></div>
+    </div>
+    <div class="foot"><span><b>Marcelo Santos</b> · Next Step SP</span><span>Dados: CVM (licença ODbL)</span></div>
+  </section>
+</body>
+</html>

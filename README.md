@@ -19,7 +19,7 @@ e um modelo que aponta risco de dificuldade financeira.
 | **Camada semântica** (MetricFlow) | 10 métricas com regra escrita uma vez | Conferência independente contra o raw: **30/30** |
 | **Modelo de risco** (scikit-learn) | Dificuldade financeira em até 24 meses | AUC 0,69 [0,62–0,76] · precisão média 4,5× o acaso · Z'' de Altman: 0,66 |
 | **Dashboard** (Streamlit + Plotly) | Empresa × pares × setor, ranking, mapa de risco, chat | Interativo, com filtros, detalhe por clique e download |
-| **Agente de IA** (Claude) | Perguntas em português; números só via camada semântica | Prova de 20 perguntas com gabarito (ver `agent/avaliacao`) |
+| **Agente de IA** (Claude) | Perguntas em português; números só via camada semântica | Prova com gabarito: **20/20**, 4/4 pegadinhas · ~US$ 0,05 por pergunta |
 
 ## Arquitetura
 

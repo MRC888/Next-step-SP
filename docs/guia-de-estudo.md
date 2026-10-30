@@ -53,7 +53,7 @@ flowchart LR
 | Painel | Streamlit + Plotly | Python puro, interativo, roda no Mac (Power BI não roda) |
 | Qualidade | Ruff, SQLFluff, pre-commit, pytest, GitHub Actions | Padrão de mercado para código limpo e testado |
 
-**Números principais (testados em 30/10/2026).** 35,2 mi de linhas na origem · 11,2 mi linhas limpas (DFP + ITR) · 10.037 balanços anuais de empresas comuns · 10 métricas conferidas 30/30 · modelo de risco com AUC 0,69 (Altman 0,66) e precisão 4,5× o acaso · 35 testes em Python · CI verde.
+**Números principais (testados em 30/10/2026).** Agente de IA: 20/20 na prova · 35,2 mi de linhas na origem · 11,2 mi linhas limpas (DFP + ITR) · 10.037 balanços anuais de empresas comuns · 10 métricas conferidas 30/30 · modelo de risco com AUC 0,69 (Altman 0,66) e precisão 4,5× o acaso · 35 testes em Python · CI verde.
 
 ---
 
@@ -198,7 +198,7 @@ flowchart LR
 - `agente.py`: **Tool Runner** do SDK oficial (o loop "IA pede ferramenta → Python executa → IA continua" é automático). Modelo `claude-opus-5-5`, esforço `medium`, fallback de recusa ligado. O **system prompt** (instruções fixas) proíbe calcular números e manda citar a regra e a fonte.
 - `avaliacao/`: prova de 20 perguntas (12 números, 4 rankings, 4 pegadinhas: banco, alíquota com prejuízo, empresa inexistente, documento inconsistente) com **correção determinística** (lê números no padrão brasileiro). Pronto = ≥18/20 e 4/4 pegadinhas.
 
-**Status.** Código, ferramentas e corretor testados. **A prova ainda não rodou: falta a `ANTHROPIC_API_KEY` no `.env`.** Rodar: `make avaliar-agente` (~US$ 2).
+**Resultado da prova (30/10/2026, testado):** **20/20 acertos e 4/4 pegadinhas**, em 3min13s, custo total **US$ 1,03** (~US$ 0,05 por pergunta). Nas pegadinhas, o agente explicou que bancos ficam fora das métricas (Itaú), que a alíquota não se aplica com prejuízo (Magazine Luiza 2023), que a empresa não existe na base (Padaria do Zé) e que o ano da Vale 2022 falta por totais inconsistentes. Respostas e ferramentas usadas: `agent/avaliacao/resultado.json`. Rodar de novo: `make avaliar-agente`.
 
 **Perguntas de entrevista.** *Como evitar que a IA invente números?* Ela não calcula: escolhe a consulta, e a regra está na camada semântica; o prompt proíbe estimar; a prova mede. *Como você sabe que ela acerta?* Avaliação com gabarito e pegadinhas, corrigida sem IA.
 
@@ -266,7 +266,8 @@ Taxa base (acaso): 1,34%. Sinais que mais pesam: PL/passivo, lucros retidos/ativ
 Pasta `posts-link/`. Regras: começar pelo problema em linguagem de leigo; imagem 1080×1350 com a mesma identidade; barra das 9 etapas com o progresso real e "▲ este post"; nada de número não testado.
 - Post 1 (ponto de partida), 2 (ingestão), 3 (dado sujo, dado limpo): publicados.
 - Post 5 (dá para prever uma crise?): rascunho com imagem.
-- Post 4 (agente) e 6 (final, impulsionado): dependem da prova do agente e do GitHub público.
+- Post 4 (perguntando aos balanços): rascunho com o resultado da prova (20/20).
+- Post 6 (final, impulsionado): depende do GitHub público e do portfólio.
 
 ---
 
@@ -321,7 +322,7 @@ API · chave de API · token · tool use · system prompt · avaliação (eval) 
 2. **Qual foi o problema mais difícil?** Qualidade da fonte: duplicatas, totais errados, sinais trocados, nomes não históricos. Resolvi com auditoria (total × soma das partes), exceções documentadas e testes.
 3. **Um erro seu?** Filtrei empresas pelo nome achando que era histórico; não era, e apaguei os casos que o modelo precisava. Achei investigando a Americanas 2011 e corrigi.
 4. **Por que semantic layer?** Uma definição por métrica; painel, IA e consultas concordam; a IA não inventa.
-5. **Como você mediria o agente?** Prova com gabarito e pegadinhas, correção determinística, custo por pergunta.
+5. **Como você mediria o agente?** Prova com gabarito e pegadinhas, correção determinística, custo por pergunta. Resultado: 20/20, 4/4 pegadinhas, US$ 1,03 a prova inteira.
 6. **O modelo funciona?** AUC 0,69 contra 0,66 do Altman e 4,5× o acaso em precisão: ganho real, modesto, com intervalo de confiança mostrado. É alerta, não veredito.
 7. **Como atualiza os dados?** Um comando (`make pipeline`): ingestão idempotente, testes no build, conferência e retreino; pode ser agendado (launchd), mas deixei desligado por ser projeto de portfólio. CI a cada push.
 
@@ -332,7 +333,7 @@ API · chave de API · token · tool use · system prompt · avaliação (eval) 
 **Limites.** Nada roda sozinho (opção de portfólio); bancos e seguradoras fora das métricas; ITR fora das métricas (já limpo); risco com poucos casos e cadastro só atual; nota de risco não calibrada; painel local (banco no Mac).
 
 **Próximos passos (ordem sugerida).**
-1. Colocar a chave da API e rodar a prova do agente (`make avaliar-agente`); escrever o post 4.
+1. ~~Prova do agente~~ feita: 20/20. Post 4 em rascunho.
 2. Para mostrar o projeto: `make banco` e `make dashboard` (nada roda sozinho).
 3. Revisar o `CLAUDE.md` (tem dados pessoais) e tornar o GitHub público; página no portfólio; post 6 impulsionado.
 4. Evoluções: métricas trimestrais; bancos; Selic/IPCA; calibrar a nota de risco; orquestrador (Dagster); painel publicado com DuckDB.

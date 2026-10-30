@@ -19,5 +19,6 @@
         }
     },
     // SQL: usa o SQLFluff do venv do projeto (mesma versão do pre-commit).
-    "sqlfluff.executablePath": "~/.venvs/projeto-sp-data/bin/sqlfluff"
+    "sqlfluff.executablePath": "~/.venvs/projeto-sp-data/bin/sqlfluff",
+    "python.terminal.useEnvFile": true
 }

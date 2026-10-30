@@ -1,0 +1,713 @@
+{
+ "acertos": 20,
+ "total": 20,
+ "pegadinhas_ok": 4,
+ "pegadinhas_total": 4,
+ "custo_total_usd": 1.031,
+ "resultados": [
+  {
+   "id": 1,
+   "tipo": "numero",
+   "pergunta": "Qual foi a receita líquida da WEG em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "A receita líquida da **WEG S.A.** em 2025 foi de **R$ 40,8 bilhões** (R$ 40.804,1 milhões).\n\nA receita líquida é o que a empresa faturou com a venda de produtos e serviços, depois de tirar os impostos sobre as vendas e as devoluções.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "weg"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "empresas": [
+       "WEG S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0456,
+   "segundos": 6.9
+  },
+  {
+   "id": 2,
+   "tipo": "numero",
+   "pergunta": "Quanto a Ambev lucrou em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "A **Ambev S.A.** teve **lucro líquido de R$ 15,99 bilhões em 2025**. O lucro líquido é o que sobra depois de todos os custos, despesas, juros e impostos.\n\n| | 2024 | 2025 |\n|---|---|---|\n| Lucro líquido | R$ 14,85 bi | R$ 15,99 bi |\n| Receita líquida | R$ 89,45 bi | R$ 88,24 bi |\n| Margem líquida | 16,6% | 18,1% |\n\nO lucro subiu de 2024 para 2025, mesmo com a receita um pouco menor. Por isso a margem líquida (lucro líquido ÷ receita líquida) aumentou.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "ambev"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "lucro_liquido",
+       "receita_liquida",
+       "margem_liquida"
+      ],
+      "ano_inicio": 2024,
+      "ano_fim": 2025,
+      "empresas": [
+       "AMBEV S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0501,
+   "segundos": 8.8
+  },
+  {
+   "id": 3,
+   "tipo": "numero",
+   "pergunta": "Qual a margem líquida da WEG em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "A **margem líquida da WEG S.A. em 2025 foi de 16,6%**.\n\n- Receita líquida: R$ 40,8 bilhões\n- Lucro líquido: R$ 6,78 bilhões\n\nA margem líquida é o lucro líquido dividido pela receita líquida. Ela mostra quanto sobra de cada R$ 1 vendido depois de pagar custos, despesas, juros e impostos. Na WEG, sobraram cerca de R$ 0,17 de lucro para cada R$ 1 de receita.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "weg"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "margem_liquida",
+       "lucro_liquido",
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "empresas": [
+       "WEG S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0478,
+   "segundos": 7.1
+  },
+  {
+   "id": 4,
+   "tipo": "numero",
+   "pergunta": "Qual foi a alíquota efetiva de IR e CSLL da Ambev em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2025, a **alíquota efetiva de IR e CSLL da Ambev (AMBEV S.A.) foi de 17,7%**.\n\n- **Lucro antes do IR e da CSLL:** R$ 19,42 bilhões\n- **Despesa de IR e CSLL:** R$ 3,43 bilhões\n\n**Cálculo:** despesa de IR e CSLL dividida pelo lucro antes desses tributos. A métrica só é calculada quando o lucro antes do IR é positivo, como neste caso.\n\nA alíquota ficou bem abaixo dos 34% nominais do lucro real (IR de 15%, adicional de 10% e CSLL de 9%). Essa diferença costuma vir de incentivos fiscais, juros sobre capital próprio, prejuízos fiscais e diferenças permanentes. A base não mostra quanto cada um desses itens pesou no caso da Ambev.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "ambev"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "aliquota_efetiva_ir_csll",
+       "despesa_ir_csll",
+       "lucro_antes_ir"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "empresas": [
+       "AMBEV S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0524,
+   "segundos": 8.9
+  },
+  {
+   "id": 5,
+   "tipo": "numero",
+   "pergunta": "Qual a margem bruta da Magazine Luiza em 2023?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2023, a margem bruta da Magazine Luiza foi de **27,6%**.\n\n- Receita líquida: R$ 36,77 bilhões\n- Lucro bruto: R$ 10,16 bilhões\n\nA margem bruta é o lucro bruto dividido pela receita líquida. Ela mostra quanto sobra de cada R$ 1 vendido depois de pagar o custo dos produtos. Em 2023, sobraram cerca de R$ 0,28 de cada real vendido.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "magazine luiza"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "margem_bruta",
+       "lucro_bruto",
+       "receita_liquida"
+      ],
+      "ano_inicio": 2023,
+      "ano_fim": 2023,
+      "empresas": [
+       "MAGAZINE LUIZA S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0477,
+   "segundos": 8.6
+  },
+  {
+   "id": 6,
+   "tipo": "numero",
+   "pergunta": "Qual a liquidez corrente da Ambev em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2025, a liquidez corrente da **Ambev S.A.** foi de **0,96**.\n\n- Ativo circulante: R$ 43,9 bilhões\n- Passivo circulante: R$ 45,6 bilhões\n\n**Como se calcula:** divide-se o ativo circulante (o que a empresa tem a receber em até 12 meses) pelo passivo circulante (o que ela deve pagar em até 12 meses). Com 0,96, a Ambev tinha cerca de R$ 0,96 de ativos de curto prazo para cada R$ 1 de dívidas de curto prazo. Ou seja, as obrigações de curto prazo eram um pouco maiores que os recursos de curto prazo.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "ambev"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "liquidez_corrente",
+       "ativo_circulante",
+       "passivo_circulante"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "empresas": [
+       "AMBEV S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0496,
+   "segundos": 7.5
+  },
+  {
+   "id": 7,
+   "tipo": "numero",
+   "pergunta": "Qual foi o ROE da WEG em 2024?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2024, o **ROE da WEG S.A. foi de 27,3%**.\n\n- **Lucro líquido:** R$ 6,32 bilhões\n- **Patrimônio líquido no fim do ano:** R$ 23,13 bilhões\n\nO ROE é o lucro líquido dividido pelo patrimônio líquido do fim do ano. Mostra quanto de lucro a empresa gerou para cada R$ 1 de capital dos donos.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "weg"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "roe",
+       "lucro_liquido",
+       "patrimonio_liquido"
+      ],
+      "ano_inicio": 2024,
+      "ano_fim": 2024,
+      "empresas": [
+       "WEG S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0478,
+   "segundos": 8.5
+  },
+  {
+   "id": 8,
+   "tipo": "numero",
+   "pergunta": "Qual a relação entre dívida bruta e patrimônio líquido da Magazine Luiza em 2023?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2023, a **Magazine Luiza tinha R$ 0,77 de dívida bruta para cada R$ 1 de patrimônio líquido.**\n\n| Métrica (2023) | Valor |\n|---|---|\n| Dívida bruta | R$ 7,35 bilhões |\n| Patrimônio líquido | R$ 9,61 bilhões |\n| **Dívida bruta / patrimônio líquido** | **0,77 vez** |\n\n**Como se calcula:** divide-se a dívida bruta (empréstimos e financiamentos de curto e longo prazo) pelo patrimônio líquido (o capital dos donos).\n\nOu seja, a dívida com bancos e credores era menor que o capital próprio. A métrica não desconta o dinheiro em caixa, porque usa a dívida bruta e não a líquida.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "magazine luiza"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "divida_sobre_patrimonio",
+       "divida_bruta",
+       "patrimonio_liquido"
+      ],
+      "ano_inicio": 2023,
+      "ano_fim": 2023,
+      "empresas": [
+       "MAGAZINE LUIZA S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.051,
+   "segundos": 9.7
+  },
+  {
+   "id": 9,
+   "tipo": "numero",
+   "pergunta": "Qual a margem operacional da Ambev em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2025, a margem operacional (EBIT) da Ambev S.A. ficou em **26,5%**.\n\n- Receita líquida: R$ 88,2 bilhões\n- Resultado operacional (EBIT): R$ 23,4 bilhões\n\n**Como se calcula:** é o resultado operacional dividido pela receita líquida. Mostra quanto sobra de cada R$ 1 vendido depois dos custos e das despesas da operação, antes do resultado financeiro e dos impostos.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "ambev"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "margem_operacional",
+       "resultado_operacional",
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "empresas": [
+       "AMBEV S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.048,
+   "segundos": 9.0
+  },
+  {
+   "id": 10,
+   "tipo": "numero",
+   "pergunta": "A Magazine Luiza teve lucro ou prejuízo em 2023? De quanto?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "O Magazine Luiza teve **prejuízo em 2023**: perdeu **R$ 979,1 milhões** (lucro líquido negativo).\n\nPara comparar:\n- **Receita líquida:** R$ 36,8 bilhões. É o que a empresa vendeu, já sem os impostos sobre vendas e as devoluções.\n- **Margem líquida:** -2,7%. É o lucro líquido dividido pela receita: para cada R$ 100 vendidos, a empresa perdeu cerca de R$ 2,70 depois de pagar custos, despesas, juros e impostos.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "magazine luiza"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "lucro_liquido",
+       "receita_liquida",
+       "margem_liquida"
+      ],
+      "ano_inicio": 2023,
+      "ano_fim": 2023,
+      "empresas": [
+       "MAGAZINE LUIZA S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0485,
+   "segundos": 8.0
+  },
+  {
+   "id": 11,
+   "tipo": "numero",
+   "pergunta": "Qual foi a alíquota efetiva de IR e CSLL da WEG em 2024 e em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "A alíquota efetiva de IR e CSLL da WEG foi de **20,1% em 2024** e **16,8% em 2025**.\n\n| Ano | Lucro antes do IR | Despesa de IR e CSLL | Alíquota efetiva |\n|---|---|---|---|\n| 2024 | R$ 7.908,5 mi | R$ 1.589,7 mi | 20,1% |\n| 2025 | R$ 8.147,7 mi | R$ 1.371,7 mi | 16,8% |\n\n**Como é calculada:** é a despesa de IR e CSLL dividida pelo lucro antes desses tributos. Ou seja, mostra quanto do lucro foi para esses impostos.\n\n**Leitura:** em 2025, o lucro antes do IR subiu e a despesa com o imposto caiu, então a alíquota efetiva diminuiu. Nos dois anos ela ficou bem abaixo da alíquota nominal de 34% (IR 15% + adicional de 10% + CSLL 9%). Em geral, essa diferença vem de incentivos fiscais, juros sobre capital próprio e diferenças permanentes. A base não detalha qual desses fatores pesou mais no caso da WEG.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "weg"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "aliquota_efetiva_ir_csll",
+       "despesa_ir_csll",
+       "lucro_antes_ir"
+      ],
+      "ano_inicio": 2024,
+      "ano_fim": 2025,
+      "empresas": [
+       "WEG S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0544,
+   "segundos": 11.4
+  },
+  {
+   "id": 12,
+   "tipo": "numero",
+   "pergunta": "Qual a receita líquida da Petrobras em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "A receita líquida da Petrobras (PETROLEO BRASILEIRO S.A. PETROBRAS) em 2025 foi de **R$ 497,5 bilhões**.\n\nReceita líquida é o que a empresa faturou com a venda de bens e serviços, já sem os impostos sobre vendas e as devoluções (conta 3.01).\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "petrobras"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "empresas": [
+       "PETROLEO BRASILEIRO S.A. PETROBRAS"
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0464,
+   "segundos": 9.2
+  },
+  {
+   "id": 13,
+   "tipo": "ranking",
+   "pergunta": "Qual empresa teve a maior receita líquida em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2025, quem teve a maior receita líquida foi a **Petrobras**, com **R$ 497,5 bilhões**.\n\n| # | Empresa | Receita líquida 2025 |\n|---|---|---|\n| 1 | Petrobras | R$ 497,5 bi |\n| 2 | JBS N.V. / JBS S.A. | R$ 480,6 bi |\n| 3 | Raízen | R$ 255,3 bi |\n| 4 | Vale | R$ 213,6 bi |\n\nA JBS aparece duas vezes na base com exatamente o mesmo valor: uma como JBS N.V. e outra como JBS S.A. O provável é que as duas publiquem os números do mesmo grupo, então é uma empresa só, em 2º lugar.\n\n**O que é receita líquida:** é o que a empresa faturou vendendo produtos e serviços, já sem os impostos sobre vendas e sem as devoluções.\n\nBancos e seguradoras não entram nesta lista, porque usam outro plano de contas.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "ordenar_por": "receita_liquida",
+      "limite": 5
+     }
+    }
+   ],
+   "custo_usd": 0.0504,
+   "segundos": 10.1
+  },
+  {
+   "id": 14,
+   "tipo": "ranking",
+   "pergunta": "Qual empresa teve o maior lucro líquido em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2025, a **Petrobras** teve o maior lucro líquido da base: **R$ 110,6 bilhões**. O lucro líquido é o que sobra depois de todos os custos, despesas, juros e impostos.\n\n**Maiores lucros de 2025:**\n1. Petrobras: R$ 110,6 bi\n2. Itaúsa: R$ 16,6 bi\n3. Ambev: R$ 16,0 bi\n4. Suzano Holding: R$ 13,4 bi\n5. Suzano S.A.: R$ 13,4 bi\n\n**Observações:**\n- **Bancos e seguradoras ficam de fora:** usam outro plano de contas e não entram nessas métricas. Por isso Itaú, Bradesco e outros não aparecem.\n- **Itaúsa** é uma holding. Boa parte do lucro dela vem da participação no Itaú.\n- **Suzano Holding e Suzano S.A.** registram quase o mesmo lucro porque a holding consolida a Suzano. Na prática, é o mesmo resultado contado duas vezes.\n- O ranking mostra só as empresas que já publicaram a DFP de 2025 e passaram nas checagens de consistência da base. Empresas grandes que ainda não aparecem, como a Vale, podem não ter entregado o documento ou ter ficado de fora por inconsistência.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "lucro_liquido"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "ordenar_por": "lucro_liquido",
+      "limite": 5
+     }
+    }
+   ],
+   "custo_usd": 0.0537,
+   "segundos": 11.6
+  },
+  {
+   "id": 15,
+   "tipo": "ranking",
+   "pergunta": "No setor de energia elétrica, qual empresa teve a maior receita líquida em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2025, a **Equatorial S.A.** teve a maior receita líquida do setor \"Energia Elétrica\", com **R$ 52,07 bilhões**. Receita líquida é o que a empresa faturou com vendas e serviços, já sem os impostos sobre vendas e as devoluções.\n\n**Top 5 do setor \"Energia Elétrica\" (2025):**\n1. Equatorial S.A.: R$ 52,07 bi\n2. Cemig: R$ 42,75 bi\n3. Cemig Distribuição: R$ 29,04 bi\n4. Copel: R$ 26,12 bi\n5. Eletropaulo: R$ 22,37 bi\n\n**Isso depende de quais holdings entram na conta.** A CVM coloca algumas holdings de energia em outro setor, \"Emp. Adm. Part. - Energia Elétrica\". Nesse grupo, a **Neoenergia S.A.** registrou **R$ 52,63 bilhões**, um pouco acima da Equatorial. Logo depois vêm a CPFL Energia (R$ 44,37 bi) e a Axia Energia (R$ 41,28 bi). Se você juntar os dois setores, a Neoenergia fica em primeiro.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "listar_setores",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "setor": "Energia Elétrica",
+      "ordenar_por": "receita_liquida",
+      "limite": 5
+     }
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "setor": "Emp. Adm. Part. - Energia Elétrica",
+      "ordenar_por": "receita_liquida",
+      "limite": 3
+     }
+    }
+   ],
+   "custo_usd": 0.0912,
+   "segundos": 16.1
+  },
+  {
+   "id": 16,
+   "tipo": "ranking",
+   "pergunta": "No setor de alimentos, qual empresa teve a maior margem líquida em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Em 2025, a **J. Macedo S.A.** teve a maior margem líquida do setor de Alimentos: **10,7%**. Ela lucrou R$ 347,7 milhões sobre uma receita líquida de R$ 3,24 bilhões.\n\nMargem líquida é quanto sobra de cada R$ 1 vendido depois de todos os custos, juros e impostos (lucro líquido ÷ receita líquida).\n\n**As cinco maiores em 2025:**\n| # | Empresa | Margem líquida | Lucro líquido | Receita líquida |\n|---|---|---|---|---|\n| 1 | J. Macedo | 10,7% | R$ 347,7 mi | R$ 3,24 bi |\n| 2 | Granja Faria | 9,5% | R$ 239,8 mi | R$ 2,54 bi |\n| 3 | Conservas Oderich | 9,1% | R$ 75,5 mi | R$ 828,0 mi |\n| 4 | Excelsior Alimentos | 8,0% | R$ 22,6 mi | R$ 283,5 mi |\n| 5 | Caramuru Alimentos | 7,0% | R$ 570,8 mi | R$ 8,16 bi |\n\n**Critérios usados:**\n- Deixei de fora as empresas com receita abaixo de R$ 100 milhões. Com receita quase zero, a margem pode dar um percentual absurdo.\n- Usei o setor \"Alimentos\" do cadastro da CVM. As holdings do setor ficam em outra categoria (\"Emp. Adm. Part. - Alimentos\") e não entraram aqui.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "listar_setores",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "margem_liquida",
+       "lucro_liquido",
+       "receita_liquida"
+      ],
+      "ano_inicio": 2025,
+      "ano_fim": 2025,
+      "setor": "Alimentos",
+      "ordenar_por": "margem_liquida",
+      "receita_minima": 100000000,
+      "limite": 10
+     }
+    }
+   ],
+   "custo_usd": 0.0698,
+   "segundos": 12.7
+  },
+  {
+   "id": 17,
+   "tipo": "pegadinha",
+   "pergunta": "Qual a margem líquida do Itaú Unibanco em 2025?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Não tenho como informar a margem líquida do Itaú Unibanco em 2025. A empresa não aparece na base.\n\nO motivo é que o Itaú é um banco. Bancos e seguradoras usam outro plano de contas e ficam fora das métricas, que cobrem só empresas comerciais e industriais. A margem líquida, por exemplo, depende de uma \"receita líquida\" que bancos não apresentam desse jeito.\n\nPosso calcular a margem líquida de outra empresa comercial ou industrial.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "itaú unibanco"
+     }
+    }
+   ],
+   "custo_usd": 0.0232,
+   "segundos": 5.3
+  },
+  {
+   "id": 18,
+   "tipo": "pegadinha",
+   "pergunta": "Qual foi a alíquota efetiva de IR e CSLL da Magazine Luiza em 2023?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "A Magazine Luiza **não teve alíquota efetiva de IR e CSLL em 2023**. A métrica ficou vazia porque a empresa teve prejuízo antes dos tributos.\n\n**Como a métrica funciona:** ela divide a despesa de IR e CSLL pelo lucro antes desses impostos. Só é calculada quando esse lucro é positivo. Com prejuízo, a conta divide um número negativo por outro e dá um percentual sem sentido.\n\n**Os números de 2023:**\n- **Resultado antes do IR e da CSLL:** prejuízo de R$ 2.064,4 milhões\n- **IR e CSLL:** R$ -1.085,3 milhões. Como a métrica registra a despesa em valor positivo, o sinal negativo indica um **crédito (benefício) fiscal**, e não um imposto pago. Esse crédito costuma vir do imposto diferido sobre o prejuízo.\n- **Prejuízo líquido:** R$ 979,1 milhões\n\nNa prática, o benefício fiscal reduziu o prejuízo final. Para comparar, a alíquota nominal no lucro real é de 34%.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "magazine luiza"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "aliquota_efetiva_ir_csll",
+       "lucro_antes_ir",
+       "despesa_ir_csll",
+       "lucro_liquido"
+      ],
+      "ano_inicio": 2023,
+      "ano_fim": 2023,
+      "empresas": [
+       "MAGAZINE LUIZA S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0554,
+   "segundos": 11.9
+  },
+  {
+   "id": 19,
+   "tipo": "pegadinha",
+   "pergunta": "Qual a receita líquida da Padaria do Zé S.A. em 2024?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "A **Padaria do Zé S.A.** não está na base. Procurei pelo nome e não encontrei nenhuma companhia correspondente, por isso não tenho como informar a receita líquida dela em 2024.\n\nA base reúne só as companhias abertas que enviam demonstrações financeiras anuais (DFP) à CVM. Se a empresa tiver outro nome oficial, me passe e eu procuro de novo.\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "Padaria do Zé"
+     }
+    }
+   ],
+   "custo_usd": 0.0221,
+   "segundos": 4.8
+  },
+  {
+   "id": 20,
+   "tipo": "pegadinha",
+   "pergunta": "Qual a margem líquida da Vale em 2022?",
+   "acertou": true,
+   "motivo": "ok",
+   "resposta": "Não consigo informar a margem líquida da Vale (VALE S.A.) em 2022, porque a base não tem nenhum dado da empresa nesse ano. Ela tem os anos de 2021 e de 2023, mas a consulta de 2022 voltou vazia. A explicação mais provável é que o documento de 2022 tenha sido excluído por trazer totais inconsistentes, que é a regra da base para esses casos.\n\nA margem líquida mostra quanto sobra de cada R$ 1 vendido depois de todos os custos, juros e impostos. A conta é lucro líquido dividido pela receita líquida.\n\nPara comparação, os anos vizinhos:\n\n| Ano | Receita líquida | Lucro líquido | Margem líquida |\n|---|---|---|---|\n| 2020 | R$ 208,5 bi | R$ 24,9 bi | 11,9% |\n| 2021 | R$ 293,5 bi | R$ 121,3 bi | 41,3% |\n| **2022** | sem dado | sem dado | sem dado |\n| 2023 | R$ 208,1 bi | R$ 40,6 bi | 19,5% |\n| 2024 | R$ 206,0 bi | R$ 30,4 bi | 14,8% |\n\nFonte: CVM (DFP), camada semântica Next Step SP",
+   "ferramentas": [
+    {
+     "ferramenta": "buscar_empresas",
+     "entrada": {
+      "termo": "vale"
+     }
+    },
+    {
+     "ferramenta": "listar_metricas",
+     "entrada": {}
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "margem_liquida",
+       "lucro_liquido",
+       "receita_liquida"
+      ],
+      "ano_inicio": 2022,
+      "ano_fim": 2022,
+      "empresas": [
+       "VALE S.A."
+      ]
+     }
+    },
+    {
+     "ferramenta": "consultar_metricas",
+     "entrada": {
+      "metricas": [
+       "margem_liquida",
+       "lucro_liquido",
+       "receita_liquida"
+      ],
+      "ano_inicio": 2020,
+      "ano_fim": 2024,
+      "empresas": [
+       "VALE S.A."
+      ]
+     }
+    }
+   ],
+   "custo_usd": 0.0758,
+   "segundos": 16.1
+  }
+ ]
+}
