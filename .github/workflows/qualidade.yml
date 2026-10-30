@@ -29,3 +29,6 @@ jobs:
       - name: Validar o projeto dbt
         working-directory: modeling
         run: dbt parse --profiles-dir .
+
+      - name: Testes automáticos (os que precisam do banco são pulados)
+        run: pytest -q

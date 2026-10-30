@@ -19,6 +19,7 @@ from pathlib import Path
 from agent.agente import perguntar
 
 PASTA = Path(__file__).resolve().parent
+RAIZ_AVALIACAO = PASTA
 TOLERANCIA = 0.01  # 1%: a resposta arredonda (ex.: 16,6% para 0,16606)
 
 ESCALAS = {"tri": 1e12, "trilh": 1e12, "bi": 1e9, "bilh": 1e9, "mi": 1e6, "milh": 1e6, "mil": 1e3}
@@ -41,7 +42,8 @@ def numeros_no_texto(texto: str) -> list[tuple[float, str]]:
         if sufixo == "%":
             achados.append((valor / 100, "percentual"))
         elif sufixo:
-            escala = next(v for k, v in ESCALAS.items() if sufixo.startswith(k))
+            # Sufixo mais longo primeiro: "mil" também começa com "mi" (milhões)
+            escala = next(v for k, v in sorted(ESCALAS.items(), key=lambda kv: -len(kv[0])) if sufixo.startswith(k))
             achados.append((valor * escala, "reais"))
         else:
             achados.append((valor, "vezes"))

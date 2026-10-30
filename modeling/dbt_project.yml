@@ -10,9 +10,9 @@ seed-paths: ["seeds"]
 clean-targets: ["target", "dbt_packages"]
 
 vars:
-  # Fatia fina: só a DFP (anual) passa por todas as etapas primeiro.
-  # Para incluir o ITR: dbt build --vars '{docs: [dfp, itr]}'
-  docs: ["dfp"]
+  # Documentos que entram na limpeza. A fatia fina (só DFP) chegou ao dashboard; desde 30/10/2026 o ITR
+  # também entra por padrão (build completo em ~4 min). Só DFP: dbt build --vars '{docs: [dfp]}'
+  docs: ["dfp", "itr"]
   # Modelo de risco: o alvo é entrar em dificuldade em até N meses depois de publicar o balanço.
   # 24 meses: um alerta antecipado (12 meses deixava só 18 casos reais; ver nota do Obsidian, Marco D).
   horizonte_risco_meses: 24

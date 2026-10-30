@@ -116,15 +116,17 @@ aba_empresa, aba_ranking, aba_risco, aba_ia, aba_metodo = st.tabs(
     ["🏢 Empresa", "🏆 Ranking", "⚠️ Risco", "💬 Pergunte à IA", "🔎 Dados e método"]
 )
 
+
 # ---------- Empresa ----------
-with aba_empresa:
+def aba_empresa_conteudo():
+    """Aba Empresa. É uma função para poder encerrar só esta aba (return) sem parar as outras."""
     padrao = st.query_params.get("empresa", "WEG S.A.")
     c1, c2 = st.columns([1.3, 2])
     termo = c1.text_input("Buscar empresa", value=padrao.split(" ")[0], help="Ex.: weg, ambev, magazine, petrobras")
     achadas = d.buscar(termo) if termo else []
     if not achadas:
         st.warning("Nenhuma empresa comercial ou industrial com esse nome na base.")
-        st.stop()
+        return
     nomes = [e["nome_oficial"] for e in achadas]
     empresa = c2.selectbox(
         "Empresa", nomes, index=nomes.index(padrao) if padrao in nomes else 0, key="empresa_principal"
@@ -151,7 +153,7 @@ with aba_empresa:
     referencia = d.referencia_setor(setor, inicio, fim, receita_minima) if setor and mostrar_setor else pd.DataFrame()
     if series.empty:
         st.info("Sem balanços consistentes nesse período.")
-        st.stop()
+        return
 
     principal = series[series["empresa"] == empresa].sort_values("ano")
     ultimo = principal.iloc[-1]
@@ -202,6 +204,10 @@ with aba_empresa:
         st.download_button(
             "Baixar CSV", tabela.to_csv(index=False).encode("utf-8"), f"next_step_sp_{empresa[:20]}.csv", "text/csv"
         )
+
+
+with aba_empresa:
+    aba_empresa_conteudo()
 
 # ---------- Ranking ----------
 with aba_ranking:

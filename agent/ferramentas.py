@@ -141,6 +141,9 @@ def consultar_metricas(
     agrupar_por = agrupar_por or ["ano", "empresa"]
     if any(g not in AGRUPAMENTOS for g in agrupar_por):
         raise ValueError(f"agrupar_por aceita só {list(AGRUPAMENTOS)}.")
+    if "ano" not in agrupar_por and ano_inicio != ano_fim:
+        # Sem agrupar por ano, o MetricFlow somaria vários anos (ex.: receita de 5 anos parecendo de 1)
+        raise ValueError("Sem 'ano' em agrupar_por, use um único ano (ano_inicio = ano_fim).")
     if ordenar_por and ordenar_por not in metricas:
         raise ValueError("ordenar_por precisa ser uma das métricas pedidas.")
 

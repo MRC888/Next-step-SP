@@ -15,3 +15,4 @@ pre-commit>=4.7
 scikit-learn>=1.6  # modelo de risco (Marco D)
 streamlit>=1.50  # dashboard (Marco E)
 plotly>=6  # gráficos interativos do dashboard
+pytest>=8  # testes automáticos
