@@ -62,7 +62,8 @@ Tempo: manhãs dedicadas até 28/10/2026, mas isso não é prazo final.
 - O `docker-compose.yml` fixa o nome do projeto Docker em `projetosp-dataadvanced` (nome antigo da pasta). Não mudar: é dele que sai o nome do volume com os dados. Sem ele, renomear a pasta criaria um banco vazio. `./setup.sh` → "Tudo pronto!".
 - VS Code configurado (`.vscode/`). DBeaver "SP Data" autentica via `~/.pgpass`.
 - Ingestão pronta: `ingestion/cvm.py` carrega DFP, ITR e cadastro no schema `raw` (35 mi linhas, ~9,7 GB). ZIPs em `~/.local/share/projeto-sp-data/raw`.
-- GitHub: `MRC888/Next-step-SP`, privado. Marcelo faz push pelo **GitHub Desktop** (o `gh` está em `~/.local/bin`, sem login).
+- GitHub: `MRC888/Next-step-SP`, privado. No Mac, o `gh` (`~/.local/bin`) está logado com a permissão `workflow`, e o Git usa esse login (`gh auth setup-git`); o Claude pode fazer push (com confirmação). O GitHub Desktop também funciona.
+- CI: `.github/workflows/qualidade.yml` (pre-commit + `dbt parse`), verde desde 30/10/2026.
 
 ## Onde rodar (decisão de 30/10/2026)
 **O Next Step SP roda só no Mac.** O banco (Docker, 2 a 9 GB, muda o tempo todo) fica só lá, com DFP, ITR e cadastro carregados. O PC fica como reserva: tem tudo instalado e a fatia fina DFP testada, mas sem ITR. Se um dia trabalhar no PC: pull antes, commit + push depois.
@@ -79,7 +80,7 @@ Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; a
 ## Próximas tarefas
 Feito: qualidade, fatia fina DFP modelada e **Marco A** (30/10/2026, Mac): Itapebi explicada (erro na fonte, em `seeds/excecoes_conhecidas.csv`), documentação do dbt, CI no GitHub Actions e rascunho do post 3. Detalhes na nota do Obsidian, "Marco A".
 Marcos restantes (ITR só no F, decisão de 30/10/2026):
-1. Push (ativa o CI) e revisão do post 3 por Marcelo.
+1. Revisão do post 3 por Marcelo (push e CI feitos em 30/10/2026).
 2. **Marco B — camada semântica:** ~10 métricas com regra escrita (receita, lucro, margem, endividamento, liquidez, alíquota efetiva IR/CSLL). Somar contas filhas, não o total. Pronto: cada métrica bate com cálculo manual em 3 empresas.
 3. **Marco C — agente de IA:** perguntas em português via camada semântica; avaliado com ~20 perguntas de resposta conhecida. Post 4.
 4. **Marco D — ML:** antes, definir rótulo, janela e baseline (Z-score de Altman); validação temporal. Post 5.
