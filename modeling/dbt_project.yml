@@ -6,6 +6,7 @@ profile: sp_data
 model-paths: ["models"]
 macro-paths: ["macros"]
 test-paths: ["tests"]
+seed-paths: ["seeds"]
 clean-targets: ["target", "dbt_packages"]
 
 vars:
@@ -26,3 +27,12 @@ models:
     marts:
       +schema: marts
       +materialized: table
+
+seeds:
+  sp_data:
+    # Listas fixas escritas à mão (CSV), carregadas no schema "seeds".
+    +schema: seeds
+    excecoes_conhecidas:
+      +column_types:
+        dt_refer: date
+        dt_registro: date

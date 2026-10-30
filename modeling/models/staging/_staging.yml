@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_cvm__demonstracoes
+    description: >
+      Junta as tabelas de demonstrações do raw (BPA, BPP, DRE, DFC; consolidado e individual) numa só,
+      com tipos corretos e valores em reais. Quais documentos entram (DFP, ITR) vem da variável `docs`.
+      Ainda tem PENÚLTIMO, versões antigas e linhas repetidas da fonte: a limpeza é na camada intermediate.
+    columns:
+      - name: tipo_doc
+        description: DFP (anual) ou ITR (trimestral).
+      - name: demonstracao
+        description: BPA (ativo), BPP (passivo + PL), DRE (resultado), DFC_MD / DFC_MI (fluxo de caixa direto / indireto).
+      - name: escopo
+        description: con (consolidado, o grupo inteiro) ou ind (individual, só a controladora).
+      - name: ordem_exerc
+        description: ÚLTIMO (exercício atual) ou PENÚLTIMO (coluna de comparação com o ano anterior).
+      - name: valor
+        description: >
+          Valor em reais. A CVM informa a escala (MIL ou UNIDADE) e o modelo converte tudo para reais.
+          Exceção: lucro por ação (contas 3.99) já vem em R$ por ação.
+      - name: conta_fixa
+        description: Verdadeiro para contas do plano padrão da CVM; falso para contas abertas pela empresa.
+
+  - name: stg_cvm__documentos
+    description: Índice dos documentos entregues à CVM (DFP e ITR), com versão e data de entrega.
+    columns:
+      - name: dt_entrega
+        description: Data em que o documento chegou à CVM, ou seja, quando o dado ficou público.
+
+  - name: stg_cvm__cadastro
+    description: >
+      Última foto do cadastro de companhias da CVM. Sem dados pessoais de responsáveis (removidos na ingestão).

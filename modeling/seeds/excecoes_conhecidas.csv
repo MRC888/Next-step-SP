@@ -1,0 +1,2 @@
+teste,cnpj,tipo_doc,dt_refer,motivo,evidencia,dt_registro
+balanco_fecha,02.397.080/0001-96,DFP,2021-12-31,"Erro na fonte: a empresa (Itapebi Geração de Energia) preencheu o Passivo Total (conta 2) sem o Patrimônio Líquido. 2.01 + 2.02 = 330,1 mi; somando 2.03 (369,7 mi) dá 699,8 mi = Ativo Total","Na DFP 2022, a coluna comparativa de 2021 (PENÚLTIMO) traz a conta 2 corrigida: 699,8 mi",2026-10-30

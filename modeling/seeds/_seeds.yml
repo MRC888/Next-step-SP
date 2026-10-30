@@ -1,0 +1,15 @@
+version: 2
+
+seeds:
+  - name: excecoes_conhecidas
+    description: >
+      Casos já investigados em que um teste de qualidade falha por erro na fonte (CVM), e não no projeto.
+      Cada linha diz qual teste, qual documento, o motivo e a evidência. O teste ignora só estes casos
+      e continua vigiando todo o resto.
+    columns:
+      - name: teste
+        description: "Nome do teste que o caso afeta (ex.: balanco_fecha)."
+      - name: motivo
+        description: O que está errado na fonte.
+      - name: evidencia
+        description: Como o erro foi comprovado.

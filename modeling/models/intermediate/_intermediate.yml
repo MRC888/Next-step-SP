@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: int_demonstracoes__deduplicadas
+    description: >
+      Só o exercício atual (ÚLTIMO) e uma linha por empresa, documento, demonstração, período e conta.
+      Remove as linhas repetidas que a própria CVM publica; se houver mais de uma, fica a de versão mais recente.
+      Materializada como tabela com índice: a função de janela é o passo mais pesado do projeto.
+
+  - name: int_demonstracoes__escopo_preferido
+    description: >
+      Escolhe uma base por documento: consolidado quando existe, senão individual (regra de mercado).
+      Todas as demonstrações do mesmo documento seguem a mesma base.

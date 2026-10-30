@@ -1,0 +1,31 @@
+# Checagem automática (CI): roda a cada push e pull request.
+# Usa as mesmas regras do pre-commit local (fonte única) e confere se o projeto dbt compila.
+# Não precisa de banco: o dbt parse só lê e valida os modelos.
+name: Qualidade
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Lint de Python e SQL (pre-commit)
+        run: pre-commit run --all-files --show-diff-on-failure
+
+      - name: Validar o projeto dbt
+        working-directory: modeling
+        run: dbt parse --profiles-dir .

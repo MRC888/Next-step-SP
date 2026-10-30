@@ -26,30 +26,71 @@ models:
               arguments:
                 values: ["con", "ind"]
       - name: cnpj
+        description: CNPJ da companhia, como a CVM publica (com pontuação).
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_empresa')
+                field: cnpj
+              config:
+                severity: warn
+      - name: cd_cvm
+        description: Código da companhia na CVM.
+      - name: nome_empresa
+        description: Nome da companhia como consta no documento.
+      - name: versao
+        description: Versão do documento (sobe quando a empresa reenvia um balanço corrigido).
       - name: dt_refer
         description: Data de referência do documento (fim do trimestre ou do ano).
         data_tests:
           - not_null
       - name: dt_entrega
         description: Data em que o documento foi entregue à CVM. Usar no ML para não "ver o futuro".
+        data_tests:
+          - not_null
+      - name: dt_ini_exerc
+        description: Início do período (DRE e DFC). Nulo no balanço.
+      - name: dt_fim_exerc
+        description: Fim do período, ou a data da foto, no balanço.
       - name: meses_periodo
         description: Meses cobertos pelo valor (DRE/DFC). Nulo no balanço, que é posição numa data.
       - name: cd_conta
+        description: >
+          Código da conta no plano da CVM (ex.: 3.01 = receita; 2.03 = patrimônio líquido).
+          Atenção: linhas de total podem vir erradas da fonte (ver excecoes_conhecidas);
+          nas métricas, preferir somar as contas filhas.
         data_tests:
           - not_null
+      - name: ds_conta
+        description: Nome da conta.
+      - name: nivel_conta
+        description: Profundidade da conta na árvore (3.01 = 2; 3.01.01 = 3).
+      - name: conta_fixa
+        description: Verdadeiro para contas do plano padrão da CVM.
       - name: valor
         description: Valor em reais (lucro por ação em R$ por ação).
 
   - name: dim_empresa
-    description: Uma linha por empresa (CNPJ), da última foto do cadastro da CVM.
+    description: >
+      Uma linha por empresa (CNPJ), da última foto do cadastro da CVM. Inclui empresas canceladas.
+      23 CNPJs com balanço não aparecem no cadastro (aviso no teste de relação da fct_demonstracoes).
     columns:
       - name: cnpj
         data_tests:
           - unique
           - not_null
+      - name: setor
+        description: Setor de atividade informado à CVM.
       - name: plano_contas
-        description: instituicao_financeira, seguradora ou empresa_geral. Define como ler as contas da DRE.
+        description: >
+          instituicao_financeira, seguradora ou empresa_geral. Define como ler as contas da DRE.
+          Nulo para empresas sem DRE na DFP (em geral, canceladas antes de 2010).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["instituicao_financeira", "seguradora", "empresa_geral"]
+      - name: situacao_emissor
+        description: Situação na CVM (fase operacional, recuperação judicial, falida etc.).
       - name: em_dificuldade_financeira
         description: Situação atual de recuperação, falência ou liquidação. Candidato a rótulo do ML.
