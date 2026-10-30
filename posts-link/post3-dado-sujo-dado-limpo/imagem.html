@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,600..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Mesma identidade dos posts 1 e 2 (papel zebrado, tinta, marca-texto).
+   Funil com as contagens reais de cada camada do dbt (DFP, Mac, 30/10/2026):
+   staging 8.613.133 → só ÚLTIMO 4.325.790 → deduplicadas 4.306.330 → fct_demonstracoes 2.710.385. */
+:root {
+  --paper: #fbfcf8; --band: #e4efe3; --ink: #3f5249; --ink-strong: #121a16;
+  --marker: #ffe03d; --panel: #111916; --panel-fg: #f2f6f3; --panel-muted: #9fb0a8;
+  --bar: #2b3a34; --red: #b8402f;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body {
+  font-family: "IBM Plex Sans", Arial, sans-serif; position: relative;
+  background: repeating-linear-gradient(180deg, var(--band) 0 72px, var(--paper) 72px 144px);
+}
+
+.top { padding: 64px 72px 0; }
+.eyebrow { font: 500 19px/1 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: #3d6b5a; }
+h1 { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 68%; font-size: 70px; line-height: .96; color: var(--ink-strong); margin-top: 20px; }
+h1 mark { background: linear-gradient(100deg, transparent 0 1%, var(--marker) 2% 98%, transparent 99%); padding: 0 10px; margin: 0 -4px; color: inherit; }
+
+.funnel { position: absolute; left: 72px; right: 72px; top: 300px; display: grid; gap: 22px; }
+.stage { display: grid; gap: 6px; }
+.stage .row { display: flex; align-items: center; gap: 16px; }
+.stage .bar { height: 54px; background: var(--bar); border-radius: 6px; display: flex; align-items: center; padding: 0 16px; flex: none; }
+.stage .bar b { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 34px; color: var(--panel-fg); white-space: nowrap; }
+.stage.final .bar { background: var(--marker); }
+.stage.final .bar b { color: var(--ink-strong); }
+.stage .cut { font: 500 17px/1.3 "IBM Plex Mono", monospace; color: var(--ink); }
+.stage .cut strong { color: var(--red); font-weight: 600; }
+.stage .what { font-size: 19px; color: var(--ink-strong); padding-left: 2px; }
+
+.stamp {
+  position: absolute; right: 64px; top: 830px; width: 400px; transform: rotate(-3deg);
+  border: 3px solid var(--red); border-radius: 10px; padding: 16px 18px; background: rgba(251,252,248,.94);
+  box-shadow: 0 16px 30px rgba(17,25,22,.16);
+}
+.stamp span { font: 600 14px/1 "IBM Plex Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+.stamp b { display: block; font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 44px; line-height: 1; color: var(--ink-strong); margin: 8px 0 6px; }
+.stamp p { font-size: 17px; line-height: 1.35; color: var(--ink); }
+
+.panel { position: absolute; inset: auto 0 0 0; background: var(--panel); color: var(--panel-fg); padding: 34px 72px 38px; display: grid; gap: 20px; }
+.panel p { font-family: "Archivo", Arial, sans-serif; font-weight: 800; font-stretch: 80%; font-size: 40px; line-height: 1.05; }
+.panel p span { color: var(--marker); }
+.steps { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+.step { display: grid; gap: 8px; align-content: start; }
+.step .b { height: 10px; border-radius: 5px; background: #2a3632; }
+.step.done .b { background: var(--marker); }
+.step small { font: 500 13.5px/1.2 "IBM Plex Mono", monospace; color: var(--panel-muted); }
+.step.done small { color: var(--panel-fg); }
+.step.focus .b { box-shadow: 0 0 0 3px rgba(255,224,61,.35); }
+.step.focus small { color: var(--marker); }
+.step em { font: 600 13px/1 "IBM Plex Mono", monospace; font-style: normal; color: var(--panel-fg); background: #2a3632; padding: 5px 7px; border-radius: 4px; justify-self: start; white-space: nowrap; }
+.foot { display: flex; justify-content: space-between; font-size: 17px; color: var(--panel-muted); }
+.foot b { color: var(--panel-fg); font-weight: 600; }
+</style>
+</head>
+<body>
+  <header class="top">
+    <span class="eyebrow">Etapa 4 · Modelagem dos dados</span>
+    <h1>8,6 milhões de linhas entraram.<br>2,7 milhões saíram <mark>limpas.</mark></h1>
+  </header>
+
+  <section class="funnel" aria-label="Funil de limpeza">
+    <div class="stage">
+      <div class="row"><div class="bar" style="width: 100%"><b>8.613.133</b></div></div>
+      <div class="what">Balanços anuais (2010–2026), do jeito que a CVM publica</div>
+    </div>
+    <div class="stage">
+      <div class="row"><div class="bar" style="width: 50.2%"><b>4.325.790</b></div><span class="cut"><strong>− 4,3 mi</strong><br>cópia do ano anterior</span></div>
+      <div class="what">Cada balanço repete o ano passado, só para comparação</div>
+    </div>
+    <div class="stage">
+      <div class="row"><div class="bar" style="width: 50%"><b>4.306.330</b></div><span class="cut"><strong>− 19 mil</strong><br>repetidas e versões antigas</span></div>
+      <div class="what">Linhas duplicadas na fonte e balanços reenviados</div>
+    </div>
+    <div class="stage final">
+      <div class="row"><div class="bar" style="width: 31.5%"><b>2.710.385</b></div><span class="cut"><strong>− 1,6 mi</strong><br>contagem dupla</span></div>
+      <div class="what">Grupo e controladora: fica o do grupo (consolidado)</div>
+    </div>
+  </section>
+
+  <aside class="stamp">
+    <span>Achado na fonte oficial</span>
+    <b>R$ 370 mi</b>
+    <p>Um balanço de 2021 não fechava. O total omitia o patrimônio. Provado e registrado; 13 testes vigiam o resto.</p>
+  </aside>
+
+  <section class="panel">
+    <p>Dado público não é dado pronto.<br>Limpar é onde está o <span>trabalho</span>.</p>
+    <div class="steps">
+      <div class="step done"><div class="b"></div><small>ambiente</small></div>
+      <div class="step done"><div class="b"></div><small>base</small></div>
+      <div class="step done"><div class="b"></div><small>ingestão</small></div>
+      <div class="step done focus"><div class="b"></div><small>modelagem</small><em>▲ este post</em></div>
+      <div class="step"><div class="b"></div><small>regras</small></div>
+      <div class="step"><div class="b"></div><small>agente IA</small></div>
+      <div class="step"><div class="b"></div><small>ML</small></div>
+      <div class="step"><div class="b"></div><small>dashboard</small></div>
+      <div class="step"><div class="b"></div><small>automação</small></div>
+    </div>
+    <div class="foot"><span><b>Marcelo Santos</b> · Next Step SP</span><span>Dados: CVM (licença ODbL)</span></div>
+  </section>
+</body>
+</html>

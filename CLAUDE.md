@@ -77,13 +77,15 @@ Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; a
 - **Regra de troca de computador:** commit + push antes de sair de uma máquina; pull antes de começar na outra. Nunca editar nos dois ao mesmo tempo (o OneDrive sincroniza a `.git`).
 
 ## Próximas tarefas
-Feito: qualidade (Ruff, SQLFluff, pre-commit) e **fatia fina DFP modelada e testada** (30/10/2026: PASS=11, WARN=1, WEG 2025 = R$ 40,8 bi). Detalhes na nota do Obsidian, "Modelagem — passo 3".
-1. (feito em 30/10: push pelo PC, `gh` logado)
-2. **No Mac** (ITR já carregado lá): rodar `dbt build --vars '{docs: [dfp, itr]}'`; medir tempo.
-3. Investigar o balanço da Itapebi 2021 (aviso `balanco_fecha`).
-4. Post 3 ("Dado sujo, dado limpo"): modelagem pronta e testada.
-5. Antes do ML: definir rótulo, janela e baseline (Z-score de Altman). Antes do agente: conjunto de perguntas de avaliação.
-6. Registrar tudo no Obsidian.
+Feito: qualidade, fatia fina DFP modelada e **Marco A** (30/10/2026, Mac): Itapebi explicada (erro na fonte, em `seeds/excecoes_conhecidas.csv`), documentação do dbt, CI no GitHub Actions e rascunho do post 3. Detalhes na nota do Obsidian, "Marco A".
+Marcos restantes (ITR só no F, decisão de 30/10/2026):
+1. Push (ativa o CI) e revisão do post 3 por Marcelo.
+2. **Marco B — camada semântica:** ~10 métricas com regra escrita (receita, lucro, margem, endividamento, liquidez, alíquota efetiva IR/CSLL). Somar contas filhas, não o total. Pronto: cada métrica bate com cálculo manual em 3 empresas.
+3. **Marco C — agente de IA:** perguntas em português via camada semântica; avaliado com ~20 perguntas de resposta conhecida. Post 4.
+4. **Marco D — ML:** antes, definir rótulo, janela e baseline (Z-score de Altman); validação temporal. Post 5.
+5. **Marco E — dashboard.**
+6. **Marco F — automação semanal, ITR, GitHub público, portfólio.** Post 6 (impulsionar).
+Ao explicar: todo termo técnico vem com explicação até Marcelo dizer que já sabe.
 
 ## Outros projetos dele (para referência)
 Foods and Goods (Kaggle, logística, SQL + Python), análise de honorários (caso real), TCC Barcelona e FIAP Aurora. Detalhes no vault. Observação: o CV de 20/10 diz MySQL para o Foods and Goods, mas o README registra PostgreSQL. Confirmar com ele.
