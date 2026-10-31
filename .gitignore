@@ -7,3 +7,6 @@ __pycache__/
 # Modelo treinado: reproduzível com python -m ml.treinar
 ml/resultados/modelo.joblib
 ml/resultados/previsoes_walk_forward.csv
+
+# Contexto pessoal para o Claude Code: fica só no computador
+CLAUDE.md
