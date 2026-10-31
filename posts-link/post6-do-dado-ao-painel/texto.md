@@ -3,8 +3,8 @@ Status: rascunho v1 (30/10/2026), aguardando revisão de Marcelo. Imagem: `image
 Números: README e guia de estudo (todos testados até 30/10/2026). Este é o post para **impulsionar**.
 
 Antes de publicar:
-- Trocar `[link do GitHub]` e `[link do site]` pelos endereços reais (GitHub público e página no portfólio).
-- Revisar o `CLAUDE.md` do repositório (tem dados pessoais) antes de deixar o GitHub público.
+- GitHub já público (31/10/2026) e link no texto. Falta trocar `[link do site]` quando a página do projeto estiver no portfólio.
+- `CLAUDE.md` já fora do repositório (31/10/2026).
 - Linha opcional, decisão sua: "Estou em transição da área fiscal para dados e aberto a oportunidades em engenharia de dados e IA." Se quiser, entra antes da pergunta final.
 
 ---
@@ -31,7 +31,7 @@ Tudo roda com um comando, e cada número do painel pode ser rastreado até a lin
 
 O que eu levo do projeto: a parte difícil não foi o algoritmo nem a IA. Foi desconfiar do dado, escrever a regra antes de calcular e testar tudo o que eu afirmo. Foi aí que a minha experiência na área fiscal mais ajudou.
 
-Código, documentação e resultados: [link do GitHub]
+Código, documentação e resultados: https://github.com/MRC888/Next-step-SP
 Página do projeto: [link do site]
 
 Para quem trabalha com dados: o que você olharia primeiro neste projeto?
