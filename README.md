@@ -10,6 +10,8 @@ e um modelo que aponta risco de dificuldade financeira.
 > contábeis, com duplicatas, escalas diferentes, versões corrigidas e até erros na fonte. Este projeto transforma
 > isso em respostas, com cada número auditável até a linha original.
 
+![Painel do Next Step SP: indicadores da WEG em 2025, com a referência do setor](docs/img/painel-empresa.png)
+
 ## O que o projeto entrega
 
 | Camada | O que faz | Resultado (testado) |
@@ -20,6 +22,16 @@ e um modelo que aponta risco de dificuldade financeira.
 | **Modelo de risco** (scikit-learn) | Dificuldade financeira em até 24 meses | AUC 0,69 [0,62–0,76] · precisão média 4,5× o acaso · Z'' de Altman: 0,66 |
 | **Dashboard** (Streamlit + Plotly) | Empresa × pares × setor, ranking, mapa de risco, chat | Interativo, com filtros, detalhe por clique e download |
 | **Agente de IA** (Claude) | Perguntas em português; números só via camada semântica | Prova com gabarito: **20/20**, 4/4 pegadinhas · ~US$ 0,05 por pergunta |
+
+## O painel
+
+Cinco abas: **Empresa** (indicadores e comparação com o setor), **Ranking**, **Risco** (mapa do modelo contra o
+Altman), **Pergunte à IA** (chat com o agente) e **Dados e método**. Prints do painel rodando com os dados reais da CVM.
+
+| A empresa contra o setor | O modelo de risco contra o Z'' de Altman |
+|---|---|
+| ![Margens da WEG de 2015 a 2025, com a mediana e a faixa de 25% a 75% do setor](docs/img/painel-setor.png) | ![Cada ponto é uma empresa: percentil de risco do modelo no eixo vertical e Z'' de Altman no horizontal](docs/img/painel-risco.png) |
+| Linha azul: a empresa. Tracejado: mediana do setor. Faixa cinza: metade central do setor. | No canto superior esquerdo, os dois concordam no alerta. Pontos altos à direita: o modelo vê risco que o Altman não vê. |
 
 ## Arquitetura
 
