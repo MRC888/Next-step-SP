@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Next Step SP · carrossel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,600..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Carrossel do post final. Mesma identidade dos posts 1 a 3.
+   Prints reais do painel (pasta prints/). Números: README, agent/avaliacao/resultado.json, ml/resultados/metricas.json
+   e o raw da CVM (WEG 2025 e Itapebi 2021). Cada .slide vira uma página de 1080x1350. */
+:root {
+  --paper: #fbfcf8; --band: #e4efe3; --ink: #3f5249; --ink-strong: #121a16;
+  --marker: #ffe03d; --panel: #111916; --panel-fg: #f2f6f3; --panel-muted: #9fb0a8;
+  --term: #0f1513; --term-fg: #d6e2dc; --term-dim: #7f948b; --line: #2a3632;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 1080px; font-family: "IBM Plex Sans", Arial, sans-serif; color: var(--ink); }
+.slide { width: 1080px; height: 1350px; position: relative; overflow: hidden;
+  background: repeating-linear-gradient(180deg, var(--band) 0 72px, var(--paper) 72px 144px); }
+.slide.escuro { background: var(--panel); color: var(--panel-fg); }
+
+.topo { position: absolute; top: 56px; left: 72px; right: 72px; display: flex; justify-content: space-between; align-items: center; }
+.eyebrow { font: 500 19px/1 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: #3d6b5a; }
+.escuro .eyebrow { color: var(--marker); }
+.contador { font: 600 18px/1 "IBM Plex Mono", monospace; color: var(--ink-strong); background: var(--paper); border: 2px solid var(--ink-strong); border-radius: 6px; padding: 8px 10px; }
+.escuro .contador { color: var(--panel-fg); background: transparent; border-color: var(--line); }
+
+h1, h2 { font-family: "Archivo", Arial, sans-serif; font-weight: 900; color: var(--ink-strong); }
+.escuro h1, .escuro h2 { color: var(--panel-fg); }
+h1 { font-stretch: 68%; font-size: 104px; line-height: .93; }
+h2 { font-stretch: 70%; font-size: 76px; line-height: .96; }
+mark { background: linear-gradient(100deg, transparent 0 1%, var(--marker) 2% 98%, transparent 99%); padding: 0 10px; margin: 0 -4px; color: var(--ink-strong); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.titulo { position: absolute; top: 118px; left: 72px; right: 72px; }
+.texto { font-size: 26px; line-height: 1.42; color: var(--ink); }
+.texto b { color: var(--ink-strong); }
+.escuro .texto { color: var(--panel-muted); }
+.escuro .texto b { color: var(--panel-fg); }
+
+.janela { border: 2px solid var(--ink-strong); border-radius: 14px; overflow: hidden; background: #0e1117; box-shadow: 0 20px 40px rgba(17,25,22,.20); }
+.janela .barra { height: 32px; background: #1b1f27; display: flex; align-items: center; gap: 8px; padding: 0 14px; }
+.janela .barra i { width: 11px; height: 11px; border-radius: 50%; background: #3a404b; }
+.janela .barra span { font: 500 13px/1 "IBM Plex Mono", monospace; color: #8b93a1; margin-left: 10px; }
+.janela img { display: block; width: 100%; }
+.legenda { font-size: 23px; line-height: 1.42; color: var(--ink); }
+.legenda b { color: var(--ink-strong); }
+
+.rodape { position: absolute; left: 72px; right: 72px; bottom: 44px; display: grid; gap: 14px; }
+.rodape .linha { display: flex; justify-content: space-between; align-items: center; font-size: 17px; color: var(--ink); }
+.rodape .linha b { color: var(--ink-strong); font-weight: 600; }
+.escuro .rodape .linha { color: var(--panel-muted); }
+.escuro .rodape .linha b { color: var(--panel-fg); }
+.arraste { font: 600 17px/1 "IBM Plex Mono", monospace; color: var(--ink-strong); }
+.escuro .arraste { color: var(--marker); }
+.progresso { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
+.progresso i { height: 6px; border-radius: 3px; background: #c9d5cf; }
+.progresso i.on { background: var(--ink-strong); }
+.escuro .progresso i { background: var(--line); }
+.escuro .progresso i.on { background: var(--marker); }
+
+/* 1 · capa */
+.capa .titulo { top: 150px; }
+.capa h1 { font-size: 112px; }
+.capa .sub { margin-top: 34px; max-width: 760px; font-size: 29px; line-height: 1.38; color: var(--panel-muted); }
+.capa .sub b { color: var(--panel-fg); font-weight: 600; }
+.capa .pilha { position: absolute; left: 150px; right: -60px; top: 735px; height: 420px; }
+.capa .pilha .janela { position: absolute; width: 760px; border-color: #2c3a34; box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+.capa .pilha .j1 { left: 0; top: 40px; transform: rotate(-4deg); }
+.capa .pilha .j2 { left: 260px; top: 0; transform: rotate(3deg); }
+
+/* 2 · problema */
+.cru { position: absolute; left: 72px; right: 72px; top: 420px; background: var(--term); border-radius: 14px; padding: 26px 28px; font: 500 19px/1.75 "IBM Plex Mono", monospace; color: var(--term-dim); white-space: pre; overflow: hidden; box-shadow: 0 16px 32px rgba(17,25,22,.16); }
+.cru .cab { color: var(--term-fg); }
+.cru .hl { color: var(--ink-strong); background: var(--marker); }
+.cru .nota { display: block; margin-top: 12px; font-size: 16px; color: var(--term-dim); white-space: normal; }
+.dores { position: absolute; left: 72px; right: 72px; top: 830px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dor { background: var(--paper); border: 2px solid var(--ink-strong); border-radius: 12px; padding: 18px 20px; font-size: 23px; line-height: 1.3; color: var(--ink-strong); font-weight: 500; }
+.dor small { display: block; font: 500 15px/1.3 "IBM Plex Mono", monospace; color: var(--ink); margin-top: 6px; }
+.numeros { position: absolute; left: 72px; right: 72px; top: 1095px; font: 600 22px/1.3 "IBM Plex Mono", monospace; color: var(--ink-strong); }
+
+/* 3 · achado */
+.balanca { position: absolute; left: 72px; right: 72px; top: 360px; display: grid; gap: 30px; }
+.lado .rotulo { font-size: 24px; color: var(--ink-strong); font-weight: 600; margin-bottom: 10px; }
+.lado .rotulo small { font: 500 16px/1 "IBM Plex Mono", monospace; color: var(--ink); margin-left: 8px; font-weight: 500; }
+.trilho { position: relative; height: 92px; border-radius: 8px; background: transparent; }
+.barra-v { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 8px; display: flex; align-items: center; padding-left: 22px; font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 44px; }
+.barra-v.ativo { width: 100%; background: var(--ink-strong); color: var(--panel-fg); }
+.barra-v.passivo { width: 47.2%; background: #5f7a6d; color: var(--panel-fg); }
+.buraco { position: absolute; top: 0; bottom: 0; left: 47.2%; right: 0; border: 3px dashed var(--ink-strong); border-left: none; border-radius: 0 8px 8px 0; background: repeating-linear-gradient(135deg, rgba(255,224,61,.95) 0 14px, rgba(255,224,61,.55) 14px 28px); display: flex; align-items: center; justify-content: center; font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 40px; color: var(--ink-strong); }
+.achado-texto { position: absolute; left: 72px; right: 72px; top: 770px; display: grid; gap: 18px; }
+.evidencia { font: 500 17px/1.55 "IBM Plex Mono", monospace; color: var(--ink); border-left: 4px solid var(--ink-strong); padding-left: 16px; }
+
+/* 4, 5, 6, 8 · prints */
+.print { position: absolute; left: 72px; right: 72px; top: 360px; display: grid; gap: 26px; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { font: 500 17px/1 "IBM Plex Mono", monospace; color: var(--ink-strong); background: var(--paper); border: 2px solid var(--ink-strong); border-radius: 999px; padding: 9px 14px; }
+.destaque-num { display: inline-block; background: var(--marker); color: var(--ink-strong); padding: 0 6px; font-weight: 600; }
+
+/* 7 · prova */
+.placar { position: absolute; left: 72px; right: 72px; top: 360px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.cartao { background: var(--term); border-radius: 14px; padding: 22px 22px 20px; display: grid; gap: 8px; }
+.cartao b { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 72%; font-size: 64px; white-space: nowrap; line-height: 1; color: var(--panel-fg); }
+.cartao b.y { color: var(--marker); }
+.cartao span { font: 500 17px/1.35 "IBM Plex Mono", monospace; color: var(--term-dim); }
+.pegadinhas { position: absolute; left: 72px; right: 72px; top: 600px; display: grid; gap: 12px; }
+.pegadinhas .tit { font: 500 17px/1 "IBM Plex Mono", monospace; letter-spacing: .06em; color: var(--ink); margin-bottom: 4px; }
+.qa { display: grid; grid-template-columns: 1fr 1fr; background: var(--paper); border: 2px solid var(--ink-strong); border-radius: 12px; overflow: hidden; }
+.qa div { padding: 14px 18px; font-size: 21px; line-height: 1.3; }
+.qa .q { color: var(--ink-strong); font-weight: 600; border-right: 2px dashed #b9c6c0; }
+.qa .a { color: var(--ink); }
+.fiscal { position: absolute; left: 72px; right: 72px; top: 1000px; background: var(--marker); border-radius: 12px; padding: 18px 22px; font-size: 22px; line-height: 1.4; color: var(--ink-strong); }
+
+/* 8 · risco */
+.metricas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.metricas div { background: var(--term); border-radius: 12px; padding: 16px 18px; display: grid; gap: 6px; }
+.metricas b { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 52px; line-height: 1; color: var(--panel-fg); }
+.metricas b.y { color: var(--marker); }
+.metricas span { font: 500 15px/1.35 "IBM Plex Mono", monospace; color: var(--term-dim); }
+
+/* 9 · arquitetura */
+.fluxo { position: absolute; left: 72px; right: 72px; top: 360px; display: grid; gap: 12px; }
+.etapa { display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 18px; background: var(--paper); border: 2px solid var(--ink-strong); border-radius: 12px; padding: 14px 18px; position: relative; }
+.etapa + .etapa::before { content: ""; position: absolute; left: 49px; top: -14px; width: 2px; height: 12px; background: var(--ink-strong); }
+.etapa .n { width: 64px; height: 64px; border-radius: 10px; background: var(--ink-strong); color: var(--marker); display: grid; place-items: center; font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-size: 34px; }
+.etapa .o { font-size: 25px; font-weight: 600; color: var(--ink-strong); line-height: 1.2; }
+.etapa .o small { display: block; font-size: 19px; font-weight: 400; color: var(--ink); margin-top: 3px; }
+.etapa .f { font: 600 16px/1.25 "IBM Plex Mono", monospace; color: var(--ink-strong); background: var(--band); border-radius: 6px; padding: 8px 10px; text-align: right; }
+.selos { position: absolute; left: 72px; right: 72px; top: 1080px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* 10 · fim */
+.fim .titulo { top: 170px; }
+.fim h2 { font-size: 92px; }
+.fim .texto { margin-top: 34px; font-size: 30px; max-width: 900px; }
+.resumo { position: absolute; left: 72px; right: 72px; top: 560px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.resumo div { border-top: 3px solid var(--marker); padding-top: 12px; display: grid; gap: 6px; }
+.resumo b { font-family: "Archivo", Arial, sans-serif; font-weight: 900; font-stretch: 75%; font-size: 50px; line-height: 1; color: var(--panel-fg); }
+.resumo span { font: 500 15px/1.35 "IBM Plex Mono", monospace; color: var(--panel-muted); }
+.links { position: absolute; left: 72px; right: 72px; top: 770px; display: grid; gap: 16px; }
+.link { display: grid; grid-template-columns: 200px 1fr; align-items: center; background: #18221e; border: 2px solid var(--line); border-radius: 14px; padding: 22px 26px; }
+.link span { font: 500 17px/1.2 "IBM Plex Mono", monospace; color: var(--panel-muted); letter-spacing: .06em; text-transform: uppercase; }
+.link b { font-family: "Archivo", Arial, sans-serif; font-weight: 800; font-stretch: 85%; font-size: 40px; color: var(--panel-fg); }
+.link.y { border-color: var(--marker); }
+.link.y b { color: var(--marker); }
+.assinatura { position: absolute; left: 72px; right: 72px; top: 1080px; font-size: 22px; color: var(--panel-muted); line-height: 1.45; }
+.assinatura b { color: var(--panel-fg); font-weight: 600; font-size: 28px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · CAPA -->
+<section class="slide escuro capa">
+  <div class="topo"><span class="eyebrow">Projeto de dados · ponta a ponta</span><span class="contador">1/10</span></div>
+  <div class="titulo">
+    <h1>35 milhões de linhas de balanços da bolsa viraram um <mark>painel com IA.</mark></h1>
+    <p class="sub">Do arquivo bruto da CVM a <b>respostas em português</b>, com cada número conferido e rastreável até a linha original.</p>
+  </div>
+  <div class="pilha">
+    <div class="janela j1"><div class="barra"><i></i><i></i><i></i><span>Next Step SP · painel</span></div><img src="prints/painel-empresa.png" alt=""></div>
+    <div class="janela j2"><div class="barra"><i></i><i></i><i></i><span>Next Step SP · pergunte à IA</span></div><img src="prints/painel-chat.png" alt=""></div>
+  </div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">arraste para o lado →</span></div>
+  </div>
+</section>
+
+<!-- 2 · PROBLEMA -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">O problema</span><span class="contador">2/10</span></div>
+  <div class="titulo"><h2>Todo balanço da bolsa é público. <mark>Quase ninguém consegue usar.</mark></h2></div>
+  <div class="cru"><span class="cab">CD_CONTA;DS_CONTA;VL_CONTA;ESCALA_MOEDA</span>
+<span class="hl">3.01;Receita de Venda de Bens e/ou Serviços;40804110.0000000000;MIL</span>
+3.02;Custo dos Bens e/ou Serviços Vendidos;-27122477.0000000000;MIL
+3.03;Resultado Bruto;13681633.0000000000;MIL
+3.04.01;Despesas com Vendas;-3353431.0000000000;MIL
+3.04.02;Despesas Gerais e Administrativas;-1513882.0000000000;MIL<span class="nota">Linhas reais da DRE da WEG 2025, como a CVM publica. A linha amarela é a receita: R$ 40,8 bilhões, escrita em milhares.</span></div>
+  <div class="dores">
+    <div class="dor">Códigos contábeis no lugar de nomes<small>3.01, 3.02, 3.04.01…</small></div>
+    <div class="dor">Linhas duplicadas e balanços reenviados<small>versões corrigidas convivem com as antigas</small></div>
+    <div class="dor">Valores em reais ou em milhares<small>a escala muda de empresa para empresa</small></div>
+    <div class="dor">Erro até na fonte oficial<small>próximo slide</small></div>
+  </div>
+  <div class="numeros">35,2 mi de linhas · 1.143 empresas · balanços desde 2011</div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 3 · ACHADO -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">Dado sujo</span><span class="contador">3/10</span></div>
+  <div class="titulo"><h2>Um balanço oficial não fechava. <mark>Faltavam R$ 370 milhões.</mark></h2></div>
+  <div class="balanca">
+    <div class="lado">
+      <div class="rotulo">O que a empresa tem<small>ativo total</small></div>
+      <div class="trilho"><div class="barra-v ativo">R$ 699,8 mi</div></div>
+    </div>
+    <div class="lado">
+      <div class="rotulo">O que ela deve + o capital dos donos<small>total publicado</small></div>
+      <div class="trilho"><div class="barra-v passivo">R$ 330,1 mi</div><div class="buraco">faltam R$ 369,7 mi</div></div>
+    </div>
+  </div>
+  <div class="achado-texto">
+    <p class="texto">A regra básica da contabilidade diz que os dois lados precisam ser iguais. Um <b>teste automático</b> pegou a diferença: o total foi publicado <b>sem o patrimônio líquido</b>.</p>
+    <p class="texto">A prova veio da própria empresa: no balanço do ano seguinte, ela repete 2021 com o total certo. Registrei como <b>exceção, com a evidência</b>, e o teste segue vigiando todas as outras.</p>
+    <p class="evidencia">Itapebi Geração de Energia, balanço de 2021 (CVM, em R$ mil): ativo 699.798 · passivo total publicado 330.123 · patrimônio líquido 369.675.</p>
+  </div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 4 · PAINEL EMPRESA -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">O painel</span><span class="contador">4/10</span></div>
+  <div class="titulo"><h2>Qualquer empresa da bolsa, <mark>comparada com o setor.</mark></h2></div>
+  <div class="print">
+    <div class="janela"><div class="barra"><i></i><i></i><i></i><span>Next Step SP · empresa</span></div><img src="prints/painel-empresa.png" alt="Indicadores da WEG em 2025"></div>
+    <p class="legenda">WEG em 2025: receita de <b>R$ 40,8 bi</b> e margem líquida de <span class="destaque-num">16,6%</span>, contra <b>4,0%</b> da referência do setor. Cada cartão mostra a evolução desde 2015.</p>
+    <div class="chips"><span class="chip">busca por nome</span><span class="chip">até 3 concorrentes</span><span class="chip">ranking</span><span class="chip">download dos dados</span></div>
+  </div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 5 · PAINEL SETOR -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">O painel</span><span class="contador">5/10</span></div>
+  <div class="titulo"><h2>Dez anos de história <mark>em um único olhar.</mark></h2></div>
+  <div class="print">
+    <div class="janela"><div class="barra"><i></i><i></i><i></i><span>Next Step SP · empresa × setor</span></div><img src="prints/painel-setor.png" alt="Margens da WEG de 2015 a 2025 contra o setor"></div>
+    <p class="legenda"><b>Linha azul:</b> a empresa. <b>Tracejado:</b> a mediana do setor. <b>Faixa cinza:</b> a metade central do setor. Dá para ver em segundos se a empresa está acima ou abaixo dos pares, e desde quando.</p>
+    <div class="chips"><span class="chip">receita</span><span class="chip">margens</span><span class="chip">ROE</span><span class="chip">endividamento</span><span class="chip">liquidez</span><span class="chip">alíquota efetiva de imposto</span></div>
+  </div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 6 · CHAT -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">Agente de IA</span><span class="contador">6/10</span></div>
+  <div class="titulo"><h2 style="font-size: 70px">Perguntei à IA quanto a Ambev pagou de imposto. <mark>Ela não chutou.</mark></h2></div>
+  <div class="print">
+    <div class="janela"><div class="barra"><i></i><i></i><i></i><span>Next Step SP · pergunte à IA</span></div><img src="prints/painel-chat.png" alt="Resposta da IA: alíquota efetiva de 17,7% da Ambev em 2025"></div>
+    <p class="legenda">A IA <b>não calcula nada</b>. Ela escolhe a consulta, e o número sai de uma <b>regra escrita uma única vez</b> (a camada semântica). Por isso a resposta vem com a conta e a fonte.</p>
+  </div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 7 · PROVA -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">Agente de IA</span><span class="contador">7/10</span></div>
+  <div class="titulo"><h2>Não basta parecer certo. <mark>Eu fiz uma prova.</mark></h2></div>
+  <div class="placar">
+    <div class="cartao"><b class="y">20/20</b><span>acertos em perguntas<br>com gabarito</span></div>
+    <div class="cartao"><b>4/4</b><span>pegadinhas: explicou<br>em vez de inventar</span></div>
+    <div class="cartao"><b>US$ 0,05</b><span>por pergunta<br>(prova inteira: US$ 1,03)</span></div>
+  </div>
+  <div class="pegadinhas">
+    <p class="tit">PEGADINHAS · O QUE A IA RESPONDEU, RESUMIDO</p>
+    <div class="qa"><div class="q">“Qual a margem líquida do Itaú em 2025?”</div><div class="a">Banco usa outro plano de contas e fica fora das métricas.</div></div>
+    <div class="qa"><div class="q">“Qual a margem líquida da Vale em 2022?”</div><div class="a">A base não tem 2022 da Vale: avisou em vez de estimar.</div></div>
+    <div class="qa"><div class="q">“Qual a receita da Padaria do Zé S.A.?”</div><div class="a">Procurou, não encontrou e não inventou um número.</div></div>
+  </div>
+  <div class="fiscal"><b>Onde entrou a experiência fiscal:</b> com prejuízo antes dos tributos, a alíquota efetiva fica vazia. Sem essa regra, a Magazine Luiza em 2023 apareceria com “52,6%”, um número que parece real e não significa nada.</div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 8 · RISCO -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">Machine learning</span><span class="contador">8/10</span></div>
+  <div class="titulo"><h2>Dá para prever uma crise pelo balanço? <mark>Um pouco.</mark></h2></div>
+  <div class="print">
+    <div class="janela"><div class="barra"><i></i><i></i><i></i><span>Next Step SP · risco</span></div><img src="prints/painel-risco.png" alt="Mapa de risco: modelo contra o Z'' de Altman"></div>
+    <div class="metricas">
+      <div><b class="y">0,69</b><span>AUC do modelo<br>(Z'' de Altman: 0,66)</span></div>
+      <div><b>34%</b><span>dos casos reais entre<br>os 10% de maior risco</span></div>
+      <div><b>50</b><span>empresas que entraram<br>em dificuldade</span></div>
+    </div>
+    <p class="legenda">Risco de recuperação judicial, falência ou liquidação em 24 meses, <b>testado ano a ano sem ver o futuro</b>. O ganho sobre a régua clássica é real, mas modesto: é um alerta para investigar, não um veredito.</p>
+  </div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 9 · ARQUITETURA -->
+<section class="slide">
+  <div class="topo"><span class="eyebrow">Como foi feito</span><span class="contador">9/10</span></div>
+  <div class="titulo"><h2>Do arquivo bruto ao painel, <mark>com um comando.</mark></h2></div>
+  <div class="fluxo">
+    <div class="etapa"><div class="n">1</div><div class="o">Ingestão<small>baixa da CVM só o que mudou: 35,2 mi de linhas</small></div><div class="f">Python</div></div>
+    <div class="etapa"><div class="n">2</div><div class="o">Armazenamento<small>o dado bruto fica intacto; a limpeza pode ser refeita</small></div><div class="f">PostgreSQL<br>Docker</div></div>
+    <div class="etapa"><div class="n">3</div><div class="o">Limpeza e testes<small>11,2 mi de linhas limpas em cerca de 4 minutos</small></div><div class="f">dbt · SQL</div></div>
+    <div class="etapa"><div class="n">4</div><div class="o">Regras de negócio<small>10 métricas, conferidas à mão: 30 de 30</small></div><div class="f">MetricFlow</div></div>
+    <div class="etapa"><div class="n">5</div><div class="o">IA e modelo de risco<small>agente que consulta as regras · previsão walk-forward</small></div><div class="f">Claude<br>scikit-learn</div></div>
+    <div class="etapa"><div class="n">6</div><div class="o">Painel<small>empresa, setor, ranking, risco e chat</small></div><div class="f">Streamlit<br>Plotly</div></div>
+  </div>
+  <div class="selos"><span class="chip">37 testes automáticos</span><span class="chip">CI no GitHub</span><span class="chip">código aberto</span><span class="chip">dados abertos da CVM</span></div>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span class="arraste">→</span></div>
+  </div>
+</section>
+
+<!-- 10 · FIM -->
+<section class="slide escuro fim">
+  <div class="topo"><span class="eyebrow">O que eu levo</span><span class="contador">10/10</span></div>
+  <div class="titulo">
+    <h2>A parte difícil não foi a IA. <mark>Foi desconfiar do dado.</mark></h2>
+    <p class="texto">Escrever a regra antes de calcular e <b>testar tudo o que eu afirmo</b>. Foi aí que a minha experiência na área fiscal mais ajudou.</p>
+  </div>
+  <div class="resumo">
+    <div><b>35,2 mi</b><span>linhas da CVM</span></div>
+    <div><b>30/30</b><span>métricas conferidas</span></div>
+    <div><b>20/20</b><span>na prova da IA</span></div>
+    <div><b>0,69</b><span>AUC do risco</span></div>
+  </div>
+  <div class="links">
+    <div class="link y"><span>Código aberto</span><b>github.com/MRC888/Next-step-SP</b></div>
+    <div class="link"><span>Portfólio</span><b>marcelo-santos-data.vercel.app</b></div>
+  </div>
+  <p class="assinatura"><b>Marcelo Santos</b><br>Dados: Portal de Dados Abertos da CVM (licença ODbL). Não é recomendação de investimento.</p>
+  <div class="rodape">
+    <div class="progresso"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <div class="linha"><span><b>Marcelo Santos</b> · Next Step SP</span><span>Comente o que você olharia primeiro</span></div>
+  </div>
+</section>
+
+</body>
+</html>

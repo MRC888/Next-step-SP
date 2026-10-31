@@ -10,3 +10,6 @@ ml/resultados/previsoes_walk_forward.csv
 
 # Contexto pessoal para o Claude Code: fica só no computador
 CLAUDE.md
+
+# PDF do carrossel: gerado a partir dos slides (passa do limite de 500 KB do pre-commit)
+posts-link/**/*.pdf
