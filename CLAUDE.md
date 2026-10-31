@@ -78,11 +78,12 @@ Marcelo alterna entre o Mac e um PC Windows. A pasta sincroniza pelo OneDrive; a
 - **Regra de troca de computador:** commit + push antes de sair de uma máquina; pull antes de começar na outra. Nunca editar nos dois ao mesmo tempo (o OneDrive sincroniza a `.git`).
 
 ## Próximas tarefas
-Feito (30/10/2026): Marcos A, B, C (parcial), D, E e F. Guia completo em `docs/guia-de-estudo.md` e no Obsidian ("Next Step SP — Guia de estudo"). Comandos: `make`.
-1. ~~Chave da API e prova do agente~~ feitas em 30/10/2026: **20/20, 4/4 pegadinhas** (US$ 1,03). Post 4 em rascunho; post 5 pronto.
+Feito (30/10/2026): Marcos A a F, todos concluídos e testados. Guia completo em `docs/guia-de-estudo.md` e no Obsidian ("Next Step SP — Guia de estudo"). Comandos: `make`.
+1. ~~Chave da API e prova do agente~~ feitas em 30/10/2026: **20/20, 4/4 pegadinhas** (US$ 1,03). Posts 4, 5 e 6 prontos (texto e imagem); **Marcelo publica os posts ele mesmo**. Cronograma sugerido: 4 em 04/11, 5 em 10/11, 6 a partir de 17/11.
 2. **Nada roda automaticamente** (decisão de 30/10/2026): projeto de portfólio. Não ativar `make agendar`. Para usar: `make banco` e depois `make dashboard` ou `make pipeline`.
-3. Revisar o `CLAUDE.md` (dados pessoais) antes de tornar o GitHub público; portfólio; post 6 (impulsionar).
-4. Evoluções: métricas trimestrais (ITR), bancos, Selic/IPCA (SGS), calibrar a nota de risco, orquestrador, painel publicado.
+3. Revisar o `CLAUDE.md` (dados pessoais) antes de tornar o GitHub público; trocar os links no texto do post 6 (impulsionar).
+4. **Lembrar Marcelo de pôr o projeto no site** (portfólio: marcelo-santos-data.vercel.app). Material pronto: print do painel em `posts-link/post6-do-dado-ao-painel/painel.png` e o README.
+5. Evoluções: métricas trimestrais (ITR), bancos, Selic/IPCA (SGS), calibrar a nota de risco, orquestrador, painel publicado.
 
 ## Outros projetos dele (para referência)
 Foods and Goods (Kaggle, logística, SQL + Python), análise de honorários (caso real), TCC Barcelona e FIAP Aurora. Detalhes no vault. Observação: o CV de 20/10 diz MySQL para o Foods and Goods, mas o README registra PostgreSQL. Confirmar com ele.
